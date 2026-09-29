@@ -1,6 +1,6 @@
 export const AGENCY_CONFIG = {
   name: "Mahajanrides",
-  tagline: "Exclusive Himachal Pradesh Tour & Cab Service",
+  tagline: "Exclusive Himachal Pradesh Force Tempo Traveller Services",
   ownerPhone: "919876543210", // Primary WhatsApp Number (country code without +)
   displayPhone: "+91 98765 43210",
   email: "info@mahajanrides.com",

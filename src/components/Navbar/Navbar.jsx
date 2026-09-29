@@ -60,7 +60,7 @@ export default function Navbar({ onBookClick }) {
             <div className="logo-img-wrapper">
               <img 
                 src={logoImg} 
-                alt="Mahajanrides - Mountain & Cab Tours" 
+                alt="Mahajanrides - Force Tempo Traveller Tours" 
                 className="logo-img" 
                 width="50" 
                 height="50" 
@@ -68,7 +68,7 @@ export default function Navbar({ onBookClick }) {
             </div>
             <div className="logo-text-group">
               <div className="logo-text">MAHAJAN<span>RIDES</span></div>
-              <span className="logo-tagline">Himachal Tour &amp; Cab Service</span>
+              <span className="logo-tagline">Force Tempo Traveller Services</span>
             </div>
           </a>
 

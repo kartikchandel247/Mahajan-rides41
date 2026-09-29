@@ -86,7 +86,7 @@ export default function FeaturedTours() {
                         <i className="fa-solid fa-clock"></i> {tour.duration}
                       </div>
                       <div className="tour-meta-item">
-                        <i className="fa-solid fa-car"></i> {tour.vehicle}
+                        <i className="fa-solid fa-van-shuttle"></i> {tour.vehicle}
                       </div>
                     </div>
                   </div>

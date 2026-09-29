@@ -82,7 +82,7 @@ export default function BlogPreview() {
       `🏙️ *From:* ${encodeURIComponent(feedbackForm.city || 'India')}%0A` +
       `📍 *Route Taken:* ${encodeURIComponent(feedbackForm.route)}%0A` +
       `⭐ *Rating:* ${feedbackForm.rating} / 5 Stars%0A` +
-      `💬 *Feedback:* ${encodeURIComponent(feedbackForm.comment || 'Wonderful trip and reliable cab service!')}%0A%0A` +
+      `💬 *Feedback:* ${encodeURIComponent(feedbackForm.comment || 'Wonderful trip and reliable Force Tempo Traveller service!')}%0A%0A` +
       `_Sent via Mahajanrides Website Feedback Portal_`;
 
     window.open(`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${text}`, '_blank');
@@ -257,7 +257,7 @@ export default function BlogPreview() {
                           <option value="Spiti Valley & Lahaul Circuit">Spiti Valley &amp; Lahaul Circuit</option>
                           <option value="Bir Billing & Palampur Tea Gardens">Bir Billing &amp; Palampur</option>
                           <option value="Chamba & Khajjiar Sightseeing">Chamba &amp; Khajjiar</option>
-                          <option value="Chandigarh to Himachal Doorstep Cab">Chandigarh to Himachal Cab</option>
+                          <option value="Chandigarh to Himachal Doorstep Tempo Traveller">Chandigarh to Himachal Tempo Traveller</option>
                           <option value="Custom Himachal Family Package">Custom Himachal Package</option>
                         </select>
                       </div>

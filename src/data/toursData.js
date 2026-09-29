@@ -9,7 +9,7 @@ export const FEATURED_TOURS = [
     rating: 4.9,
     reviewsCount: 480,
     tag: "Most Popular",
-    vehicle: "Innova Crysta / Swift Dzire",
+    vehicle: "Force Tempo Traveller (12/17 Seater)",
     image: "/places/manali.jpg",
     description: "Hadimba Devi Temple, Solang snow adventure, crossing Atal Tunnel to Sissu Waterfall, and scenic Rohtang Pass."
   },
@@ -23,7 +23,7 @@ export const FEATURED_TOURS = [
     rating: 4.9,
     reviewsCount: 390,
     tag: "Spiritual & Scenic",
-    vehicle: "Private AC Cab / SUV",
+    vehicle: "Force Tempo Traveller (12/17 Seater)",
     image: "/places/manikaran.jpg",
     description: "Sacred Manikaran Sahib hot springs & Shiva temple, Parvati river pine walks at Kasol, and Kullu river rafting."
   },
@@ -37,7 +37,7 @@ export const FEATURED_TOURS = [
     rating: 4.9,
     reviewsCount: 340,
     tag: "Family Favorite",
-    vehicle: "Innova Crysta / Tempo Traveller",
+    vehicle: "Force Tempo Traveller (17/20 Seater)",
     image: "/places/dharamshala.jpg",
     description: "HPCA Cricket Stadium with snowy Dhauladhar peaks, Dalai Lama Monastery, historic Kangra Fort, and Khajjiar Mini Switzerland."
   },
@@ -51,7 +51,7 @@ export const FEATURED_TOURS = [
     rating: 4.8,
     reviewsCount: 260,
     tag: "Epic Adventure",
-    vehicle: "4x4 SUV / Mountain Cab",
+    vehicle: "Force Tempo Traveller (Mountain Spec)",
     image: "/places/spiti_valley.jpg",
     description: "Cross high Himalayan passes to 1,000-year-old Key Monastery, Hikkim highest post office, Komic village, and crescent Chandratal Lake."
   }
@@ -64,7 +64,7 @@ export const TESTIMONIALS_DATA = [
     name: "Aman & Sneha Sharma",
     city: "Delhi NCR",
     rating: 5,
-    quote: "Our 5-day Manali and Sissu trip with Mahajanrides was spectacular! The driver was a true mountain expert on the snowy curves of Rohtang and Atal Tunnel. The cab was spotless.",
+    quote: "Our 5-day Manali and Sissu trip with Mahajanrides was spectacular! The driver was a true mountain expert on the snowy curves of Rohtang and Atal Tunnel. The Force Tempo Traveller was spotless and very comfortable for our family.",
     image: "/places/manali.jpg",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
   },
@@ -92,20 +92,20 @@ export const TESTIMONIALS_DATA = [
 
 export const FAQ_DATA = [
   {
-    question: "Do your cabs have verified permits for Rohtang Pass, Atal Tunnel & Sissu?",
-    answer: "Yes, 100%. All Mahajanrides commercial cabs hold valid Himachal Pradesh state permits, Green Tax clearance, and authorized access for Rohtang Pass and Atal Tunnel crossings."
+    question: "Do your Force Tempo Travellers have verified permits for Rohtang Pass, Atal Tunnel & Sissu?",
+    answer: "Yes, 100%. All Mahajanrides commercial Force Tempo Travellers hold valid Himachal Pradesh state permits, Green Tax clearance, and authorized access for Rohtang Pass and Atal Tunnel crossings."
   },
   {
     question: "Where do you provide pickup & drop services for Himachal tours?",
     answer: "We offer seamless door-to-door pickups from Chandigarh Airport/Railway Station, Delhi NCR, Kalka Railway Station, Pathankot, Amritsar, or any major town directly to your destination in Himachal Pradesh."
   },
   {
-    question: "Which vehicles are available in your Himachal fleet?",
-    answer: "Our fleet consists of mountain-ready Toyota Innova Crysta, Maruti Swift Dzire, Toyota Etios, Force Tempo Travellers (12/17 seaters), and Force Urbania luxury vans, all handled by experienced local Himachali chauffeurs."
+    question: "Which Force Tempo Traveller models are available in your fleet?",
+    answer: "We operate exclusively Force Tempo Travellers from Force Motors — including 12-seater luxury AC pushback, 17-seater Maharaja seats, and 20-seater group touring configurations, all driven by experienced local Himachali chauffeurs."
   },
   {
     question: "How does the instant WhatsApp price inquiry work?",
-    answer: "Simply select your destination, dates, duration, and group size on our booking bar. Clicking 'Inquire on WhatsApp' instantly prepares a structured quote request sent straight to the owner for immediate rates and cab availability."
+    answer: "Simply select your destination, dates, duration, and group size on our booking bar. Clicking 'Inquire on WhatsApp' instantly prepares a structured quote request sent straight to the owner for immediate rates and Force Tempo Traveller availability."
   }
 ];
 

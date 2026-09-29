@@ -48,7 +48,7 @@ export default function AboutSnippet({ onLearnMore }) {
             <div className="section-subtitle">Himachal Tour Specialists</div>
             <h2 className="section-title">Discover Himachal <i>with our local guide</i></h2>
             <p className="about-text">
-              Born and rooted in Himachal Pradesh, {AGENCY_CONFIG.name} provides dedicated cab and tour services exclusively across Devbhoomi. From the snow-capped heights of Rohtang Pass, Atal Tunnel, and Sissu to the tranquil valleys of Kullu, Kasol, Manikaran, Dharamshala, and Spiti — our seasoned local Himachali chauffeurs and mountain-ready fleet guarantee safe, punctual, and breathtaking road journeys.
+              Born and rooted in Himachal Pradesh, {AGENCY_CONFIG.name} provides dedicated Force Tempo Traveller tour services exclusively across Devbhoomi. From the snow-capped heights of Rohtang Pass, Atal Tunnel, and Sissu to the tranquil valleys of Kullu, Kasol, Manikaran, Dharamshala, and Spiti — our seasoned local Himachali chauffeurs and mountain-ready Force Tempo Traveller fleet guarantee safe, punctual, and breathtaking road journeys.
             </p>
 
             <div className="about-features-list">

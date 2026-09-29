@@ -10,9 +10,9 @@ export default function Services() {
       desc: "Personalized itineraries created around your family's schedule, preferred travel pace, and budget."
     },
     {
-      icon: "fa-solid fa-car-side",
-      title: "Cab & Fleet Rentals",
-      desc: "Sanitized, GPS-tracked Sedans, luxury Innova Crystas, and Tempo Travellers with mountain-trained drivers."
+      icon: "fa-solid fa-van-shuttle",
+      title: "Force Tempo Traveller Rentals",
+      desc: "Sanitized, luxury Force Tempo Travellers with pushback seats, dual AC, music system, and mountain-trained drivers."
     },
     {
       icon: "fa-solid fa-hotel",
@@ -107,7 +107,7 @@ export default function Services() {
             />
             <div className="banner-overlay-text">
               <span>Explore The Roads Less Travelled</span>
-              <h3>Private Chauffeur Fleets &amp; Custom Mountain Holidays</h3>
+              <h3>Luxury Force Tempo Traveller &amp; Mountain Holidays</h3>
             </div>
           </div>
         </div>

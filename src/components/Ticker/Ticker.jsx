@@ -11,9 +11,9 @@ export default function Ticker() {
     "Palampur Tea Garden Retreats",
     "Rohtang Pass Snow Excursions",
     "Chamba & Khajjiar Sightseeing",
-    "Chandigarh to Himachal Cabs",
+    "Chandigarh to Himachal Force Tempo Traveller",
     "Experienced Himachali Chauffeurs",
-    "24/7 Mountain-Ready Fleet"
+    "24/7 Force Tempo Traveller Fleet"
   ];
 
   return (

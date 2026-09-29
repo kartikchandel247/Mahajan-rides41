@@ -27,7 +27,7 @@ export function buildWhatsAppInquiryUrl({
   message += `👥 *Travelers:* ${encodeURIComponent(travelerText)}%0A`;
 
   if (vehicle) {
-    message += `🚗 *Vehicle Preference:* ${encodeURIComponent(vehicle)}%0A`;
+    message += `🚐 *Force Tempo Traveller:* ${encodeURIComponent(vehicle)}%0A`;
   }
   if (notes) {
     message += `📝 *Notes / Special Requests:* ${encodeURIComponent(notes)}%0A`;

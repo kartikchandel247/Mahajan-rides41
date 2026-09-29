@@ -14,8 +14,8 @@ export default function BookingBar() {
     destination: "Manali, Solang Valley & Atal Tunnel",
     date: defaultDateString,
     days: "5",
-    travelers: "2 Adults (Couple)",
-    vehicle: "Toyota Innova Crysta"
+    travelers: "Family Group (7-12 Members)",
+    vehicle: "Force Tempo Traveller (12 Seater Luxury)"
   });
 
   const handleChange = (e) => {
@@ -118,17 +118,17 @@ export default function BookingBar() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="1 Solo Traveler">1 Solo Traveler</option>
-                  <option value="2 Adults (Couple)">2 Adults (Couple)</option>
-                  <option value="Family (3-5 Members)">Family (3-5 Members)</option>
-                  <option value="Group (6+ People)">Group (6+ People)</option>
+                  <option value="Small Group (4-6 Members)">Small Group (4-6 Members)</option>
+                  <option value="Family Group (7-12 Members)">Family Group (7-12 Members)</option>
+                  <option value="Large Group (13-17 Members)">Large Group (13-17 Members)</option>
+                  <option value="Tour Group (18+ Members)">Tour Group (18+ Members)</option>
                 </select>
               </div>
             </div>
 
-            {/* Cab / Vehicle Preference */}
+            {/* Force Tempo Traveller Seating Preference */}
             <div className="booking-field">
-              <label htmlFor="vehicle"><i className="fa-solid fa-car"></i> Cab / Fleet</label>
+              <label htmlFor="vehicle"><i className="fa-solid fa-van-shuttle"></i> Force Tempo Traveller</label>
               <div className="booking-input-wrap">
                 <select 
                   id="vehicle" 
@@ -137,11 +137,11 @@ export default function BookingBar() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="Toyota Innova Crysta (SUV)">Innova Crysta (SUV)</option>
-                  <option value="Swift Dzire / Etios (Sedan)">Sedan (Dzire / Etios)</option>
-                  <option value="Tempo Traveller (12/17 Seater)">Tempo Traveller</option>
-                  <option value="Force Urbania Luxury Van">Force Urbania (Luxury)</option>
-                  <option value="Standard Cab (Budget Friendly)">Standard Cab</option>
+                  <option value="Force Tempo Traveller (12 Seater Luxury)">12 Seater (Luxury AC Pushback)</option>
+                  <option value="Force Tempo Traveller (17 Seater Maharaja)">17 Seater (Maharaja Pushback)</option>
+                  <option value="Force Tempo Traveller (20 Seater Tourist)">20 Seater (Group Touring)</option>
+                  <option value="Force Tempo Traveller (9-10 Seater Executive)">9-10 Seater (Executive Class)</option>
+                  <option value="Force Tempo Traveller (Custom Seating)">Force Tempo Traveller (Custom)</option>
                 </select>
               </div>
             </div>
