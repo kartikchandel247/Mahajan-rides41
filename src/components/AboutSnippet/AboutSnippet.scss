@@ -47,7 +47,12 @@
   background-color: #0b1a3a;
 
   @include mobile {
-    height: 320px;
+    height: 270px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 380px) {
+    height: 220px;
   }
 
   img {
@@ -87,12 +92,12 @@
     }
 
     @include mobile {
-      font-size: 0.75rem;
-      padding: 6px 10px;
-      bottom: 10px;
-      left: 8px;
-      right: 8px;
-      gap: 5px;
+      font-size: 0.72rem;
+      padding: 5px 8px;
+      bottom: 8px;
+      left: 6px;
+      right: 6px;
+      gap: 4px;
     }
   }
 
@@ -102,10 +107,18 @@
 
   &.shift-down {
     margin-top: 45px;
+
+    @include mobile {
+      margin-top: 20px;
+    }
   }
 
   &.shift-up {
     margin-top: -25px;
+
+    @include mobile {
+      margin-top: -10px;
+    }
   }
 }
 
@@ -114,6 +127,12 @@
   color: $clr-body;
   line-height: 1.8;
   margin-bottom: 25px;
+
+  @include mobile {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
 }
 
 .about-features-list {
@@ -125,6 +144,7 @@
   @include mobile {
     grid-template-columns: 1fr;
     gap: 14px;
+    margin: 20px 0;
   }
 }
 
@@ -136,6 +156,11 @@
   font-size: 1.15rem;
   font-weight: 600;
   color: $clr-heading;
+
+  @include mobile {
+    font-size: 0.98rem;
+    gap: 10px;
+  }
 }
 
 .feature-icon-badge {

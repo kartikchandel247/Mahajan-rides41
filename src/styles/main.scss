@@ -62,16 +62,24 @@ img {
   margin: 0 auto;
   padding: 0 1.5rem;
 
+  @include tablet {
+    padding: 0 1.25rem;
+  }
+
   @include mobile {
-    padding: 0 1.2rem;
+    padding: 0 1rem;
   }
 }
 
 .section-padding {
   padding: 100px 0;
 
+  @include tablet {
+    padding: 75px 0;
+  }
+
   @include mobile {
-    padding: 70px 0;
+    padding: 55px 0;
   }
 }
 
@@ -99,6 +107,21 @@ img {
     height: 2px;
     background-color: $clr-primary;
   }
+
+  @include tablet {
+    font-size: 1rem;
+    letter-spacing: 2.5px;
+  }
+
+  @include mobile {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+
+    &::before {
+      width: 16px;
+    }
+  }
 }
 
 .section-title {
@@ -125,11 +148,14 @@ img {
   }
 
   @include tablet {
-    font-size: 2.5rem;
+    font-size: 2.35rem;
+    line-height: 1.18;
   }
 
   @include mobile {
-    font-size: 2.1rem;
+    font-size: 1.85rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
 }
 
@@ -212,6 +238,18 @@ img {
 
     .arrow-inner i:last-child {
       transform: translateY(100%);
+    }
+  }
+
+  @include mobile {
+    height: 48px;
+    padding: 0 8px 0 18px;
+    font-size: 0.95rem;
+    gap: 10px;
+
+    .arrow-wrap {
+      width: 34px;
+      height: 34px;
     }
   }
 }
@@ -305,6 +343,18 @@ img {
       transform: translateY(100%);
     }
   }
+
+  @include mobile {
+    height: 48px;
+    padding: 0 8px 0 18px;
+    font-size: 0.95rem;
+    gap: 10px;
+
+    .arrow-wrap {
+      width: 34px;
+      height: 34px;
+    }
+  }
 }
 
 /* WhatsApp Direct Button (.butn-whatsapp) */
@@ -318,14 +368,14 @@ img {
   color: $clr-white;
   border-radius: 50px;
   border: none;
-  font-family: $font-heading;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+  font-family: $font-ui;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 4px 16px rgba($clr-whatsapp, 0.3);
   text-decoration: none;
 
   i {
@@ -335,8 +385,18 @@ img {
   &:hover {
     background-color: $clr-whatsapp-hover;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
-    color: $clr-white;
+    box-shadow: 0 8px 25px rgba($clr-whatsapp, 0.45);
+  }
+
+  @include mobile {
+    height: 48px;
+    padding: 0 18px;
+    font-size: 0.95rem;
+    gap: 8px;
+
+    i {
+      font-size: 1.2rem;
+    }
   }
 }
 

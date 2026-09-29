@@ -541,7 +541,12 @@
 
   @include tablet {
     flex: none !important;
-    height: 420px;
+    height: 400px;
+  }
+
+  @include mobile {
+    height: 330px;
+    border-radius: 18px;
   }
 
   &.active {
@@ -730,6 +735,10 @@
   box-shadow: 0 10px 30px rgba(15, 36, 84, 0.05);
   border: 1px solid rgba(15, 36, 84, 0.06);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @include mobile {
+    padding: 22px 18px;
+  }
 
   &:hover {
     transform: translateY(-4px);

@@ -27,9 +27,23 @@
 
     @include tablet {
       grid-template-columns: 1fr;
-      padding-top: 20px;
-      gap: 40px;
+      padding-top: 15px;
+      gap: 35px;
     }
+
+    @include mobile {
+      padding-top: 5px;
+      gap: 28px;
+    }
+  }
+
+  @include tablet {
+    min-height: auto;
+    padding: 60px 0 80px;
+  }
+
+  @include mobile {
+    padding: 35px 0 50px;
   }
 }
 
@@ -61,6 +75,13 @@
   i {
     color: $clr-primary;
   }
+
+  @include mobile {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
 }
 
 .hero-title {
@@ -84,8 +105,20 @@
     font-size: 3.5rem;
   }
 
+  @include tablet {
+    font-size: 2.85rem;
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+
   @include mobile {
-    font-size: 2.7rem;
+    font-size: 2.05rem;
+    line-height: 1.16;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 380px) {
+    font-size: 1.85rem;
   }
 }
 
@@ -95,9 +128,18 @@
   margin-bottom: 35px;
   line-height: 1.8;
 
+  @include tablet {
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 680px;
+    margin: 0 auto 28px;
+  }
+
   @include mobile {
-    font-size: 1rem;
-    margin-bottom: 25px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.86);
   }
 }
 
@@ -109,6 +151,38 @@
 
   @include tablet {
     justify-content: center;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+    max-width: 310px;
+    margin: 0 auto;
+    gap: 12px;
+
+    .butn-arrow2,
+    .butn-whatsapp {
+      width: 100%;
+      height: 48px;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      box-sizing: border-box;
+    }
+
+    .butn-arrow2 {
+      padding: 0 8px 0 20px;
+      justify-content: space-between;
+
+      .arrow-wrap {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    .butn-whatsapp {
+      padding: 0 18px;
+      justify-content: center;
+    }
   }
 }
 
@@ -242,15 +316,17 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
 
   @include tablet {
-    height: 380px;
+    height: 350px;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 25px auto 0;
     width: 100%;
   }
 
   @include mobile {
-    height: 320px;
-    gap: 12px;
+    height: 240px;
+    max-width: 375px;
+    margin: 24px auto 0;
+    gap: 10px;
   }
 }
 
@@ -271,6 +347,18 @@
 
   &.st3 {
     animation: scrollDown 28s linear infinite;
+
+    @media (max-width: 360px) {
+      display: none;
+    }
+  }
+
+  @include mobile {
+    gap: 10px;
+
+    &.st2 {
+      margin-top: -70px;
+    }
   }
 
   &:hover {
@@ -315,6 +403,27 @@
       font-size: 0.75rem;
       color: #5ce1e6;
       font-weight: 500;
+    }
+  }
+
+  @include tablet {
+    height: 160px;
+  }
+
+  @include mobile {
+    height: 125px;
+    border-radius: 12px;
+
+    .marquee-card-label {
+      padding: 6px 8px;
+
+      span {
+        font-size: 0.82rem;
+      }
+
+      small {
+        font-size: 0.65rem;
+      }
     }
   }
 

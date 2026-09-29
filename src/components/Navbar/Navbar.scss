@@ -56,6 +56,24 @@
         display: none;
       }
     }
+
+    @include mobile {
+      gap: 12px;
+      justify-content: center;
+
+      a {
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      gap: 8px;
+
+      a {
+        font-size: 0.72rem;
+      }
+    }
   }
 
   .topbar-socials {
@@ -172,17 +190,35 @@
     gap: 9px;
 
     .logo-img-wrapper {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
     }
 
     .logo-text {
-      font-size: 1.4rem;
+      font-size: 1.28rem;
     }
 
     .logo-tagline {
-      font-size: 0.65rem;
-      letter-spacing: 1.5px;
+      font-size: 0.62rem;
+      letter-spacing: 1.2px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    gap: 7px;
+
+    .logo-img-wrapper {
+      width: 36px;
+      height: 36px;
+    }
+
+    .logo-text {
+      font-size: 1.12rem;
+    }
+
+    .logo-tagline {
+      font-size: 0.52rem;
+      letter-spacing: 0.8px;
     }
   }
 }

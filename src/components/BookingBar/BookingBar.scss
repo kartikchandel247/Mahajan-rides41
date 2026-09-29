@@ -9,6 +9,10 @@
   @include tablet {
     margin-top: -30px;
   }
+
+  @include mobile {
+    margin-top: 15px;
+  }
 }
 
 .booking-card {
@@ -43,6 +47,10 @@
     i {
       color: $clr-primary;
     }
+
+    @include mobile {
+      font-size: 1.15rem;
+    }
   }
 
   .booking-tag {
@@ -55,6 +63,11 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+
+    @include mobile {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+    }
   }
 }
 
