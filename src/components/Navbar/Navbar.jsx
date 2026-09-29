@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
+import logoImg from '../../assets/logo.png';
 import './Navbar.scss';
 
 export default function Navbar({ onBookClick }) {
@@ -55,9 +56,15 @@ export default function Navbar({ onBookClick }) {
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           {/* Logo */}
-          <a href="#home" className="brand-logo">
-            <div className="logo-icon">
-              <i className="fa-solid fa-mountain-sun"></i>
+          <a href="#home" className="brand-logo" aria-label="Mahajanrides Home">
+            <div className="logo-img-wrapper">
+              <img 
+                src={logoImg} 
+                alt="Mahajanrides - Mountain & Cab Tours" 
+                className="logo-img" 
+                width="50" 
+                height="50" 
+              />
             </div>
             <div className="logo-text-group">
               <div className="logo-text">MAHAJAN<span>RIDES</span></div>
