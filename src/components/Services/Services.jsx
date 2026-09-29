@@ -75,26 +75,38 @@ export default function Services() {
           </a>
         </div>
 
-        {/* 4 Service Cards Grid */}
+        {/* 4 Service Cards Grid: Left two cards slide from left, Right two cards slide from right */}
         <div className="services-grid">
-          {servicesList.map((service, idx) => (
-            <motion.div 
-              key={idx}
-              className="service-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => handleInquireService(service.title)}
-            >
-              <i className="fa-solid fa-arrow-up-right-from-square service-card-arrow"></i>
-              <div className="service-card-icon">
-                <i className={service.icon}></i>
-              </div>
-              <h3 className="service-card-title">{service.title}</h3>
-              <p className="service-card-desc">{service.desc}</p>
-            </motion.div>
-          ))}
+          {servicesList.map((service, idx) => {
+            // Left two cards (indices 0 & 1) slide in from left to right (negative x)
+            // Right two cards (indices 2 & 3) slide in from right to left (positive x)
+            const isLeft = idx < 2;
+            const startX = isLeft ? (idx === 0 ? -120 : -70) : (idx === 3 ? 120 : 70);
+            const delay = idx === 0 || idx === 3 ? 0.05 : 0.18;
+
+            return (
+              <motion.div 
+                key={idx}
+                className="service-card"
+                initial={{ opacity: 0, x: startX }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ 
+                  duration: 0.85, 
+                  delay: delay, 
+                  ease: [0.16, 1, 0.3, 1] 
+                }}
+                onClick={() => handleInquireService(service.title)}
+              >
+                <i className="fa-solid fa-arrow-up-right-from-square service-card-arrow"></i>
+                <div className="service-card-icon">
+                  <i className={service.icon}></i>
+                </div>
+                <h3 className="service-card-title">{service.title}</h3>
+                <p className="service-card-desc">{service.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Panoramic Scenic Radius Mask Banner */}
