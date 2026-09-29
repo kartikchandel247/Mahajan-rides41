@@ -196,7 +196,7 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact, on
               <p>We provide custom Force Tempo Traveller tours to every part of Himachal Pradesh!</p>
               <div className="no-tours-actions">
                 <button className="reset-filter-btn-lg" onClick={handleResetFilters}>
-                  Show All 15 Himachal Circuits
+                  Show All 18 Himachal Circuits
                 </button>
                 <a 
                   href={`https://wa.me/918580462440?text=Hello%20Mahajanrides!%20I%20want%20to%20plan%20a%20custom%20tour%20to%20${searchTerm || selectedPlace}.`}

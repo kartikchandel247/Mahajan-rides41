@@ -48,7 +48,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
               <i className="fa-solid fa-compass"></i> Plan Your Tour &amp; Inquire Price
             </h3>
             <span className="booking-tag">
-              <i className="fa-brands fa-whatsapp"></i> Instant WhatsApp Dispatch
+              <i className="fa-brands fa-whatsapp"></i> WhatsApp Inquiry: +91 85804 62440
             </span>
           </div>
 
