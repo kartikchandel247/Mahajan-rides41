@@ -85,10 +85,12 @@
 }
 
 .hero-title {
-  font-size: 4.2rem;
+  font-size: clamp(1.85rem, 5vw, 4rem);
   color: $clr-white;
-  line-height: 1.08;
-  margin-bottom: 24px;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   span {
     display: block;
@@ -101,53 +103,42 @@
     color: #4cd3e7;
   }
 
-  @include desktop {
-    font-size: 3.5rem;
-  }
-
   @include tablet {
-    font-size: 2.85rem;
-    line-height: 1.12;
-    margin-bottom: 18px;
+    font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+    margin-bottom: 16px;
   }
 
   @include mobile {
-    font-size: 2.05rem;
-    line-height: 1.16;
+    font-size: clamp(1.65rem, 6.5vw, 2.1rem);
     margin-bottom: 14px;
-  }
-
-  @media (max-width: 380px) {
-    font-size: 1.85rem;
   }
 }
 
 .hero-desc {
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.82);
-  margin-bottom: 35px;
-  line-height: 1.8;
+  font-size: clamp(0.88rem, 1.8vw, 1.12rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 28px;
+  line-height: 1.65;
+  max-width: 680px;
 
   @include tablet {
-    font-size: 1.02rem;
-    line-height: 1.65;
-    max-width: 680px;
-    margin: 0 auto 28px;
+    margin: 0 auto 24px;
+    font-size: clamp(0.88rem, 2.2vw, 1rem);
   }
 
   @include mobile {
-    font-size: 0.92rem;
-    line-height: 1.55;
-    margin-bottom: 24px;
-    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
   }
 }
 
 .hero-cta-group {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   flex-wrap: wrap;
+  width: 100%;
 
   @include tablet {
     justify-content: center;
@@ -156,13 +147,14 @@
   @include mobile {
     flex-direction: column;
     width: 100%;
-    max-width: 310px;
+    max-width: 100%;
     margin: 0 auto;
-    gap: 12px;
+    gap: 10px;
 
     .butn-arrow2,
     .butn-whatsapp {
       width: 100%;
+      max-width: 320px;
       height: 48px;
       font-size: 0.95rem;
       border-radius: 50px;
@@ -316,17 +308,18 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
 
   @include tablet {
-    height: 350px;
-    max-width: 500px;
-    margin: 25px auto 0;
+    height: 320px;
+    max-width: 100%;
+    margin: 20px auto 0;
     width: 100%;
   }
 
   @include mobile {
-    height: 240px;
-    max-width: 375px;
-    margin: 24px auto 0;
-    gap: 10px;
+    height: 210px;
+    max-width: 100%;
+    width: 100%;
+    margin: 16px auto 0;
+    gap: 8px;
   }
 }
 

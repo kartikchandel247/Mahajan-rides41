@@ -5,6 +5,9 @@
   background-color: $clr-heading;
   padding: 22px 0;
   overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
   white-space: nowrap;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
