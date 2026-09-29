@@ -1,0 +1,163 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.booking-search-bar {
+  position: relative;
+  margin-top: -65px;
+  z-index: 20;
+
+  @include tablet {
+    margin-top: -30px;
+  }
+}
+
+.booking-card {
+  background-color: $clr-white;
+  border-radius: 20px;
+  padding: 30px 35px;
+  box-shadow: $shadow-xl;
+  border: 1px solid rgba(15, 36, 84, 0.08);
+
+  @include mobile {
+    padding: 22px 18px;
+  }
+}
+
+.booking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $clr-border;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  h3 {
+    font-size: 1.45rem;
+    color: $clr-heading;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    i {
+      color: $clr-primary;
+    }
+  }
+
+  .booking-tag {
+    background-color: rgba($clr-whatsapp, 0.12);
+    color: #179848;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: $radius-pill;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.booking-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 1.2fr;
+  gap: 18px;
+  align-items: end;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.booking-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-family: $font-heading;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $clr-heading;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    i {
+      color: $clr-primary;
+    }
+  }
+}
+
+.booking-input-wrap {
+  position: relative;
+  background-color: $clr-bg-light;
+  border-radius: 12px;
+  border: 1.5px solid transparent;
+  transition: $transition-fast;
+
+  &:focus-within {
+    border-color: $clr-primary;
+    background-color: $clr-white;
+    box-shadow: 0 0 0 4px $clr-primary-light;
+  }
+
+  select, input {
+    width: 100%;
+    padding: 13px 16px;
+    background: transparent;
+    color: $clr-heading;
+    font-weight: 600;
+    font-size: 0.98rem;
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    outline: none;
+  }
+}
+
+.booking-btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: $clr-white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-family: $font-heading;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: $transition-smooth;
+  box-shadow: 0 8px 20px rgba($clr-whatsapp, 0.35);
+  border: none;
+
+  i {
+    font-size: 1.3rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba($clr-whatsapp, 0.45);
+  }
+
+  @include desktop {
+    grid-column: span 2;
+  }
+
+  @include mobile {
+    grid-column: span 1;
+    padding: 16px;
+  }
+}

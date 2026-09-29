@@ -1,0 +1,116 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.blog-section {
+  background-color: $clr-white;
+  padding: 100px 0;
+
+  @include mobile {
+    padding: 70px 0;
+  }
+}
+
+.blog-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blog-card {
+  background-color: $clr-white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  border: 1.5px solid $clr-border;
+  transition: $transition-smooth;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-xl;
+    border-color: $clr-primary;
+  }
+}
+
+.blog-card-media {
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .blog-card:hover & img {
+    transform: scale(1.08);
+  }
+}
+
+.blog-card-date {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background-color: $clr-heading;
+  color: $clr-white;
+  padding: 4px 12px;
+  border-radius: $radius-pill;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blog-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.blog-card-title {
+  font-size: 1.4rem;
+  color: $clr-heading;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.blog-card-excerpt {
+  font-size: 0.95rem;
+  color: $clr-body;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.blog-link-btn {
+  background: transparent;
+  border: none;
+  color: $clr-primary;
+  font-family: $font-heading;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 0;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $clr-primary-hover;
+    transform: translateX(4px);
+  }
+}
