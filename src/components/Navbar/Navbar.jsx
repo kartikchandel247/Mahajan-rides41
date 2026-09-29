@@ -21,7 +21,8 @@ export default function Navbar({ onBookClick }) {
     { name: 'About', href: '#about' },
     { name: 'Tours', href: '#tours' },
     { name: 'Services', href: '#services' },
-    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Blogs', href: '#blog' },
+    { name: 'Reviews', href: '#reviews' },
     { name: 'FAQs', href: '#faq' },
     { name: 'Contact', href: '#contact' },
   ];
