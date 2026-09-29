@@ -101,8 +101,8 @@ export default function Services() {
         <div className="services-panoramic-banner">
           <div className="banner-radius-mask">
             <img 
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" 
-              alt="Scenic Mountain Highway Panorama" 
+              src="/places/himachal_sangla_scenery.jpg" 
+              alt="Majestic Mountain Scenery in Himachal Pradesh Himalayas" 
               loading="lazy" 
             />
             <div className="banner-overlay-text">
