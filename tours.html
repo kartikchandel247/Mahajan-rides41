@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tour Packages — Mahajan Rides & Travel Agency</title>
+  <meta name="description" content="Browse our popular curated tour packages across Himachal, Kashmir, Ladakh, Rajasthan, and International escapes. Direct WhatsApp price inquiry.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .filter-tabs-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 45px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      background-color: var(--clr-bg-light);
+      color: var(--clr-heading);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: var(--transition-fast);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--clr-primary);
+      color: var(--clr-white);
+      box-shadow: 0 4px 15px var(--clr-primary-glow);
+    }
+    .tours-page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 30px;
+    }
+    .tours-page-card {
+      background: var(--clr-white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--clr-border);
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+    }
+    .tours-page-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--clr-primary);
+    }
+    .tours-page-media {
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tours-page-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .tours-page-card:hover .tours-page-media img {
+      transform: scale(1.08);
+    }
+    .tours-page-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Contact Strip -->
+  <div class="header-topbar">
+    <div class="container">
+      <div class="topbar-content">
+        <div class="topbar-info">
+          <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+          <a href="mailto:info@mahajanrides.com"><i class="fa-solid fa-envelope"></i> info@mahajanrides.com</a>
+          <span><i class="fa-solid fa-clock"></i> 24/7 WhatsApp & Booking Support</span>
+        </div>
+        <div class="topbar-socials">
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" title="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" title="WhatsApp Direct"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="index.html" class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+          <div>
+            <div class="logo-text">MAHAJAN <span>RIDES</span></div>
+            <span class="logo-tagline">Tours & Travel Agency</span>
+          </div>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="navbar-nav" id="navbarNav">
+        <li class="nav-item"><a class="nav-link" href="index.html"><span class="rolling-text">Home</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><span class="rolling-text">About</span></a></li>
+        <li class="nav-item"><a class="nav-link active" href="tours.html"><span class="rolling-text">Tours</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="destinations.html"><span class="rolling-text">Destinations</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html"><span class="rolling-text">Services</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html"><span class="rolling-text">Blog & Reviews</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><span class="rolling-text">Contact</span></a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="butn-arrow">
+          <span class="btn-text">Custom Tour</span>
+          <span class="arrow-wrap">
+            <span class="arrow-inner">
+              <i class="fa-solid fa-arrow-right"></i>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <header style="background: linear-gradient(rgba(15, 36, 84, 0.85), rgba(15, 36, 84, 0.95)), url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1600&q=80') center/cover; padding: 100px 0; text-align: center; color: var(--clr-white);">
+    <div class="container">
+      <div class="section-subtitle" style="color: #4cd3e7; justify-content: center;">Handcrafted Packages</div>
+      <h1 style="color: var(--clr-white); font-size: 3.5rem; margin-bottom: 15px;">Explore Our <i>Tour Packages</i></h1>
+      <p style="max-width: 600px; margin: 0 auto; color: rgba(255, 255, 255, 0.85); font-size: 1.15rem;">
+        Complete road trips with private transport, hotel accommodations, meals, and dedicated sightseeing support.
+      </p>
+    </div>
+  </header>
+
+  <!-- Tours Section with Filtering -->
+  <section class="section-padding">
+    <div class="container">
+      <!-- Filter Tabs -->
+      <div class="filter-tabs-wrapper">
+        <button class="filter-btn active" data-filter="all">All Packages</button>
+        <button class="filter-btn" data-filter="himachal">Himachal Mountains</button>
+        <button class="filter-btn" data-filter="kashmir-ladakh">Kashmir & Ladakh</button>
+        <button class="filter-btn" data-filter="heritage">Royal Heritage</button>
+        <button class="filter-btn" data-filter="coastal-intl">Coastal & Global</button>
+      </div>
+
+      <!-- Tours Grid -->
+      <div class="tours-page-grid">
+        <!-- Tour 1 -->
+        <div class="tours-page-card filterable-item" data-category="himachal">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" alt="Himachal Snow Escape">
+            <span class="tour-badge-top">Bestseller</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Shimla, Kufri & Manali</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Himachal Valley & Snow Escape</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                Scenic road journey covering pine ridges, Solang Valley snow sports, Rohtang Pass, and Mall Road walks.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 6 Days - 5 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.9 (420)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹14,999 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Himachal Valley & Snow Escape" data-tour-days="6">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 2 -->
+        <div class="tours-page-card filterable-item" data-category="kashmir-ladakh">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=600&q=80" alt="Kashmir Dal Lake">
+            <span class="tour-badge-top">Paradise</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Srinagar, Gulmarg & Pahalgam</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Kashmir Heavenly Valley Tour</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                Houseboat stay on Dal Lake, Shikara ride, Gulmarg Gondola phase 1 & 2, and Betaab Valley nature walks.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 5 Days - 4 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.9 (350)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹18,499 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Kashmir Heavenly Valley Tour" data-tour-days="5">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 3 -->
+        <div class="tours-page-card filterable-item" data-category="kashmir-ladakh">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Ladakh Pangong Lake">
+            <span class="tour-badge-top">Adventure</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Leh, Nubra Valley & Pangong Tso</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Ladakh High Mountain Expedition</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                Conquer Khardung La pass, camp beside turquoise Pangong Lake, and experience double-hump camel rides in Hunder.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 7 Days - 6 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.8 (280)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹24,999 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Ladakh High Mountain Expedition" data-tour-days="7">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 4 -->
+        <div class="tours-page-card filterable-item" data-category="heritage">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=600&q=80" alt="Jaipur Palace">
+            <span class="tour-badge-top">Royal Heritage</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Jaipur, Jodhpur & Udaipur</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Royal Rajasthan Circuit</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                Explore Amber Fort, Mehrangarh, Lake Pichola sunset boat cruise, and authentic Rajasthani cultural evenings.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 6 Days - 5 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.9 (310)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹16,999 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Royal Rajasthan Circuit" data-tour-days="6">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 5 -->
+        <div class="tours-page-card filterable-item" data-category="heritage">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" alt="Taj Mahal Agra">
+            <span class="tour-badge-top">Classic</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Delhi, Agra (Taj) & Jaipur</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Golden Triangle Odyssey</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                The quintessential India trip: Qutub Minar, sunrise at the Taj Mahal, Fatehpur Sikri, and Jaipur's City Palace.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 4 Days - 3 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.9 (480)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹11,999 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Golden Triangle Odyssey" data-tour-days="4">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 6 -->
+        <div class="tours-page-card filterable-item" data-category="coastal-intl">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80" alt="Goa Beaches">
+            <span class="tour-badge-top">Relaxation</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> North & South Goa</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Goa Sun & Coast Getaway</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                Pristine beaches, Mandovi river luxury catamaran sunset cruise, water sports, and historic Portuguese churches.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 4 Days - 3 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.8 (290)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹12,499 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Goa Sun & Coast Getaway" data-tour-days="4">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 7 -->
+        <div class="tours-page-card filterable-item" data-category="coastal-intl">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="Dubai Luxury">
+            <span class="tour-badge-top">International</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Dubai & Abu Dhabi</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Dubai Luxury & Desert Safari</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                Burj Khalifa 124th floor view, desert dune bashing with BBQ, Dubai Marina dhow cruise, and Ferrari World.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 5 Days - 4 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.9 (190)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹38,999 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Dubai Luxury & Desert Safari" data-tour-days="5">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tour 8 -->
+        <div class="tours-page-card filterable-item" data-category="himachal">
+          <div class="tours-page-media">
+            <img src="https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80" alt="Spiti Valley">
+            <span class="tour-badge-top">Offbeat</span>
+          </div>
+          <div class="tours-page-body">
+            <div>
+              <div class="tour-location-pin"><i class="fa-solid fa-location-dot"></i> Kaza, Tabo & Chandratal Lake</div>
+              <h3 class="tour-title" style="font-size: 1.5rem;">Spiti Valley Rugged Road Trip</h3>
+              <p style="font-size: 0.92rem; color: var(--clr-body); margin-bottom: 15px;">
+                World's highest post office in Hikkim, ancient monasteries, Key Gompa, and camping under millions of stars at Chandratal.
+              </p>
+              <div class="tour-meta-row">
+                <div class="tour-meta-item"><i class="fa-solid fa-clock"></i> 8 Days - 7 Nights</div>
+                <div class="tour-meta-item"><i class="fa-solid fa-star" style="color: var(--clr-gold);"></i> 4.9 (160)</div>
+              </div>
+            </div>
+            <div class="tour-footer-row">
+              <div class="tour-price-box">₹22,999 <span>/ Person</span></div>
+              <button class="tour-whatsapp-action" data-tour-inquire="Spiti Valley Rugged Road Trip" data-tour-days="8">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Price
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with Instagram Grid -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-insta-section text-center">
+        <h3 style="color: var(--clr-white); margin-bottom: 25px;">Follow Our Road Adventures On Instagram</h3>
+        <div class="footer-insta-grid">
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80" alt="Insta 1"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=400&q=80" alt="Insta 2"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Insta 3"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=80" alt="Insta 4"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Insta 5"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=400&q=80" alt="Insta 6"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+        </div>
+        <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-follow-btn">
+          <i class="fa-brands fa-instagram"></i> Follow @mahajan_rides on Instagram
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Mahajan Rides. All Rights Reserved.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="tours.html">Tours</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="services.html">Services</a>
+          <a href="blog.html">Blog & Reviews</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-watermark">MAHAJAN RIDES</div>
+  </footer>
+
+  <a href="https://wa.me/919876543210" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

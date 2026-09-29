@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel Blog & Passenger Reviews — Mahajan Rides</title>
+  <meta name="description" content="Read travel stories, mountain itineraries, and explore genuine passenger reviews. Drop your feedback from your trip with Mahajan Rides!">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Contact Strip -->
+  <div class="header-topbar">
+    <div class="container">
+      <div class="topbar-content">
+        <div class="topbar-info">
+          <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+          <a href="mailto:info@mahajanrides.com"><i class="fa-solid fa-envelope"></i> info@mahajanrides.com</a>
+          <span><i class="fa-solid fa-clock"></i> 24/7 WhatsApp & Booking Support</span>
+        </div>
+        <div class="topbar-socials">
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" title="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" title="WhatsApp Direct"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="index.html" class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+          <div>
+            <div class="logo-text">MAHAJAN <span>RIDES</span></div>
+            <span class="logo-tagline">Tours & Travel Agency</span>
+          </div>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="navbar-nav" id="navbarNav">
+        <li class="nav-item"><a class="nav-link" href="index.html"><span class="rolling-text">Home</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><span class="rolling-text">About</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="tours.html"><span class="rolling-text">Tours</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="destinations.html"><span class="rolling-text">Destinations</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html"><span class="rolling-text">Services</span></a></li>
+        <li class="nav-item"><a class="nav-link active" href="blog.html"><span class="rolling-text">Blog & Reviews</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><span class="rolling-text">Contact</span></a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#passengerFeedbackSection" class="butn-arrow">
+          <span class="btn-text">Add Review</span>
+          <span class="arrow-wrap">
+            <span class="arrow-inner">
+              <i class="fa-solid fa-arrow-right"></i>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <header style="background: linear-gradient(rgba(15, 36, 84, 0.85), rgba(15, 36, 84, 0.95)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80') center/cover; padding: 100px 0; text-align: center; color: var(--clr-white);">
+    <div class="container">
+      <div class="section-subtitle" style="color: #4cd3e7; justify-content: center;">Stories & Experiences</div>
+      <h1 style="color: var(--clr-white); font-size: 3.5rem; margin-bottom: 15px;">Travel Blog <i>& Passenger Feedback</i></h1>
+      <p style="max-width: 600px; margin: 0 auto; color: rgba(255, 255, 255, 0.85); font-size: 1.15rem;">
+        Inspiring road trip tales, essential travel guides, and genuine feedback shared by passengers who explored with us.
+      </p>
+    </div>
+  </header>
+
+  <!-- Travel Articles Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center" style="max-width: 600px; margin: 0 auto 50px;">
+        <div class="section-subtitle">Road Trip Guides</div>
+        <h2 class="section-title">Stories that inspire your <i>next ride</i></h2>
+      </div>
+
+      <div class="blog-grid">
+        <!-- Article 1 -->
+        <div class="blog-card">
+          <div class="blog-card-media">
+            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" alt="Himachal Mountain Secrets">
+            <span class="blog-card-date"><i class="fa-regular fa-clock"></i> 24 Sep 2026</span>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Top 7 Hidden Scenic Spots in Himachal Pradesh</h3>
+            <p class="blog-card-excerpt">Beyond Mall Road: discover Jibhi, Tirthan Valley waterfalls, and peaceful mountain passes away from crowds.</p>
+            <a href="https://wa.me/919876543210?text=Hello%20Mahajan%20Rides,%20I%20read%20your%20blog%20about%20Himachal%20and%20want%20to%20plan%20a%20trip!" target="_blank" style="color: var(--clr-primary); font-weight: 700; font-size: 0.95rem;">
+              Plan This Road Trip <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="blog-card">
+          <div class="blog-card-media">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Ladakh Road Prep">
+            <span class="blog-card-date"><i class="fa-regular fa-clock"></i> 18 Sep 2026</span>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">The Complete Ladakh Road Trip Checklist</h3>
+            <p class="blog-card-excerpt">Acclimatization tips, essential medicines, mountain permit requirements, and vehicle readiness for high passes.</p>
+            <a href="https://wa.me/919876543210?text=Hello%20Mahajan%20Rides,%20I%20want%20guidance%20for%20planning%20a%20Ladakh%20trip!" target="_blank" style="color: var(--clr-primary); font-weight: 700; font-size: 0.95rem;">
+              Plan This Road Trip <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="blog-card">
+          <div class="blog-card-media">
+            <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=600&q=80" alt="Kashmir Seasons">
+            <span class="blog-card-date"><i class="fa-regular fa-clock"></i> 10 Sep 2026</span>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Kashmir in Autumn vs Winter Snow: When to Visit</h3>
+            <p class="blog-card-excerpt">Compare Golden Chinar leaves in October with the winter snow wonderland of Gulmarg for your dream vacation.</p>
+            <a href="https://wa.me/919876543210?text=Hello%20Mahajan%20Rides,%20please%20help%20me%20choose%20the%20best%20season%20for%20Kashmir!" target="_blank" style="color: var(--clr-primary); font-weight: 700; font-size: 0.95rem;">
+              Plan This Road Trip <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PASSENGER FEEDBACK & REVIEW ENGINE ==================== -->
+  <section class="section-padding bg-light" id="passengerFeedbackSection" style="background-color: var(--clr-bg-light);">
+    <div class="container">
+      <div class="text-center" style="max-width: 700px; margin: 0 auto 30px;">
+        <div class="section-subtitle">Passenger Voice</div>
+        <h2 class="section-title">Passenger Feedback <i>& Reviews</i></h2>
+        <p>Traveled with Mahajan Rides recently? Share your experience with our community or read what fellow travelers had to say!</p>
+      </div>
+
+      <!-- Feedback Form Box -->
+      <div class="feedback-box-wrapper" style="max-width: 850px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; border-bottom: 1px solid var(--clr-border); padding-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+          <h3 style="font-size: 1.6rem; color: var(--clr-heading);"><i class="fa-solid fa-comment-dots" style="color: var(--clr-primary);"></i> Leave Your Tour Feedback</h3>
+          <span style="font-size: 0.9rem; color: var(--clr-muted);"><i class="fa-solid fa-shield-check" style="color: #25D366;"></i> Verified Client Reviews</span>
+        </div>
+
+        <!-- Success Notification Alert -->
+        <div id="feedbackSuccessAlert" style="display: none; background-color: #d1fae5; border: 1px solid #34d399; color: #065f46; padding: 14px 20px; border-radius: 12px; margin-bottom: 20px;">
+          <i class="fa-solid fa-circle-check"></i> Thank you! Your review has been added and saved.
+        </div>
+
+        <form id="passengerFeedbackForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="feedbackName">Your Full Name</label>
+              <input type="text" id="feedbackName" class="form-control" placeholder="e.g. Karan Malhotra" required>
+            </div>
+            <div class="form-group">
+              <label for="feedbackDestination">Destination Traveled</label>
+              <input type="text" id="feedbackDestination" class="form-control" placeholder="e.g. Manali & Rohtang Pass" required>
+            </div>
+          </div>
+
+          <!-- Star Rating Selector -->
+          <div class="form-group">
+            <label>Rate Your Experience</label>
+            <div class="star-rating-select" id="feedbackStars">
+              <i class="fa-solid fa-star star selected" data-value="1"></i>
+              <i class="fa-solid fa-star star selected" data-value="2"></i>
+              <i class="fa-solid fa-star star selected" data-value="3"></i>
+              <i class="fa-solid fa-star star selected" data-value="4"></i>
+              <i class="fa-solid fa-star star selected" data-value="5"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="feedbackComment">Your Feedback / Review Comments</label>
+            <textarea id="feedbackComment" class="form-control" placeholder="How was the driver, vehicle comfort, punctuality, and sightseeing experience? We love honest stories!" required></textarea>
+          </div>
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+            <button type="submit" class="butn-arrow">
+              <span class="btn-text">Submit Review</span>
+              <span class="arrow-wrap">
+                <span class="arrow-inner">
+                  <i class="fa-solid fa-arrow-right"></i>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </span>
+            </button>
+            <a href="https://wa.me/919876543210?text=Hello%20Mahajan%20Rides!%20I%20want%20to%20share%20my%20trip%20feedback%20directly%20with%20you." target="_blank" class="tour-whatsapp-action">
+              <i class="fa-brands fa-whatsapp"></i> Send Feedback Directly To Owner
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Live Stream of Feedbacks (Dynamic via main.js) -->
+      <div style="margin-top: 60px;">
+        <h3 style="font-size: 1.8rem; margin-bottom: 20px; text-align: center;">Recent Passenger Feedbacks</h3>
+        <div id="passengerFeedbackStream" class="feedback-stream-grid">
+          <!-- Populated by main.js with stored and verified reviews -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with Instagram Grid -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-insta-section text-center">
+        <h3 style="color: var(--clr-white); margin-bottom: 25px;">Follow Our Road Adventures On Instagram</h3>
+        <div class="footer-insta-grid">
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80" alt="Insta 1"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=400&q=80" alt="Insta 2"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Insta 3"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=80" alt="Insta 4"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Insta 5"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+          <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-photo-card"><img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=400&q=80" alt="Insta 6"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+        </div>
+        <a href="https://www.instagram.com/mahajan_rides/" target="_blank" class="insta-follow-btn">
+          <i class="fa-brands fa-instagram"></i> Follow @mahajan_rides on Instagram
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Mahajan Rides. All Rights Reserved.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="tours.html">Tours</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="services.html">Services</a>
+          <a href="blog.html">Blog & Reviews</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-watermark">MAHAJAN RIDES</div>
+  </footer>
+
+  <a href="https://wa.me/919876543210" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
