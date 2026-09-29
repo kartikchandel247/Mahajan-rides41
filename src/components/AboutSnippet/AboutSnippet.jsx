@@ -73,7 +73,7 @@ export default function AboutSnippet({ onLearnMore }) {
                 <span>Happy Passenger Reviews</span>
               </div>
               <a href="#tours" className="butn-arrow" onClick={onLearnMore}>
-                <span className="btn-text">Read More</span>
+                <span className="btn-text">View Tour Details</span>
                 <span className="arrow-wrap">
                   <span className="arrow-inner">
                     <i className="fa-solid fa-arrow-right"></i>

@@ -59,7 +59,7 @@ export default function Hero({ onExploreTours }) {
 
           <div className="hero-cta-group">
             <button className="butn-arrow2" onClick={onExploreTours}>
-              <span className="btn-text">View All Tours</span>
+              <span className="btn-text">View Tour Details</span>
               <span className="arrow-wrap">
                 <span className="arrow-inner">
                   <i className="fa-solid fa-arrow-right"></i>

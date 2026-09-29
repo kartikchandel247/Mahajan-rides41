@@ -117,35 +117,41 @@
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  background-color: $clr-heading;
+  background-color: $clr-primary;
   color: $clr-white;
-  padding: 12px 28px;
+  height: 54px;
+  padding: 0 10px 0 28px;
   border-radius: $radius-pill;
-  font-family: $font-heading;
-  font-size: 1.15rem;
+  font-family: $font-body;
+  font-size: 1.05rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: none;
+  letter-spacing: 0.2px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: $transition-smooth;
-  box-shadow: $shadow-sm;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 18px rgba(32, 149, 174, 0.28);
+  border: none;
 
   .btn-text {
     position: relative;
     z-index: 2;
+    color: $clr-white;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   .arrow-wrap {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: $clr-primary;
+    background-color: $clr-heading;
     @include flex-center;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
     transition: $transition-smooth;
   }
 
@@ -175,13 +181,13 @@
   }
 
   &:hover {
-    background-color: $clr-primary;
+    background-color: $clr-heading;
     color: $clr-white;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba($clr-primary, 0.35);
+    box-shadow: 0 10px 25px rgba(15, 36, 84, 0.35);
 
     .arrow-wrap {
-      background-color: $clr-heading;
+      background-color: $clr-primary;
     }
 
     .arrow-inner i:first-child {
@@ -202,13 +208,14 @@
   gap: 12px;
   background-color: $clr-whatsapp;
   color: $clr-white;
-  padding: 13px 28px;
+  height: 54px;
+  padding: 0 28px;
   border-radius: $radius-pill;
-  font-family: $font-heading;
-  font-size: 1.15rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: $font-body;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.2px;
   cursor: pointer;
   box-shadow: 0 8px 25px rgba($clr-whatsapp, 0.35);
   transition: $transition-smooth;

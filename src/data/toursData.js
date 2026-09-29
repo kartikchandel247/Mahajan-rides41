@@ -5,13 +5,20 @@ export const FEATURED_TOURS = [
     location: "Manali, Solang Valley & Lahaul",
     duration: "5 Days - 4 Nights",
     daysCount: 5,
-    price: "₹12,499",
     rating: 4.9,
     reviewsCount: 480,
     tag: "Most Popular",
     vehicle: "Force Tempo Traveller (12/17 Seater)",
     image: "/places/manali.jpg",
-    description: "Hadimba Devi Temple, Solang snow adventure, crossing Atal Tunnel to Sissu Waterfall, and scenic Rohtang Pass."
+    description: "Hadimba Devi Temple, Solang snow adventure, crossing Atal Tunnel to Sissu Waterfall, and scenic Rohtang Pass.",
+    highlights: [
+      "Hadimba Devi Temple & Vashisht Kund Hot Springs",
+      "Solang Valley Snow Activity Point",
+      "Scenic Drive Through 9.02 km Atal Tunnel",
+      "Sissu Waterfall & Raja Ghepan Viewpoint in Lahaul",
+      "Rohtang Pass (Subject to Green Permit & Weather)",
+      "Mall Road & Old Manali Cafe Evening Tour"
+    ]
   },
   {
     id: "kasol-manikaran-kullu",
@@ -19,13 +26,20 @@ export const FEATURED_TOURS = [
     location: "Parvati Valley & Beas Basin",
     duration: "4 Days - 3 Nights",
     daysCount: 4,
-    price: "₹9,999",
     rating: 4.9,
     reviewsCount: 390,
     tag: "Spiritual & Scenic",
     vehicle: "Force Tempo Traveller (12/17 Seater)",
     image: "/places/manikaran.jpg",
-    description: "Sacred Manikaran Sahib hot springs & Shiva temple, Parvati river pine walks at Kasol, and Kullu river rafting."
+    description: "Sacred Manikaran Sahib hot springs & Shiva temple, Parvati river pine walks at Kasol, and Kullu river rafting.",
+    highlights: [
+      "Sacred Manikaran Sahib Gurudwara & Healing Sulphur Springs",
+      "Ancient Lord Shiva Temple at Manikaran",
+      "Kasol Riverside Pine Forest Walks & Flea Market",
+      "Kullu River Rafting & Paragliding Point",
+      "Traditional Kullu Shawl Weaving Handloom Stop",
+      "Chalal Village Nature Trail & Parvati Riverfront"
+    ]
   },
   {
     id: "dharamshala-dalhousie-khajjiar",
@@ -33,13 +47,20 @@ export const FEATURED_TOURS = [
     location: "Kangra Valley & Chamba",
     duration: "6 Days - 5 Nights",
     daysCount: 6,
-    price: "₹15,499",
     rating: 4.9,
     reviewsCount: 340,
     tag: "Family Favorite",
     vehicle: "Force Tempo Traveller (17/20 Seater)",
     image: "/places/dharamshala.jpg",
-    description: "HPCA Cricket Stadium with snowy Dhauladhar peaks, Dalai Lama Monastery, historic Kangra Fort, and Khajjiar Mini Switzerland."
+    description: "HPCA Cricket Stadium with snowy Dhauladhar peaks, Dalai Lama Monastery, historic Kangra Fort, and Khajjiar Mini Switzerland.",
+    highlights: [
+      "HPCA International Cricket Stadium with Snow-clad Dhauladhar Backdrop",
+      "His Holiness Dalai Lama Monastery & Tsuglagkhang Complex",
+      "Bhagsunag Waterfall & St. John in the Wilderness Church",
+      "Historic Kangra Fort & Brajeshwari Devi Temple",
+      "Khajjiar Green Meadow ('Mini Switzerland of India')",
+      "Dalhousie Mall Road & Panchpula Scenic Viewpoint"
+    ]
   },
   {
     id: "spiti-valley-expedition",
@@ -47,13 +68,20 @@ export const FEATURED_TOURS = [
     location: "Kaza, Tabo, Key Gompa & Chandratal",
     duration: "7 Days - 6 Nights",
     daysCount: 7,
-    price: "₹22,999",
     rating: 4.8,
     reviewsCount: 260,
     tag: "Epic Adventure",
     vehicle: "Force Tempo Traveller (Mountain Spec)",
     image: "/places/spiti_valley.jpg",
-    description: "Cross high Himalayan passes to 1,000-year-old Key Monastery, Hikkim highest post office, Komic village, and crescent Chandratal Lake."
+    description: "Cross high Himalayan passes to 1,000-year-old Key Monastery, Hikkim highest post office, Komic village, and crescent Chandratal Lake.",
+    highlights: [
+      "1,000-Year-Old Key Monastery & Tibetan Heritage",
+      "Hikkim — World's Highest Post Office (Send Postcards)",
+      "Komic — World's Highest Motorrable Village",
+      "Langza Buddha Statue & Prehistoric Marine Fossils",
+      "Spectacular Chicham Bridge Over Deep Gorge",
+      "Crescent Moon Chandratal Lake Camping & Kunzum Pass"
+    ]
   }
 ];
 
