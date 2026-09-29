@@ -18,17 +18,25 @@ export default function Faq() {
           <div className="faq-images">
             <div className="faq-img">
               <img 
-                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" 
-                alt="Mountain Highway" 
+                src="/places/atal_tunnel.jpg" 
+                alt="Atal Tunnel & Sissu, Himachal Pradesh" 
                 loading="lazy"
               />
+              <div className="faq-img-badge">
+                <i className="fa-solid fa-mountain-sun"></i>
+                <span>Atal Tunnel &amp; Sissu</span>
+              </div>
             </div>
             <div className="faq-img">
               <img 
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" 
-                alt="Travel Holiday" 
+                src="/places/dharamshala.jpg" 
+                alt="Dharamshala & Dhauladhar Range, Himachal Pradesh" 
                 loading="lazy"
               />
+              <div className="faq-img-badge">
+                <i className="fa-solid fa-tree"></i>
+                <span>Dharamshala &amp; Kangra</span>
+              </div>
             </div>
           </div>
 
