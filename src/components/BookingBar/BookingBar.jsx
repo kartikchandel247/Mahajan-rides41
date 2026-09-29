@@ -11,7 +11,7 @@ export default function BookingBar() {
   const todayString = new Date().toISOString().split('T')[0];
 
   const [formData, setFormData] = useState({
-    destination: "Himachal Circuit (Shimla & Manali)",
+    destination: "Manali, Solang Valley & Atal Tunnel",
     date: defaultDateString,
     days: "5",
     travelers: "2 Adults (Couple)",
@@ -58,14 +58,15 @@ export default function BookingBar() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="Himachal Circuit (Shimla & Manali)">Himachal (Shimla & Manali)</option>
-                  <option value="Kashmir Paradise (Srinagar & Gulmarg)">Kashmir (Srinagar & Gulmarg)</option>
-                  <option value="Ladakh Mountain Expedition (Leh, Nubra, Pangong)">Ladakh High Passes</option>
-                  <option value="Royal Rajasthan Circuit (Jaipur & Udaipur)">Royal Rajasthan Heritage</option>
-                  <option value="Goa Beach & Coastal Holiday">Goa Beach Retreat</option>
-                  <option value="Golden Triangle (Delhi, Agra & Jaipur)">Golden Triangle (Agra Taj)</option>
-                  <option value="Dubai International Vacation">Dubai Luxury Tour</option>
-                  <option value="Custom Tour Itinerary">Custom Destination</option>
+                  <option value="Manali, Solang Valley & Atal Tunnel">Manali, Solang &amp; Atal Tunnel</option>
+                  <option value="Kullu, Kasol & Manikaran Sahib">Kullu, Kasol &amp; Manikaran Sahib</option>
+                  <option value="Shimla, Kufri & Narkanda Hills">Shimla, Kufri &amp; Narkanda</option>
+                  <option value="Dharamshala, McLeod Ganj & Dalhousie">Dharamshala &amp; McLeod Ganj</option>
+                  <option value="Spiti Valley & Lahaul Circuit (Kaza, Key, Chandratal)">Spiti Valley &amp; Lahaul Circuit</option>
+                  <option value="Chamba, Dalhousie & Khajjiar (Mini Switzerland)">Chamba &amp; Khajjiar</option>
+                  <option value="Bir Billing (Paragliding) & Palampur Tea Gardens">Bir Billing &amp; Palampur</option>
+                  <option value="Sissu, Keylong & Baralacha La Pass">Sissu &amp; Baralacha La Pass</option>
+                  <option value="Custom Himachal Tour Itinerary">Custom Himachal Itinerary</option>
                 </select>
               </div>
             </div>

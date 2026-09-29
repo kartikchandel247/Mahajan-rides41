@@ -45,10 +45,10 @@ export default function AboutSnippet({ onLearnMore }) {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="section-subtitle">{AGENCY_CONFIG.name} Travel</div>
-            <h2 className="section-title">Discover the world <i>with our guide</i></h2>
+            <div className="section-subtitle">Himachal Tour Specialists</div>
+            <h2 className="section-title">Discover Himachal <i>with our local guide</i></h2>
             <p className="about-text">
-              With years of experience curating seamless journeys across North India and iconic international getaways, {AGENCY_CONFIG.name} is committed to delivering safety, punctuality, and memorable road trip stories.
+              Born and rooted in Himachal Pradesh, {AGENCY_CONFIG.name} provides dedicated cab and tour services exclusively across Devbhoomi. From the snow-capped heights of Rohtang Pass, Atal Tunnel, and Sissu to the tranquil valleys of Kullu, Kasol, Manikaran, Dharamshala, and Spiti — our seasoned local Himachali chauffeurs and mountain-ready fleet guarantee safe, punctual, and breathtaking road journeys.
             </p>
 
             <div className="about-features-list">

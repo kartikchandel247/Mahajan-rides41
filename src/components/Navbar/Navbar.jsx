@@ -68,7 +68,7 @@ export default function Navbar({ onBookClick }) {
             </div>
             <div className="logo-text-group">
               <div className="logo-text">MAHAJAN<span>RIDES</span></div>
-              <span className="logo-tagline">Tours & Travel Agency</span>
+              <span className="logo-tagline">Himachal Tour &amp; Cab Service</span>
             </div>
           </a>
 

@@ -45,7 +45,7 @@ export default function Services() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="section-title text-white">
-              Get ready to explore and discover <i>your world</i>
+              Get ready to explore and discover <i>Himachal Pradesh</i>
             </h2>
           </motion.div>
         </div>
@@ -65,7 +65,7 @@ export default function Services() {
                   </defs>
                   <text>
                     <textPath href="#textcircle" startOffset="0">
-                      Cultural Paths • Nature Escape • Mahajanrides •
+                      Himachal Roads • Mountain Escapes • Mahajanrides •
                     </textPath>
                   </text>
                 </svg>

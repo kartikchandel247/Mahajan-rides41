@@ -12,7 +12,7 @@ export default function BlogPreview() {
       id: 1,
       name: "Rohit & Ananya Verma",
       city: "Delhi NCR",
-      route: "Manali & Rohtang Pass 5D/4N",
+      route: "Manali, Solang & Rohtang Pass 5D/4N",
       rating: 5,
       date: "Just Now",
       comment: "Our driver Mr. Mahajan was extremely professional and courteous. The Innova Crysta was spotless and drove smoothly through mountain curves. Highly recommend!"
@@ -21,17 +21,17 @@ export default function BlogPreview() {
       id: 2,
       name: "Vikram Singhania",
       city: "Chandigarh",
-      route: "Leh Ladakh High Passes Expedition",
+      route: "Spiti Valley High Passes Circuit",
       rating: 5,
       date: "2 days ago",
-      comment: "Best travel agency for mountain road trips! Punctual pickup from Chandigarh airport and tailored the itinerary exactly to our family's pace."
+      comment: "Best travel agency for Himachal mountain road trips! Punctual pickup from Chandigarh airport and tailored the itinerary exactly to our family's pace."
     }
   ]);
 
   const [feedbackForm, setFeedbackForm] = useState({
     name: '',
     city: '',
-    route: 'Himachal Circuit (Shimla & Manali)',
+    route: 'Manali, Solang Valley & Atal Tunnel',
     rating: 5,
     comment: ''
   });
@@ -65,7 +65,7 @@ export default function BlogPreview() {
     setFeedbackForm({
       name: '',
       city: '',
-      route: 'Himachal Circuit (Shimla & Manali)',
+      route: 'Manali, Solang Valley & Atal Tunnel',
       rating: 5,
       comment: ''
     });
@@ -250,12 +250,15 @@ export default function BlogPreview() {
                           value={feedbackForm.route} 
                           onChange={(e) => setFeedbackForm({...feedbackForm, route: e.target.value})}
                         >
-                          <option value="Himachal Circuit (Shimla & Manali)">Himachal (Shimla & Manali)</option>
-                          <option value="Leh Ladakh High Passes">Leh Ladakh High Passes</option>
-                          <option value="Spiti Valley Cold Desert">Spiti Valley Cold Desert</option>
-                          <option value="Kashmir Paradise Tour">Kashmir Paradise Tour</option>
-                          <option value="Airport / Outstation Cab Service">Airport / Fleet Transfer</option>
-                          <option value="Custom Family Package">Custom Family Package</option>
+                          <option value="Manali, Solang Valley & Atal Tunnel">Manali, Solang &amp; Atal Tunnel</option>
+                          <option value="Kullu, Kasol & Manikaran Sahib">Kullu, Kasol &amp; Manikaran</option>
+                          <option value="Shimla, Kufri & Narkanda Hills">Shimla, Kufri &amp; Narkanda</option>
+                          <option value="Dharamshala, McLeod Ganj & Dalhousie">Dharamshala &amp; McLeod Ganj</option>
+                          <option value="Spiti Valley & Lahaul Circuit">Spiti Valley &amp; Lahaul Circuit</option>
+                          <option value="Bir Billing & Palampur Tea Gardens">Bir Billing &amp; Palampur</option>
+                          <option value="Chamba & Khajjiar Sightseeing">Chamba &amp; Khajjiar</option>
+                          <option value="Chandigarh to Himachal Doorstep Cab">Chandigarh to Himachal Cab</option>
+                          <option value="Custom Himachal Family Package">Custom Himachal Package</option>
                         </select>
                       </div>
 

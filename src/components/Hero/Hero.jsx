@@ -45,16 +45,16 @@ export default function Hero({ onExploreTours }) {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="hero-badge">
-            <i className="fa-solid fa-award"></i> {AGENCY_CONFIG.name} Travel Agency
+            <i className="fa-solid fa-mountain"></i> Exclusive Himachal Pradesh Tour &amp; Cab Services
           </div>
 
           <h1 className="hero-title">
-            <span>Discover the world</span>
-            <span><i>with our guide.</i></span>
+            <span>Discover Himachal</span>
+            <span><i>with our local guide.</i></span>
           </h1>
 
           <p className="hero-desc">
-            Turn your dream destinations into reality with our expert guidance, private verified chauffeurs, and customized itineraries. From Himalayan snowy heights to royal heritage fortresses, we craft every journey with care.
+            Specializing exclusively in Himachal Pradesh, we provide premier cab and tour services across Devbhoomi. From Kullu, Manali, Rohtang Pass, and Atal Tunnel to Kasol, Manikaran, Dharamshala, Bir Billing, and Spiti Valley — our mountain-trained local chauffeurs and reliable fleet ensure your journey through the hills is safe, scenic, and unforgettable.
           </p>
 
           <div className="hero-cta-group">

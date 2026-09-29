@@ -16,12 +16,12 @@ export default function Footer() {
   };
 
   const instaPhotos = [
-    { id: 1, img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80" },
-    { id: 2, img: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=400&q=80" },
-    { id: 3, img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" },
-    { id: 4, img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=80" },
-    { id: 5, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" },
-    { id: 6, img: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=400&q=80" }
+    { id: 1, name: "Manali Hadimba", img: "/places/manali.jpg" },
+    { id: 2, name: "Rohtang Pass", img: "/places/rohtang_pass.jpg" },
+    { id: 3, name: "Kasol Pines", img: "/places/kasol.jpg" },
+    { id: 4, name: "Sissu Waterfall", img: "/places/sissu.jpg" },
+    { id: 5, name: "Spiti Valley", img: "/places/spiti_valley.jpg" },
+    { id: 6, name: "Dharamshala Dhauladhar", img: "/places/dharamshala.jpg" }
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function Footer() {
 
         {/* Instagram Grid Showcase */}
         <div className="footer-insta-section text-center">
-          <h3 className="insta-heading">Follow Our Road Adventures On Instagram</h3>
+          <h3 className="insta-heading">Follow Our Himachal Road Adventures On Instagram</h3>
           
           <div className="footer-insta-grid">
             {instaPhotos.map((photo) => (
@@ -60,11 +60,11 @@ export default function Footer() {
                 key={photo.id}
                 href={AGENCY_CONFIG.instagramUrl} 
                 target="_blank" 
-                rel="noreferrer"
+                rel="noreferrer" 
                 className="insta-photo-card"
-                title={`View ${AGENCY_CONFIG.name} on Instagram`}
+                title={`View ${photo.name} on Instagram`}
               >
-                <img src={photo.img} alt={`Trip photo ${photo.id}`} loading="lazy" />
+                <img src={photo.img} alt={photo.name} loading="lazy" />
                 <div className="insta-overlay">
                   <i className="fa-brands fa-instagram"></i>
                 </div>
@@ -85,7 +85,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <div>
-            &copy; {new Date().getFullYear()} {AGENCY_CONFIG.name}. All Rights Reserved. Crafted for unforgettable journeys.
+            &copy; {new Date().getFullYear()} {AGENCY_CONFIG.name}. All Rights Reserved. Dedicated Himachal Pradesh Tour &amp; Cab Specialists.
           </div>
           <div className="footer-links">
             <a href="#home">Home</a>

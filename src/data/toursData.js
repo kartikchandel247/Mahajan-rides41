@@ -1,134 +1,134 @@
 export const FEATURED_TOURS = [
   {
-    id: "himachal-escape",
-    title: "Himachal Snow & Valley Escape",
-    location: "Shimla, Manali & Solang Valley",
-    duration: "6 Days - 5 Nights",
-    daysCount: 6,
-    price: "₹14,999",
-    rating: 4.9,
-    reviewsCount: 420,
-    tag: "Bestseller",
-    vehicle: "Private Sedan / SUV",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=700&q=80",
-    description: "Pine-covered ridges, Solang Valley snow sports, Rohtang Pass, and scenic riverbank cottages."
-  },
-  {
-    id: "kashmir-paradise",
-    title: "Kashmir Heavenly Valley Tour",
-    location: "Srinagar, Gulmarg & Pahalgam",
+    id: "manali-solang-sissu",
+    title: "Manali, Atal Tunnel & Sissu Snow Tour",
+    location: "Manali, Solang Valley & Lahaul",
     duration: "5 Days - 4 Nights",
     daysCount: 5,
-    price: "₹18,499",
+    price: "₹12,499",
     rating: 4.9,
-    reviewsCount: 350,
-    tag: "Trending",
-    vehicle: "Private Innova Crysta",
-    image: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=700&q=80",
-    description: "Houseboat stay on Dal Lake, Shikara ride, Gulmarg Gondola Cable Car, and Betaab Valley meadow walks."
+    reviewsCount: 480,
+    tag: "Most Popular",
+    vehicle: "Innova Crysta / Swift Dzire",
+    image: "/places/manali.jpg",
+    description: "Hadimba Devi Temple, Solang snow adventure, crossing Atal Tunnel to Sissu Waterfall, and scenic Rohtang Pass."
   },
   {
-    id: "ladakh-expedition",
-    title: "Ladakh High Mountain Expedition",
-    location: "Leh, Khardung La & Pangong Tso",
-    duration: "7 Days - 6 Nights",
-    daysCount: 7,
-    price: "₹24,999",
-    rating: 4.8,
-    reviewsCount: 280,
-    tag: "Adventure",
-    vehicle: "4x4 Mountain Cab",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80",
-    description: "Cross Khardung La pass, camp beside turquoise Pangong Lake, and experience double-hump camel rides in Hunder."
+    id: "kasol-manikaran-kullu",
+    title: "Kullu, Kasol & Manikaran Sahib Tour",
+    location: "Parvati Valley & Beas Basin",
+    duration: "4 Days - 3 Nights",
+    daysCount: 4,
+    price: "₹9,999",
+    rating: 4.9,
+    reviewsCount: 390,
+    tag: "Spiritual & Scenic",
+    vehicle: "Private AC Cab / SUV",
+    image: "/places/manikaran.jpg",
+    description: "Sacred Manikaran Sahib hot springs & Shiva temple, Parvati river pine walks at Kasol, and Kullu river rafting."
   },
   {
-    id: "royal-rajasthan",
-    title: "Royal Rajasthan Heritage Circuit",
-    location: "Jaipur, Jodhpur & Udaipur",
+    id: "dharamshala-dalhousie-khajjiar",
+    title: "Dharamshala, McLeod Ganj & Dalhousie",
+    location: "Kangra Valley & Chamba",
     duration: "6 Days - 5 Nights",
     daysCount: 6,
-    price: "₹16,999",
+    price: "₹15,499",
     rating: 4.9,
-    reviewsCount: 310,
-    tag: "Royal Heritage",
-    vehicle: "AC Sedan / Innova",
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=700&q=80",
-    description: "Grand Amber Fort, Mehrangarh cliffside citadel, Lake Pichola sunset boat ride, and authentic Rajasthani dining."
+    reviewsCount: 340,
+    tag: "Family Favorite",
+    vehicle: "Innova Crysta / Tempo Traveller",
+    image: "/places/dharamshala.jpg",
+    description: "HPCA Cricket Stadium with snowy Dhauladhar peaks, Dalai Lama Monastery, historic Kangra Fort, and Khajjiar Mini Switzerland."
+  },
+  {
+    id: "spiti-valley-expedition",
+    title: "Spiti Valley High Mountain Circuit",
+    location: "Kaza, Tabo, Key Gompa & Chandratal",
+    duration: "7 Days - 6 Nights",
+    daysCount: 7,
+    price: "₹22,999",
+    rating: 4.8,
+    reviewsCount: 260,
+    tag: "Epic Adventure",
+    vehicle: "4x4 SUV / Mountain Cab",
+    image: "/places/spiti_valley.jpg",
+    description: "Cross high Himalayan passes to 1,000-year-old Key Monastery, Hikkim highest post office, Komic village, and crescent Chandratal Lake."
   }
 ];
 
 export const TESTIMONIALS_DATA = [
   {
     id: 1,
-    tour: "Himachal Tour",
-    name: "Aman Sharma",
-    city: "Delhi, India",
+    tour: "Manali & Atal Tunnel Tour",
+    name: "Aman & Sneha Sharma",
+    city: "Delhi NCR",
     rating: 5,
-    quote: "The 6-day Himachal trip arranged by Mahajanrides was sheer perfection! The driver was extremely polite and knew all the secret scenic viewpoints.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+    quote: "Our 5-day Manali and Sissu trip with Mahajanrides was spectacular! The driver was a true mountain expert on the snowy curves of Rohtang and Atal Tunnel. The cab was spotless.",
+    image: "/places/manali.jpg",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
   },
   {
     id: 2,
-    tour: "Kashmir Paradise",
-    name: "Priya & Rohit Verma",
-    city: "Chandigarh, India",
+    tour: "Kasol & Manikaran Pilgrimage",
+    name: "Gurpreet & Harinder Singh",
+    city: "Chandigarh",
     rating: 5,
-    quote: "Incredible WhatsApp support from start to finish. All hotel bookings, cabs, and shikara rides were coordinated directly with the owner without any delay.",
-    image: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=800&q=80",
+    quote: "Prompt pickup from Chandigarh airport directly to Manikaran Sahib. Having a local Himachali driver who knows every bypass and restaurant made our family journey effortless.",
+    image: "/places/manikaran.jpg",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
   },
   {
     id: 3,
-    tour: "Ladakh Expedition",
-    name: "Dr. Vikram Sethi",
-    city: "Mumbai, India",
+    tour: "Dharamshala & Khajjiar Trip",
+    name: "Dr. Vikram & Neha Sethi",
+    city: "Mumbai",
     rating: 5,
-    quote: "Crossing Khardung La safely requires true driving masters. Mahajanrides delivered top-notch service and made our mountain road trip seamless and memorable.",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    quote: "Khajjiar and HPCA stadium were dream destinations. Mahajanrides provided competitive pricing on WhatsApp and customized our tea garden stops in Palampur smoothly.",
+    image: "/places/chamba.jpg",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
   }
 ];
 
 export const FAQ_DATA = [
   {
-    question: "How does the WhatsApp price inquiry work?",
-    answer: "When you select your destination, dates, duration, and group size, clicking 'Inquire on WhatsApp' opens an organized, pre-formatted chat with our owner. You receive an instant customized itinerary and quote with zero waiting."
+    question: "Do your cabs have verified permits for Rohtang Pass, Atal Tunnel & Sissu?",
+    answer: "Yes, 100%. All Mahajanrides commercial cabs hold valid Himachal Pradesh state permits, Green Tax clearance, and authorized access for Rohtang Pass and Atal Tunnel crossings."
   },
   {
-    question: "Can we customize itineraries or choose specific vehicle models?",
-    answer: "Yes, 100%! Every journey can be modified. You can request specific vehicles (Innova Crysta, Fortuner 4x4, Dzire, or 12/17-seater Tempo Traveller) and add or skip stops according to your group's pace."
+    question: "Where do you provide pickup & drop services for Himachal tours?",
+    answer: "We offer seamless door-to-door pickups from Chandigarh Airport/Railway Station, Delhi NCR, Kalka Railway Station, Pathankot, Amritsar, or any major town directly to your destination in Himachal Pradesh."
   },
   {
-    question: "Are drivers experienced with mountain road trips & winter conditions?",
-    answer: "All Mahajanrides chauffeurs are licensed professionals with over a decade of mountain driving experience across Himachal, Ladakh, and Kashmir. Vehicles are equipped with all permits and safety gear."
+    question: "Which vehicles are available in your Himachal fleet?",
+    answer: "Our fleet consists of mountain-ready Toyota Innova Crysta, Maruti Swift Dzire, Toyota Etios, Force Tempo Travellers (12/17 seaters), and Force Urbania luxury vans, all handled by experienced local Himachali chauffeurs."
   },
   {
-    question: "What is included in the tour packages?",
-    answer: "Packages typically include private vehicle with fuel, all toll taxes, interstate permits, driver allowances, and handpicked hotel accommodations with breakfast and dinner. Customizations can be discussed on WhatsApp."
+    question: "How does the instant WhatsApp price inquiry work?",
+    answer: "Simply select your destination, dates, duration, and group size on our booking bar. Clicking 'Inquire on WhatsApp' instantly prepares a structured quote request sent straight to the owner for immediate rates and cab availability."
   }
 ];
 
 export const BLOG_PREVIEW_DATA = [
   {
     id: 1,
-    title: "Top 7 Hidden Scenic Spots in Himachal Pradesh",
-    date: "24 Sep 2026",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80",
-    excerpt: "Beyond Mall Road: explore Jibhi pine trails, Tirthan Valley riverside cottages, and quiet mountain viewpoints."
+    title: "Guide to Crossing Atal Tunnel, Sissu & Rohtang Pass",
+    date: "28 Sep 2026",
+    image: "/places/atal_tunnel.jpg",
+    excerpt: "Everything you need to know about weather windows, snow gear, permits, and scenic waterfall stops in Lahaul Valley."
   },
   {
     id: 2,
-    title: "The Complete Ladakh Road Trip Checklist",
-    date: "18 Sep 2026",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-    excerpt: "Acclimatization tips, altitude sickness essentials, inner line permit requirements, and vehicle readiness."
+    title: "Exploring Parvati Valley: Kasol, Manikaran Sahib & Tosh",
+    date: "22 Sep 2026",
+    image: "/places/manikaran.jpg",
+    excerpt: "A complete guide to spiritual hot springs at Manikaran, riverside cafes in Kasol, and peaceful deodar forest hikes."
   },
   {
     id: 3,
-    title: "Kashmir in Autumn vs Winter Snow: When to Visit",
-    date: "10 Sep 2026",
-    image: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=600&q=80",
-    excerpt: "Golden Chinar leaves in October versus the winter wonderland of Gulmarg skiing slopes compared."
+    title: "Kangra Valley Circuit: Dharamshala, Palampur & Bir Billing",
+    date: "15 Sep 2026",
+    image: "/places/palampur.jpg",
+    excerpt: "From world-class paragliding at Billing to colonial tea plantations and Dalai Lama's monastery in McLeod Ganj."
   }
 ];

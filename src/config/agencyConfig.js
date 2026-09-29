@@ -1,11 +1,11 @@
 export const AGENCY_CONFIG = {
   name: "Mahajanrides",
-  tagline: "Discover The World With Our Guide",
+  tagline: "Exclusive Himachal Pradesh Tour & Cab Service",
   ownerPhone: "919876543210", // Primary WhatsApp Number (country code without +)
   displayPhone: "+91 98765 43210",
   email: "info@mahajanrides.com",
   instagramUser: "mahajan_rides",
   instagramUrl: "https://www.instagram.com/mahajan_rides/",
-  address: "The Mall Road, Shimla & Connaught Place, New Delhi",
+  address: "Mall Road, Manali & Shimla, Himachal Pradesh",
   hours: "24/7 WhatsApp & Booking Support",
 };

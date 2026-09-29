@@ -2,16 +2,18 @@ import './Ticker.scss';
 
 export default function Ticker() {
   const tickerItems = [
-    "Flight & Train Bookings",
-    "Private Cab Rentals",
-    "Mountain Honeymoon Packages",
-    "Group Tour Departures",
-    "Certified Local Guides",
-    "Airport Transfers",
-    "Custom Family Itineraries",
-    "Shimla & Manali Circuits",
-    "Kashmir Houseboat Stays",
-    "Ladakh 4x4 Mountain Safaris"
+    "Shimla & Manali Packages",
+    "Atal Tunnel & Sissu Day Trips",
+    "Spiti Valley High Expeditions",
+    "Kasol & Manikaran Holy Springs",
+    "Dharamshala & Kangra Valley Tours",
+    "Bir Billing Paragliding Trips",
+    "Palampur Tea Garden Retreats",
+    "Rohtang Pass Snow Excursions",
+    "Chamba & Khajjiar Sightseeing",
+    "Chandigarh to Himachal Cabs",
+    "Experienced Himachali Chauffeurs",
+    "24/7 Mountain-Ready Fleet"
   ];
 
   return (
