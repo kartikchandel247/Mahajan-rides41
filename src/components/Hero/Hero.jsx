@@ -44,10 +44,6 @@ export default function Hero({ onExploreTours }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="hero-badge">
-            <i className="fa-solid fa-van-shuttle"></i> Exclusive 17-Seater Force Tempo Traveller Services
-          </div>
-
           <h1 className="hero-title">
             <span>Discover Himachal</span>
             <span><i>with our local guide.</i></span>
