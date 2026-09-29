@@ -78,6 +78,7 @@ export default function Faq() {
           </div>
         </div>
       </div>
+      <div className="bg-text-style4">QUESTIONS</div>
     </section>
   );
 }

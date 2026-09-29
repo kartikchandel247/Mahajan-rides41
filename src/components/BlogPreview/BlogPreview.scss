@@ -4,9 +4,24 @@
 .blog-section {
   background-color: $clr-white;
   padding: 100px 0;
+  position: relative;
 
   @include mobile {
     padding: 70px 0;
+  }
+}
+
+.blog-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -14,6 +29,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  margin-bottom: 70px;
 
   @include desktop {
     grid-template-columns: repeat(2, 1fr);
@@ -26,7 +42,7 @@
 
 .blog-card {
   background-color: $clr-white;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
   box-shadow: $shadow-md;
   border: 1.5px solid $clr-border;
@@ -42,7 +58,7 @@
 }
 
 .blog-card-media {
-  height: 230px;
+  height: 250px;
   position: relative;
   overflow: hidden;
 
@@ -50,7 +66,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .blog-card:hover & img {
@@ -60,39 +76,45 @@
 
 .blog-card-date {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 18px;
+  left: 18px;
   background-color: $clr-heading;
   color: $clr-white;
-  padding: 4px 12px;
+  padding: 6px 16px;
   border-radius: $radius-pill;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .blog-card-body {
-  padding: 24px;
+  padding: 30px 26px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
+
+  @include mobile {
+    padding: 22px 18px;
+  }
 }
 
 .blog-card-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: $clr-heading;
   margin-bottom: 12px;
   line-height: 1.25;
 }
 
 .blog-card-excerpt {
-  font-size: 0.95rem;
+  font-size: 0.96rem;
   color: $clr-body;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.65;
+  margin-bottom: 24px;
 }
 
 .blog-link-btn {
@@ -100,7 +122,7 @@
   border: none;
   color: $clr-primary;
   font-family: $font-heading;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -110,7 +132,303 @@
   transition: $transition-fast;
 
   &:hover {
-    color: $clr-primary-hover;
-    transform: translateX(4px);
+    color: $clr-heading;
+    transform: translateX(5px);
+  }
+}
+
+/* Recent Verified Passenger Feedbacks Strip */
+.recent-feedbacks-section {
+  background-color: $clr-bg-light;
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid rgba(15, 36, 84, 0.08);
+
+  @include mobile {
+    padding: 24px 18px;
+  }
+}
+
+.feedbacks-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  h4 {
+    font-size: 1.6rem;
+    color: $clr-heading;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    i {
+      color: $clr-primary;
+    }
+  }
+
+  .feedbacks-count {
+    background-color: rgba(32, 149, 174, 0.12);
+    color: $clr-primary;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+  }
+}
+
+.feedbacks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feedback-card {
+  background-color: $clr-white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: $shadow-sm;
+  border: 1px solid rgba(15, 36, 84, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feedback-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+
+  strong {
+    font-size: 1.15rem;
+    color: $clr-heading;
+    display: block;
+  }
+
+  .feedback-city {
+    font-size: 0.85rem;
+    color: $clr-muted;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 3px;
+  }
+}
+
+.feedback-stars {
+  color: $clr-gold;
+  display: flex;
+  gap: 3px;
+  font-size: 0.95rem;
+}
+
+.feedback-route-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f0f7f9;
+  color: $clr-primary;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.feedback-text {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: $clr-body;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.feedback-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #179848;
+}
+
+/* Modal Styling */
+.feedback-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 24, 56, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.feedback-modal-box {
+  background-color: $clr-white;
+  border-radius: 28px;
+  width: 100%;
+  max-width: 620px;
+  padding: 40px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @include mobile {
+    padding: 25px 20px;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $clr-border;
+
+  h3 {
+    font-size: 1.8rem;
+    color: $clr-heading;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 0.92rem;
+    color: $clr-muted;
+    margin: 0;
+  }
+}
+
+.modal-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid $clr-border;
+  background: transparent;
+  color: $clr-heading;
+  font-size: 1.2rem;
+  cursor: pointer;
+  @include flex-center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #fee;
+    color: #e53e3e;
+    border-color: #e53e3e;
+  }
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-family: $font-heading;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: $clr-heading;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+      padding: 13px 16px;
+      border: 1.5px solid $clr-border;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.98rem;
+      color: $clr-heading;
+      outline: none;
+      transition: all 0.25s ease;
+
+      &:focus {
+        border-color: $clr-primary;
+        box-shadow: 0 0 0 4px $clr-primary-light;
+      }
+    }
+  }
+}
+
+.star-picker {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  height: 48px;
+
+  .star-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: #d1d5db;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    &.active {
+      color: $clr-gold;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.modal-actions-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.feedback-success-state {
+  text-align: center;
+  padding: 40px 20px;
+
+  i {
+    font-size: 4rem;
+    color: #179848;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    font-size: 2rem;
+    color: $clr-heading;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: $clr-body;
+    font-size: 1.05rem;
   }
 }

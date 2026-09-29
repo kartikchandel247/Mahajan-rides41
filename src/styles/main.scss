@@ -133,30 +133,116 @@ img {
   }
 }
 
-/* TourVex Signature Button (.butn-arrow) */
+/* TourVex Signature Button 1 (.butn-arrow) */
 .butn-arrow {
+  height: 55px;
+  padding: 0 10px 0 26px;
   display: inline-flex;
   align-items: center;
-  gap: 16px;
-  background-color: $clr-heading;
-  color: $clr-white;
-  padding: 12px 28px;
-  border-radius: $radius-pill;
+  gap: 15px;
+  background-color: $clr-primary;
+  border-radius: 50px;
+  border: none;
   font-family: $font-heading;
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: $transition-smooth;
-  box-shadow: $shadow-sm;
-  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(32, 149, 174, 0.25);
+  text-decoration: none;
 
-  .btn-text {
+  span.btn-text {
+    color: $clr-white;
+    line-height: 1;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  .arrow-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: $clr-white;
+    flex-shrink: 0;
     position: relative;
-    z-index: 2;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .arrow-inner {
+    position: absolute;
+    inset: 0;
+
+    i {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: $clr-heading;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+      &:first-child {
+        transform: translateY(-100%);
+      }
+
+      &:last-child {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &:hover {
+    background-color: $clr-heading;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 36, 84, 0.3);
+
+    .arrow-wrap {
+      background-color: $clr-white;
+    }
+
+    .arrow-inner i:first-child {
+      transform: translateY(0);
+    }
+
+    .arrow-inner i:last-child {
+      transform: translateY(100%);
+    }
+  }
+}
+
+/* TourVex Signature Button 2 (.butn-arrow2) - Light variant */
+.butn-arrow2 {
+  height: 55px;
+  padding: 0 10px 0 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  background-color: $clr-white;
+  border-radius: 50px;
+  border: none;
+  font-family: $font-heading;
+  font-size: 1.12rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+
+  span.btn-text {
+    color: $clr-heading;
+    line-height: 1;
+    white-space: nowrap;
+    transition: color 0.3s ease;
   }
 
   .arrow-wrap {
@@ -164,53 +250,184 @@ img {
     height: 38px;
     border-radius: 50%;
     background-color: $clr-primary;
-    @include flex-center;
+    flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    transition: $transition-smooth;
+    transition: background 0.3s ease;
   }
 
   .arrow-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+    position: absolute;
+    inset: 0;
 
     i {
       position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
       color: $clr-white;
-      font-size: 0.95rem;
-      transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 
       &:first-child {
-        transform: translate(0, 0);
+        transform: translateY(-100%);
       }
 
       &:last-child {
-        transform: translate(-100%, 100%);
+        transform: translateY(0);
       }
     }
   }
 
   &:hover {
     background-color: $clr-primary;
-    color: $clr-white;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba($clr-primary, 0.35);
+    box-shadow: 0 8px 25px rgba(32, 149, 174, 0.4);
+
+    span.btn-text {
+      color: $clr-white;
+    }
 
     .arrow-wrap {
-      background-color: $clr-heading;
+      background-color: $clr-white;
+    }
+
+    .arrow-inner i {
+      color: $clr-primary;
     }
 
     .arrow-inner i:first-child {
-      transform: translate(100%, -100%);
+      transform: translateY(0);
     }
 
     .arrow-inner i:last-child {
-      transform: translate(0, 0);
+      transform: translateY(100%);
     }
   }
+}
+
+/* WhatsApp Direct Button (.butn-whatsapp) */
+.butn-whatsapp {
+  height: 55px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: $clr-whatsapp;
+  color: $clr-white;
+  border-radius: 50px;
+  border: none;
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  text-decoration: none;
+
+  i {
+    font-size: 1.35rem;
+  }
+
+  &:hover {
+    background-color: $clr-whatsapp-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+    color: $clr-white;
+  }
+}
+
+/* TourVex Floating Circular Action Button (.clicko) */
+.clicko {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: $clr-white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  cursor: pointer;
+  border: none;
+  transition: all 0.35s ease;
+
+  .icon-wrap {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    i {
+      font-size: 16px;
+      color: $clr-heading;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+    }
+  }
+
+  &:hover {
+    background-color: $clr-primary;
+    transform: scale(1.08);
+
+    .icon-wrap i {
+      color: $clr-white;
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+/* TourVex Signature Giant Background Watermarks */
+.bg-text-style,
+.bg-text-style4,
+.bg-text-style5 {
+  position: absolute;
+  font-family: $font-heading;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 210px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+
+  @include desktop {
+    font-size: 150px;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.bg-text-style {
+  right: 0;
+  bottom: 20px;
+  background: linear-gradient(to bottom, rgba(15, 36, 84, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-text-style4 {
+  left: 30px;
+  bottom: 20px;
+  background: linear-gradient(to bottom, rgba(15, 36, 84, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-text-style5 {
+  right: 40px;
+  bottom: -40px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 0%, rgba(15, 36, 84, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

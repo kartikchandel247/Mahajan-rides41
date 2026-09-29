@@ -85,6 +85,7 @@ export default function AboutSnippet({ onLearnMore }) {
           </motion.div>
         </div>
       </div>
+      <div className="bg-text-style">MAHAJAN</div>
     </section>
   );
 }

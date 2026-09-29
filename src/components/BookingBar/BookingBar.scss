@@ -60,11 +60,15 @@
 
 .booking-form-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 1.2fr;
-  gap: 18px;
+  grid-template-columns: repeat(5, 1fr) 1.25fr;
+  gap: 16px;
   align-items: end;
 
   @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include tablet {
     grid-template-columns: repeat(2, 1fr);
   }
 

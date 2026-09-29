@@ -61,11 +61,14 @@ export default function FeaturedTours() {
                   <img src={tour.image} alt={tour.title} loading="lazy" />
                   <span className="tour-badge-top">{tour.tag}</span>
                   <button 
-                    className="tour-click-arrow" 
+                    className="clicko" 
                     onClick={() => handleInquire(tour)} 
                     title="Inquire Price on WhatsApp"
+                    aria-label={`Inquire about ${tour.title} on WhatsApp`}
                   >
-                    <i className="fa-solid fa-arrow-trend-up"></i>
+                    <span className="icon-wrap">
+                      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
                   </button>
                 </div>
 

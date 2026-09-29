@@ -125,6 +125,26 @@ export default function BookingBar() {
               </div>
             </div>
 
+            {/* Cab / Vehicle Preference */}
+            <div className="booking-field">
+              <label htmlFor="vehicle"><i className="fa-solid fa-car"></i> Cab / Fleet</label>
+              <div className="booking-input-wrap">
+                <select 
+                  id="vehicle" 
+                  name="vehicle" 
+                  value={formData.vehicle} 
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Toyota Innova Crysta (SUV)">Innova Crysta (SUV)</option>
+                  <option value="Swift Dzire / Etios (Sedan)">Sedan (Dzire / Etios)</option>
+                  <option value="Tempo Traveller (12/17 Seater)">Tempo Traveller</option>
+                  <option value="Force Urbania Luxury Van">Force Urbania (Luxury)</option>
+                  <option value="Standard Cab (Budget Friendly)">Standard Cab</option>
+                </select>
+              </div>
+            </div>
+
             {/* Submit to WhatsApp */}
             <button type="submit" className="booking-btn-submit">
               <i className="fa-brands fa-whatsapp"></i> Inquire On WhatsApp

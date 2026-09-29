@@ -10,91 +10,191 @@
   }
 }
 
-.testimonials-accordion-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-
-  @include desktop {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.testimonials-expand-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  min-height: 480px;
 
   @include tablet {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    min-height: auto;
   }
 }
 
-.testi-card {
-  border-radius: 20px;
-  overflow: hidden;
+.testi-expand-item {
+  flex: 1;
   position: relative;
-  height: 440px;
-  box-shadow: $shadow-lg;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(15, 36, 84, 0.1);
   cursor: pointer;
-  transition: $transition-smooth;
+  transition: flex 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease;
 
-  @include mobile {
-    height: 380px;
+  @include tablet {
+    flex: none !important;
+    height: 420px;
   }
+
+  &.active {
+    flex: 2.2;
+    box-shadow: 0 25px 60px rgba(15, 36, 84, 0.2);
+
+    .testi-img-wrap img {
+      transform: scale(1.04);
+      filter: brightness(0.9);
+    }
+
+    .testi-cont-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &:not(.active) {
+    .testi-img-wrap img {
+      filter: brightness(0.75);
+    }
+
+    .testi-quote,
+    .testi-travellers-row {
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.testi-img-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.08);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
   }
 }
 
-.testi-card-overlay {
+.testi-cont {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 36, 84, 0.96) 0%, rgba(15, 36, 84, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(15, 36, 84, 0.95) 0%, rgba(15, 36, 84, 0.5) 50%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 30px;
+  padding: 35px 30px;
   color: $clr-white;
 
   @include mobile {
-    padding: 22px;
+    padding: 24px 20px;
   }
 }
 
+.testi-cont-inner {
+  transition: all 0.4s ease;
+}
+
+.testi-tour-tag {
+  display: inline-block;
+  font-family: $font-heading;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #55c8e3;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
 .testi-tour-name {
-  font-size: 1.6rem;
-  margin-bottom: 8px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
   color: $clr-white;
+  font-weight: 700;
+  line-height: 1.2;
+
+  @include mobile {
+    font-size: 1.5rem;
+  }
 }
 
 .testi-rating {
   color: $clr-gold;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   display: flex;
-  gap: 4px;
+  gap: 5px;
+  font-size: 1.1rem;
 }
 
 .testi-quote {
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.88);
-  margin-bottom: 18px;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 22px;
+  font-style: italic;
+  max-width: 580px;
+
+  @include mobile {
+    font-size: 0.95rem;
+  }
 }
 
-.testi-author {
+.testi-travellers-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+}
+
+.traveller-avatars {
+  display: flex;
+  align-items: center;
 
   img {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 2px solid $clr-primary;
+    border: 3px solid #0f2454;
     object-fit: cover;
+    margin-left: -12px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .avatars-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: $clr-primary;
+    color: $clr-white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    @include flex-center;
+    border: 3px solid #0f2454;
+    margin-left: -12px;
+  }
+}
+
+.traveller-info {
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    color: $clr-white;
+    font-size: 1.05rem;
+  }
+
+  small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
   }
 }
 

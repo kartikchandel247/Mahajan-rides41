@@ -96,6 +96,21 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        {/* Panoramic Scenic Radius Mask Banner */}
+        <div className="services-panoramic-banner">
+          <div className="banner-radius-mask">
+            <img 
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" 
+              alt="Scenic Mountain Highway Panorama" 
+              loading="lazy" 
+            />
+            <div className="banner-overlay-text">
+              <span>Explore The Roads Less Travelled</span>
+              <h3>Private Chauffeur Fleets &amp; Custom Mountain Holidays</h3>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
