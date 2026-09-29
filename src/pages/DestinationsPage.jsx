@@ -6,11 +6,12 @@ import { FEATURED_TOURS } from '../data/toursData';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
 import './DestinationsPage.scss';
 
-export default function DestinationsPage({ onNavigateHome, onNavigateContact }) {
+export default function DestinationsPage({ onNavigateHome, onNavigateContact, onNavigateBooking }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedPlace, setSelectedPlace] = useState('All Places');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTour, setSelectedTour] = useState(null);
+  const [selectedTourForQuote, setSelectedTourForQuote] = useState('');
 
   const categories = [
     { id: 'All', label: 'All Tourist Places', icon: 'fa-solid fa-mountain' },
@@ -299,10 +300,18 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
                         <button 
                           type="button" 
                           className="dest-whatsapp-btn"
-                          onClick={() => handleInquire(tour)}
-                          title="Inquire on WhatsApp"
+                          onClick={() => {
+                            if (onNavigateBooking) {
+                              onNavigateBooking(tour.title);
+                            } else {
+                              setSelectedTourForQuote(tour.title);
+                              const el = document.getElementById('instantQuoteSection');
+                              if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }
+                          }}
+                          title="Instant quotation for this tour"
                         >
-                          <i className="fa-brands fa-whatsapp"></i> Inquire
+                          <i className="fa-solid fa-calendar-check"></i> Book Now
                         </button>
                       </div>
                     </div>
@@ -343,14 +352,14 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
       </section>
 
       {/* 5. Booking Search Bar */}
-      <section className="destinations-booking-wrap">
+      <section className="destinations-booking-wrap" id="instantQuoteSection">
         <div className="container">
           <div className="section-head text-center">
             <span className="section-subtitle">Instant Quotation</span>
             <h2 className="section-title">Ready to Plan Your <i>Himachal Vacation?</i></h2>
             <p>Select your dates and group size below to generate an immediate WhatsApp quote:</p>
           </div>
-          <BookingBar />
+          <BookingBar initialDestination={selectedTourForQuote} />
         </div>
       </section>
 
@@ -454,16 +463,35 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
                     <i className="fa-solid fa-circle-info"></i>
                     <span>Direct quote and timing customized on WhatsApp based on your arrival point (Chandigarh, Delhi, Kalka, Manali).</span>
                   </div>
-                  <button 
-                    className="butn-whatsapp-modal"
-                    onClick={() => {
-                      handleInquire(selectedTour);
-                      setSelectedTour(null);
-                    }}
-                    type="button"
-                  >
-                    <i className="fa-brands fa-whatsapp"></i> Inquire This Tour on WhatsApp
-                  </button>
+                  <div className="tour-modal-actions-row">
+                    <button 
+                      className="butn-book-modal"
+                      onClick={() => {
+                        const title = selectedTour.title;
+                        setSelectedTour(null);
+                        if (onNavigateBooking) {
+                          onNavigateBooking(title);
+                        } else {
+                          setSelectedTourForQuote(title);
+                          const el = document.getElementById('instantQuoteSection');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                      type="button"
+                    >
+                      <i className="fa-solid fa-calendar-check"></i> Book Now (Get Quote)
+                    </button>
+                    <button 
+                      className="butn-whatsapp-modal"
+                      onClick={() => {
+                        handleInquire(selectedTour);
+                        setSelectedTour(null);
+                      }}
+                      type="button"
+                    >
+                      <i className="fa-brands fa-whatsapp"></i> Inquire on WhatsApp
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>

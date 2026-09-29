@@ -6,8 +6,17 @@
   margin-top: -65px;
   z-index: 20;
 
+  &.standalone,
+  &.is-page {
+    margin-top: 0;
+  }
+
   @include tablet {
     margin-top: -30px;
+    &.standalone,
+    &.is-page {
+      margin-top: 0;
+    }
   }
 
   @include mobile {

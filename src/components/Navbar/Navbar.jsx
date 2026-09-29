@@ -20,13 +20,15 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
   const navLinks = [
     { name: 'HOME', page: 'home' },
     { name: 'DESTINATIONS', page: 'destinations' },
+    { name: 'BOOK NOW', page: 'booking' },
     { name: 'ABOUT US', page: 'about' },
     { name: 'BLOG & GUIDES', page: 'blog' },
     { 
       name: 'PAGES', 
       page: 'pages',
       subLinks: [
-        { name: 'All Tour Circuits', page: 'destinations' },
+        { name: 'Instant Quote & Booking', page: 'booking' },
+        { name: 'All 18 Tour Circuits', page: 'destinations' },
         { name: 'About Fleet & Heritage', page: 'about' },
         { name: 'Travel Guides & Reviews', page: 'blog' },
         { name: 'Direct WhatsApp Contact', page: 'contact' },
@@ -174,10 +176,10 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
           <div className="nav-actions">
             <button 
               className="butn-arrow" 
-              onClick={() => onBookClick ? onBookClick() : handleLinkClick('destinations')}
+              onClick={() => onBookClick ? onBookClick() : handleLinkClick('booking')}
               id="header-book-btn"
             >
-              <span className="btn-text">Book Tour</span>
+              <span className="btn-text">Book Now</span>
               <span className="arrow-wrap">
                 <span className="arrow-inner">
                   <i className="fa-solid fa-arrow-right"></i>
@@ -233,7 +235,20 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
                     </button>
                   </li>
                 ))}
-                <li className="mobile-cta-item">
+                <li className="mobile-cta-item" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <button 
+                    type="button"
+                    className="butn-book-drawer"
+                    onClick={() => {
+                      if (onBookClick) onBookClick();
+                      else handleLinkClick('booking');
+                      setMobileMenuOpen(false);
+                    }}
+                    id="mobile-drawer-book-btn"
+                  >
+                    <i className="fa-solid fa-calendar-check"></i>
+                    <span>Book Now (Instant Quote)</span>
+                  </button>
                   <a 
                     href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`}
                     target="_blank"

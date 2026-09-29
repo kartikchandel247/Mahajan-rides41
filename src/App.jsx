@@ -6,6 +6,7 @@ import FloatingWhatsApp from './components/FloatingWhatsApp/FloatingWhatsApp';
 // Subpage Views
 import HomePage from './pages/HomePage';
 import DestinationsPage from './pages/DestinationsPage';
+import BookingPage from './pages/BookingPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
@@ -13,6 +14,7 @@ import ContactPage from './pages/ContactPage';
 export default function App() {
   const getPageFromHash = () => {
     const hash = window.location.hash.toLowerCase();
+    if (hash.includes('book') || hash.includes('quote')) return 'booking';
     if (hash.includes('destination') || hash.includes('tour')) return 'destinations';
     if (hash.includes('about')) return 'about';
     if (hash.includes('blog') || hash.includes('review') || hash.includes('faq')) return 'blog';
@@ -21,6 +23,7 @@ export default function App() {
   };
 
   const [activePage, setActivePage] = useState(getPageFromHash);
+  const [selectedBookingTour, setSelectedBookingTour] = useState('');
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -38,15 +41,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleBookClick = () => {
-    if (activePage === 'home') {
-      const el = document.getElementById('bookingBar');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
+  const handleBookClick = (tourTitle = null) => {
+    if (typeof tourTitle === 'string') {
+      setSelectedBookingTour(tourTitle);
     }
-    navigateToPage('destinations');
+    navigateToPage('booking');
   };
 
   return (
@@ -66,6 +65,16 @@ export default function App() {
             onNavigateAbout={() => navigateToPage('about')}
             onNavigateBlog={() => navigateToPage('blog')}
             onNavigateContact={() => navigateToPage('contact')}
+            onNavigateBooking={handleBookClick}
+          />
+        )}
+
+        {activePage === 'booking' && (
+          <BookingPage 
+            selectedTour={selectedBookingTour}
+            onNavigateHome={() => navigateToPage('home')}
+            onNavigateDestinations={() => navigateToPage('destinations')}
+            onNavigateContact={() => navigateToPage('contact')}
           />
         )}
 
@@ -73,6 +82,7 @@ export default function App() {
           <DestinationsPage 
             onNavigateHome={() => navigateToPage('home')}
             onNavigateContact={() => navigateToPage('contact')}
+            onNavigateBooking={handleBookClick}
           />
         )}
 

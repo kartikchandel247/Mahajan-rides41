@@ -36,6 +36,7 @@ export default function Footer({ onNavigate }) {
             <div className="footer-nav-links">
               <button type="button" onClick={(e) => handleLink('home', e)} className="footer-link-btn">Home</button>
               <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-link-btn">Tour Circuits</button>
+              <button type="button" onClick={(e) => handleLink('booking', e)} className="footer-link-btn">Book Now (Instant Quote)</button>
               <button type="button" onClick={(e) => handleLink('about', e)} className="footer-link-btn">About Fleet</button>
               <button type="button" onClick={(e) => handleLink('blog', e)} className="footer-link-btn">Travel Guides</button>
               <button type="button" onClick={(e) => handleLink('contact', e)} className="footer-link-btn">Contact Us</button>

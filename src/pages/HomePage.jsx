@@ -5,7 +5,13 @@ import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
 import './HomePage.scss';
 
-export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNavigateBlog, onNavigateContact }) {
+export default function HomePage({ 
+  onNavigateDestinations, 
+  onNavigateAbout, 
+  onNavigateBlog, 
+  onNavigateContact,
+  onNavigateBooking 
+}) {
   // Top 3 handpicked tours for the compact preview
   const topDestinations = FEATURED_TOURS.slice(0, 3);
 
@@ -22,11 +28,20 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
     {
       id: 'destinations',
       title: 'Tour Circuits',
-      badge: '6 Packages',
+      badge: '18 Circuits',
       icon: 'fa-solid fa-mountain',
-      desc: 'Manali, Rohtang, Kasol & Spiti packages.',
+      desc: 'Manali, Rohtang, Spiti, Kinnaur & Kangra packages.',
       actionText: 'View Tours',
       onClick: onNavigateDestinations
+    },
+    {
+      id: 'booking',
+      title: 'Book Now',
+      badge: 'Instant Quote',
+      icon: 'fa-solid fa-calendar-check',
+      desc: 'Select dates & group for direct WhatsApp quote.',
+      actionText: 'Book Now',
+      onClick: () => (onNavigateBooking ? onNavigateBooking() : onNavigateContact())
     },
     {
       id: 'about',
@@ -45,15 +60,6 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
       desc: 'Permits, weather windows & tips.',
       actionText: 'Read Guides',
       onClick: onNavigateBlog
-    },
-    {
-      id: 'contact',
-      title: 'Direct Contact',
-      badge: '24/7 Support',
-      icon: 'fa-solid fa-phone-volume',
-      desc: 'Instant WhatsApp & custom quotes.',
-      actionText: 'Get Quote',
-      onClick: onNavigateContact
     }
   ];
 
@@ -63,8 +69,13 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
       <Hero onExploreTours={onNavigateDestinations} />
 
       {/* 2. Fast WhatsApp Tour Booking Bar */}
-      <div id="bookingBar" className="home-booking-strip">
+      <div className="home-booking-strip">
         <div className="container">
+          <div className="section-head text-center" style={{ marginBottom: '22px' }}>
+            <span className="section-subtitle">Instant Quotation</span>
+            <h2 className="section-title">Ready to Plan Your <i>Himachal Vacation?</i></h2>
+            <p style={{ color: '#64748b', fontSize: '0.95rem' }}>Select your dates and group size below to generate an immediate WhatsApp quote:</p>
+          </div>
           <BookingBar />
         </div>
       </div>
@@ -122,7 +133,7 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
               className="view-all-subpage-btn"
               onClick={onNavigateDestinations}
             >
-              <span>View All 6 Packages</span>
+              <span>View All 18 Tour Circuits</span>
               <i className="fa-solid fa-arrow-right"></i>
             </button>
           </div>
@@ -159,10 +170,10 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
                     <button 
                       type="button" 
                       className="inquire-wa-btn"
-                      onClick={() => handleInquire(tour)}
+                      onClick={() => onNavigateBooking ? onNavigateBooking(tour.title) : handleInquire(tour)}
                       title="Quick WhatsApp quote"
                     >
-                      <i className="fa-brands fa-whatsapp"></i> Inquire
+                      <i className="fa-solid fa-calendar-check"></i> Book Now
                     </button>
                   </div>
                 </div>
@@ -177,7 +188,7 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
               className="butn-arrow"
               onClick={onNavigateDestinations}
             >
-              <span className="btn-text">Explore All 6 Himachal Packages</span>
+              <span className="btn-text">Explore All 18 Himachal Circuits</span>
               <span className="arrow-wrap">
                 <span className="arrow-inner">
                   <i className="fa-solid fa-arrow-right"></i>

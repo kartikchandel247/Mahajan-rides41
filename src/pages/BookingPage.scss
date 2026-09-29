@@ -1,0 +1,242 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.booking-page {
+  background-color: #f8fafc;
+
+  .booking-page-main-wrap {
+    padding: 50px 0 30px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+
+    @include mobile {
+      padding: 35px 0 20px;
+    }
+
+    .section-head {
+      margin-bottom: 25px;
+
+      .booking-page-lead {
+        color: #64748b;
+        font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+        max-width: 620px;
+        margin: 8px auto 0;
+        line-height: 1.5;
+      }
+    }
+
+    .booking-bar-container {
+      position: relative;
+      z-index: 10;
+
+      .booking-search-bar {
+        margin-top: 0;
+      }
+    }
+  }
+
+  /* Fleet & Service Guarantees */
+  .booking-guarantees-section {
+    padding: 50px 0;
+    background: #f1f5f9;
+
+    @include mobile {
+      padding: 35px 0;
+    }
+
+    .guarantees-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .guarantee-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 24px 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        border: 1px solid #e2e8f0;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .guarantee-icon {
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
+          background: rgba($clr-primary, 0.08);
+          color: $clr-primary;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.3rem;
+          margin-bottom: 14px;
+        }
+
+        h4 {
+          font-size: 1.05rem;
+          color: $clr-heading;
+          margin-bottom: 8px;
+          font-weight: 700;
+        }
+
+        p {
+          font-size: 0.88rem;
+          color: #64748b;
+          line-height: 1.5;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  /* Steps Section */
+  .booking-steps-section {
+    padding: 60px 0;
+
+    @include mobile {
+      padding: 40px 0;
+    }
+
+    .steps-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .step-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 28px 24px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        position: relative;
+        overflow: hidden;
+
+        .step-number {
+          font-size: 2.2rem;
+          font-weight: 900;
+          color: rgba($clr-primary, 0.15);
+          line-height: 1;
+          margin-bottom: 12px;
+        }
+
+        h3 {
+          font-size: 1.15rem;
+          color: $clr-heading;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: #64748b;
+          line-height: 1.5;
+          margin: 0;
+        }
+      }
+    }
+
+    /* Direct Help Strip */
+    .booking-direct-strip {
+      background: linear-gradient(135deg, #0b1f3a 0%, #1e3a63 100%);
+      border-radius: 20px;
+      padding: 32px 36px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+
+      @include mobile {
+        padding: 24px 20px;
+      }
+
+      .direct-strip-info {
+        max-width: 600px;
+
+        h3 {
+          color: #ffffff;
+          font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+          margin-bottom: 6px;
+        }
+
+        p {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.92rem;
+          margin: 0;
+        }
+      }
+
+      .direct-strip-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        @include mobile {
+          width: 100%;
+
+          a {
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+          }
+        }
+
+        .btn-call-direct {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #ffffff;
+          color: #0b1f3a;
+          padding: 12px 20px;
+          border-radius: 30px;
+          font-weight: 700;
+          font-size: 0.92rem;
+          text-decoration: none;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: translateY(-2px);
+          }
+        }
+
+        .btn-whatsapp-direct {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: $clr-whatsapp;
+          color: #ffffff;
+          padding: 12px 22px;
+          border-radius: 30px;
+          font-weight: 700;
+          font-size: 0.92rem;
+          text-decoration: none;
+          transition: transform 0.2s ease, filter 0.2s ease;
+
+          &:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+          }
+        }
+      }
+    }
+  }
+}

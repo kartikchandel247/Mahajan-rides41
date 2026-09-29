@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { openWhatsAppInquiry } from '../../utils/whatsapp';
+import { FEATURED_TOURS } from '../../data/toursData';
 import './BookingBar.scss';
 
-export default function BookingBar() {
+export default function BookingBar({ initialDestination = "", className = "" }) {
   // Default date: 3 days ahead
   const defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate() + 3);
-  const defaultDateString = defaultDate.toISOString().split('T')[0];
   const todayString = new Date().toISOString().split('T')[0];
 
   const [formData, setFormData] = useState({
-    destination: "",
+    destination: initialDestination || "",
     date: "",
     days: "",
     travelers: "",
     vehicle: "17-Seater Force Tempo Traveller (Luxury AC Pushback)"
   });
+
+  useEffect(() => {
+    if (initialDestination) {
+      setFormData(prev => ({ ...prev, destination: initialDestination }));
+    }
+  }, [initialDestination]);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -28,14 +34,14 @@ export default function BookingBar() {
   };
 
   return (
-    <section className="booking-search-bar" id="bookingBar">
+    <section className={`booking-search-bar ${className}`} id="bookingBar">
       <div className="container">
         <motion.div 
           className="booking-card"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="booking-header">
             <h3>
@@ -58,16 +64,13 @@ export default function BookingBar() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="" disabled>Choose Destination...</option>
-                  <option value="Manali, Solang Valley & Atal Tunnel">Manali, Solang &amp; Atal Tunnel</option>
-                  <option value="Kullu, Kasol & Manikaran Sahib">Kullu, Kasol &amp; Manikaran Sahib</option>
-                  <option value="Shimla, Kufri & Narkanda Hills">Shimla, Kufri &amp; Narkanda</option>
-                  <option value="Dharamshala, McLeod Ganj & Dalhousie">Dharamshala &amp; McLeod Ganj</option>
-                  <option value="Spiti Valley & Lahaul Circuit (Kaza, Key, Chandratal)">Spiti Valley &amp; Lahaul Circuit</option>
-                  <option value="Chamba, Dalhousie & Khajjiar (Mini Switzerland)">Chamba &amp; Khajjiar</option>
-                  <option value="Bir Billing (Paragliding) & Palampur Tea Gardens">Bir Billing &amp; Palampur</option>
-                  <option value="Sissu, Keylong & Baralacha La Pass">Sissu &amp; Baralacha La Pass</option>
-                  <option value="Custom Himachal Tour Itinerary">Custom Himachal Itinerary</option>
+                  <option value="" disabled>Choose Destination / Circuit...</option>
+                  {FEATURED_TOURS && FEATURED_TOURS.map(tour => (
+                    <option key={tour.id} value={tour.title}>
+                      {tour.title} ({tour.duration})
+                    </option>
+                  ))}
+                  <option value="Custom Himachal Tour Itinerary">Custom Himachal Itinerary (Tailored for you)</option>
                 </select>
               </div>
             </div>
