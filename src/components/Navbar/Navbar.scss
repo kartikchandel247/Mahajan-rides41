@@ -2,18 +2,18 @@
 @use '../../styles/mixins' as *;
 
 .header-topbar {
-  background-color: $clr-heading-dark;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.9rem;
+  background-color: #071533;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.88rem;
   padding: 8px 0;
-  border-bottom: 1px solid $clr-border-dark;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
   .topbar-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 12px;
 
     @include tablet {
       justify-content: center;
@@ -23,78 +23,168 @@
   .topbar-info {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 12px;
     flex-wrap: wrap;
 
-    a {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: rgba(255, 255, 255, 0.85);
-      transition: color 0.2s ease;
+    @include tablet {
+      justify-content: center;
+    }
+
+    @include mobile {
+      gap: 8px;
+    }
+  }
+
+  .topbar-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+
+    i {
+      color: $clr-primary;
+      font-size: 0.82rem;
+    }
+
+    &:hover {
+      background-color: rgba(32, 149, 174, 0.16);
+      border-color: rgba(32, 149, 174, 0.4);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    @include mobile {
+      font-size: 0.76rem;
+      padding: 3px 9px;
+      gap: 5px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 0.72rem;
+      padding: 2px 7px;
+    }
+  }
+
+  .topbar-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background-color: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      display: inline-block;
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @include mobile {
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+
+  .topbar-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 4px 13px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+
+    &.insta {
+      color: #ffffff;
+      background: linear-gradient(45deg, rgba(#f09433, 0.18), rgba(#dc2743, 0.22), rgba(#bc1888, 0.2));
+      border: 1px solid rgba(220, 39, 67, 0.35);
 
       i {
-        color: $clr-primary;
+        font-size: 0.92rem;
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       &:hover {
-        color: $clr-primary;
+        background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+        border-color: transparent;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(220, 39, 67, 0.35);
+
+        i {
+          -webkit-text-fill-color: #ffffff;
+        }
       }
     }
 
-    .topbar-hours {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255, 255, 255, 0.65);
+    &.whatsapp {
+      color: #ffffff;
+      background-color: rgba(37, 211, 102, 0.16);
+      border: 1px solid rgba(37, 211, 102, 0.38);
 
       i {
-        color: $clr-primary;
+        color: #25d366;
+        font-size: 0.95rem;
       }
 
-      @include mobile {
-        display: none;
+      &:hover {
+        background-color: #25d366;
+        border-color: #25d366;
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+
+        i {
+          color: #ffffff;
+        }
       }
     }
 
     @include mobile {
-      gap: 12px;
-      justify-content: center;
-
-      a {
-        font-size: 0.78rem;
-        gap: 5px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      gap: 8px;
-
-      a {
-        font-size: 0.72rem;
-      }
+      font-size: 0.78rem;
+      padding: 3px 10px;
     }
   }
+}
 
-  .topbar-socials {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    a {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.95rem;
-      transition: $transition-fast;
-
-      &:hover {
-        color: $clr-primary;
-        transform: translateY(-2px);
-      }
-    }
-
-    @include tablet {
-      display: none;
-    }
+@keyframes pulseGreen {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.65;
   }
 }
 

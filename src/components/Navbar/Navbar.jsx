@@ -75,19 +75,41 @@ export default function Navbar({ onBookClick }) {
         <div className="container">
           <div className="topbar-content">
             <div className="topbar-info">
-              <a href={`tel:${AGENCY_CONFIG.ownerPhone}`}><i className="fa-solid fa-phone"></i> {AGENCY_CONFIG.displayPhone}</a>
-              <a href={`mailto:${AGENCY_CONFIG.email}`}><i className="fa-solid fa-envelope"></i> {AGENCY_CONFIG.email}</a>
-              <span className="topbar-hours"><i className="fa-solid fa-clock"></i> {AGENCY_CONFIG.hours}</span>
+              <a href={`tel:${AGENCY_CONFIG.ownerPhone}`} className="topbar-contact-item">
+                <i className="fa-solid fa-phone"></i> 
+                <span>{AGENCY_CONFIG.displayPhone}</span>
+              </a>
+              <a href={`mailto:${AGENCY_CONFIG.email}`} className="topbar-contact-item topbar-email-item">
+                <i className="fa-solid fa-envelope"></i> 
+                <span>{AGENCY_CONFIG.email}</span>
+              </a>
+              <div className="topbar-live-badge">
+                <span className="live-dot"></span>
+                <span>24/7 Tour Support</span>
+              </div>
             </div>
-            <div className="topbar-socials">
-              <a href={AGENCY_CONFIG.instagramUrl} target="_blank" rel="noreferrer" title="Instagram Profile">
+
+            <div className="topbar-actions">
+              <a 
+                href={AGENCY_CONFIG.instagramUrl} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="topbar-action-btn insta" 
+                title="Follow on Instagram"
+              >
                 <i className="fa-brands fa-instagram"></i>
+                <span>@mahajan_rides_41</span>
               </a>
-              <a href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`} target="_blank" rel="noreferrer" title="WhatsApp Direct">
+
+              <a 
+                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="topbar-action-btn whatsapp" 
+                title="Chat Directly on WhatsApp"
+              >
                 <i className="fa-brands fa-whatsapp"></i>
-              </a>
-              <a href="#home" title="Facebook">
-                <i className="fa-brands fa-facebook-f"></i>
+                <span>WhatsApp Us</span>
               </a>
             </div>
           </div>
