@@ -11,8 +11,8 @@ export default function Services() {
     },
     {
       icon: "fa-solid fa-van-shuttle",
-      title: "Force Tempo Traveller Rentals",
-      desc: "Sanitized, luxury Force Tempo Travellers with pushback seats, dual AC, music system, and mountain-trained drivers."
+      title: "17-Seater Force Tempo Traveller",
+      desc: "Sanitized, luxury 17-seater Force Tempo Traveller with pushback seats, dual AC, music system, and mountain-trained chauffeurs."
     },
     {
       icon: "fa-solid fa-hotel",

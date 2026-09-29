@@ -45,7 +45,7 @@ export default function Hero({ onExploreTours }) {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="hero-badge">
-            <i className="fa-solid fa-van-shuttle"></i> Exclusive Himachal Force Tempo Traveller Services
+            <i className="fa-solid fa-van-shuttle"></i> Exclusive 17-Seater Force Tempo Traveller Services
           </div>
 
           <h1 className="hero-title">
@@ -54,7 +54,7 @@ export default function Hero({ onExploreTours }) {
           </h1>
 
           <p className="hero-desc">
-            Specializing exclusively in Himachal Pradesh, we provide premier Force Tempo Traveller tour services across Devbhoomi. From Kullu, Manali, Rohtang Pass, and Atal Tunnel to Kasol, Manikaran, Dharamshala, Bir Billing, and Spiti Valley — our mountain-trained local chauffeurs and comfortable Force Tempo Traveller fleet ensure your journey through the hills is safe, scenic, and unforgettable.
+            Specializing exclusively in Himachal Pradesh, we provide premier tour services in our luxury 17-seater Force Tempo Traveller across Devbhoomi. From Kullu, Manali, Rohtang Pass, and Atal Tunnel to Kasol, Manikaran, Dharamshala, Bir Billing, and Spiti Valley — our mountain-trained local chauffeurs ensure your journey through the hills is safe, scenic, and unforgettable.
           </p>
 
           <div className="hero-cta-group">

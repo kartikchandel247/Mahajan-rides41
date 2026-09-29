@@ -124,6 +124,11 @@
     font-family: inherit;
     border: none;
     outline: none;
+
+    &:invalid, & option[value=""] {
+      color: $clr-muted;
+      font-weight: 500;
+    }
   }
 }
 
@@ -133,11 +138,11 @@
   color: $clr-white;
   padding: 14px 18px;
   border-radius: 12px;
-  font-family: $font-heading;
-  font-size: 1.15rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: $font-body;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.2px;
   display: flex;
   align-items: center;
   justify-content: center;

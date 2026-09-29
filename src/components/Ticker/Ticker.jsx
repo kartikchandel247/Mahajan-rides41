@@ -13,7 +13,7 @@ export default function Ticker() {
     "Chamba & Khajjiar Sightseeing",
     "Chandigarh to Himachal Force Tempo Traveller",
     "Experienced Himachali Chauffeurs",
-    "24/7 Force Tempo Traveller Fleet"
+    "17-Seater Luxury Force Tempo Traveller"
   ];
 
   return (

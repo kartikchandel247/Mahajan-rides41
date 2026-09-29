@@ -8,7 +8,7 @@ export const FEATURED_TOURS = [
     rating: 4.9,
     reviewsCount: 480,
     tag: "Most Popular",
-    vehicle: "Force Tempo Traveller (12/17 Seater)",
+    vehicle: "17-Seater Force Tempo Traveller",
     image: "/places/manali.jpg",
     description: "Hadimba Devi Temple, Solang snow adventure, crossing Atal Tunnel to Sissu Waterfall, and scenic Rohtang Pass.",
     highlights: [
@@ -29,7 +29,7 @@ export const FEATURED_TOURS = [
     rating: 4.9,
     reviewsCount: 390,
     tag: "Spiritual & Scenic",
-    vehicle: "Force Tempo Traveller (12/17 Seater)",
+    vehicle: "17-Seater Force Tempo Traveller",
     image: "/places/manikaran.jpg",
     description: "Sacred Manikaran Sahib hot springs & Shiva temple, Parvati river pine walks at Kasol, and Kullu river rafting.",
     highlights: [
@@ -50,7 +50,7 @@ export const FEATURED_TOURS = [
     rating: 4.9,
     reviewsCount: 340,
     tag: "Family Favorite",
-    vehicle: "Force Tempo Traveller (17/20 Seater)",
+    vehicle: "17-Seater Force Tempo Traveller",
     image: "/places/dharamshala.jpg",
     description: "HPCA Cricket Stadium with snowy Dhauladhar peaks, Dalai Lama Monastery, historic Kangra Fort, and Khajjiar Mini Switzerland.",
     highlights: [
@@ -71,7 +71,7 @@ export const FEATURED_TOURS = [
     rating: 4.8,
     reviewsCount: 260,
     tag: "Epic Adventure",
-    vehicle: "Force Tempo Traveller (Mountain Spec)",
+    vehicle: "17-Seater Force Tempo Traveller",
     image: "/places/spiti_valley.jpg",
     description: "Cross high Himalayan passes to 1,000-year-old Key Monastery, Hikkim highest post office, Komic village, and crescent Chandratal Lake.",
     highlights: [
@@ -92,7 +92,7 @@ export const TESTIMONIALS_DATA = [
     name: "Aman & Sneha Sharma",
     city: "Delhi NCR",
     rating: 5,
-    quote: "Our 5-day Manali and Sissu trip with Mahajanrides was spectacular! The driver was a true mountain expert on the snowy curves of Rohtang and Atal Tunnel. The Force Tempo Traveller was spotless and very comfortable for our family.",
+    quote: "Our 5-day Manali and Sissu trip with Mahajanrides was spectacular! The driver was a true mountain expert on the snowy curves of Rohtang and Atal Tunnel. The 17-seater Force Tempo Traveller was spotless and very comfortable for our family.",
     image: "/places/manali.jpg",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
   },
@@ -129,11 +129,11 @@ export const FAQ_DATA = [
   },
   {
     question: "Which Force Tempo Traveller models are available in your fleet?",
-    answer: "We operate exclusively Force Tempo Travellers from Force Motors — including 12-seater luxury AC pushback, 17-seater Maharaja seats, and 20-seater group touring configurations, all driven by experienced local Himachali chauffeurs."
+    answer: "We operate a dedicated 17-seater luxury Force Tempo Traveller from Force Motors, equipped with pushback ergonomic seats, dual air conditioning, music system, ample boot space for luggage, and handled by experienced local Himachali mountain chauffeurs."
   },
   {
     question: "How does the instant WhatsApp price inquiry work?",
-    answer: "Simply select your destination, dates, duration, and group size on our booking bar. Clicking 'Inquire on WhatsApp' instantly prepares a structured quote request sent straight to the owner for immediate rates and Force Tempo Traveller availability."
+    answer: "Simply select your destination, dates, duration, and group size on our booking bar. Clicking 'Inquire on WhatsApp' instantly prepares a structured quote request sent straight to the owner for immediate rates and 17-seater Force Tempo Traveller availability."
   }
 ];
 
