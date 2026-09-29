@@ -18,6 +18,7 @@ export default function FeaturedTours() {
 
   return (
     <section className="tours-section section-padding" id="tours">
+      <span id="destinations" style={{ display: 'block', position: 'relative', top: '-100px', visibility: 'hidden' }}></span>
       <div className="container">
         <div className="tours-grid-layout">
           {/* Pinned Sticky Section Sidebar */}

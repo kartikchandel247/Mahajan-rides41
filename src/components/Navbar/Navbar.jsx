@@ -16,15 +16,56 @@ export default function Navbar({ onBookClick }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const [activeLink, setActiveLink] = useState('#home');
+  const [pagesDropdownOpen, setPagesDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+
+      const sections = [
+        { id: 'contact', href: '#contact' },
+        { id: 'blog', href: '#blog' },
+        { id: 'faq', href: '#pages' },
+        { id: 'reviews', href: '#pages' },
+        { id: 'services', href: '#services' },
+        { id: 'destinations', href: '#destinations' },
+        { id: 'tours', href: '#tours' },
+        { id: 'about', href: '#about' },
+        { id: 'home', href: '#home' },
+      ];
+
+      const scrollPosition = window.scrollY + 180;
+      for (const sec of sections) {
+        const el = document.getElementById(sec.id);
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveLink(sec.href);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navLinks = [
-    { name: 'Home', href: '#home', active: true },
-    { name: 'About', href: '#about' },
-    { name: 'Tours', href: '#tours' },
-    { name: 'Services', href: '#services' },
-    { name: 'Blogs', href: '#blog' },
-    { name: 'Reviews', href: '#reviews' },
-    { name: 'FAQs', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'HOME', href: '#home' },
+    { name: 'ABOUT', href: '#about' },
+    { name: 'TOURS', href: '#tours' },
+    { name: 'DESTINATIONS', href: '#destinations' },
+    { name: 'SERVICES', href: '#services' },
+    { 
+      name: 'PAGES', 
+      href: '#reviews',
+      subLinks: [
+        { name: 'Customer Reviews', href: '#reviews' },
+        { name: 'Trip FAQs', href: '#faq' },
+        { name: 'Booking Search', href: '#bookingBar' },
+      ]
+    },
+    { name: 'BLOG', href: '#blog' },
+    { name: 'CONTACT', href: '#contact' },
   ];
 
   return (
@@ -76,10 +117,37 @@ export default function Navbar({ onBookClick }) {
           {/* Desktop Navigation Links */}
           <ul className="navbar-nav desktop-nav">
             {navLinks.map((item) => (
-              <li key={item.name} className="nav-item">
-                <a href={item.href} className={`nav-link ${item.active ? 'active' : ''}`}>
+              <li 
+                key={item.name} 
+                className={`nav-item ${item.subLinks ? 'has-dropdown' : ''}`}
+                onMouseEnter={() => item.subLinks && setPagesDropdownOpen(true)}
+                onMouseLeave={() => item.subLinks && setPagesDropdownOpen(false)}
+              >
+                <a 
+                  href={item.href} 
+                  className={`nav-link ${activeLink === item.href ? 'active' : ''}`}
+                  onClick={() => setActiveLink(item.href)}
+                >
                   <span className="rolling-text">{item.name}</span>
                 </a>
+
+                {item.subLinks && (
+                  <ul className={`nav-dropdown-menu ${pagesDropdownOpen ? 'show' : ''}`}>
+                    {item.subLinks.map((sub) => (
+                      <li key={sub.name}>
+                        <a 
+                          href={sub.href} 
+                          onClick={() => {
+                            setActiveLink('#pages');
+                            setPagesDropdownOpen(false);
+                          }}
+                        >
+                          {sub.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
@@ -118,13 +186,16 @@ export default function Navbar({ onBookClick }) {
             >
               <ul className="mobile-nav-list">
                 {navLinks.map((item) => (
-                  <li key={item.name}>
+                  <li key={item.name} className="mobile-nav-item">
                     <a 
                       href={item.href}
-                      className={item.active ? 'active' : ''}
-                      onClick={() => setMobileMenuOpen(false)}
+                      className={activeLink === item.href ? 'active' : ''}
+                      onClick={() => {
+                        setActiveLink(item.href);
+                        setMobileMenuOpen(false);
+                      }}
                     >
-                      {item.name}
+                      <span>{item.name}</span>
                     </a>
                   </li>
                 ))}
