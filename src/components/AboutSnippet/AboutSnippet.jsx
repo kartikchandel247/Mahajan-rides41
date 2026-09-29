@@ -24,17 +24,25 @@ export default function AboutSnippet({ onLearnMore }) {
           >
             <div className="about-img-box shift-down">
               <img 
-                src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" 
-                alt="Luxury Travel Ride"
+                src="/vehicle/tempo_traveller_exterior.png" 
+                alt="Force Tempo Traveller Exterior - Mahajan Rides"
                 loading="lazy"
               />
+              <div className="about-img-badge">
+                <i className="fa-solid fa-van-shuttle"></i>
+                <span>Force Tempo 17-Seater</span>
+              </div>
             </div>
             <div className="about-img-box shift-up">
               <img 
-                src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&fit=crop&w=800&q=80" 
-                alt="Scenic Mountain Journey" 
+                src="/vehicle/tempo_traveller_interior.png" 
+                alt="Force Tempo Traveller Luxury Interior - Mahajan Rides" 
                 loading="lazy"
               />
+              <div className="about-img-badge">
+                <i className="fa-solid fa-couch"></i>
+                <span>Luxury AC Interior</span>
+              </div>
             </div>
           </motion.div>
 
