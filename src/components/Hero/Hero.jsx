@@ -3,25 +3,31 @@ import { AGENCY_CONFIG } from '../../config/agencyConfig';
 import './Hero.scss';
 
 export default function Hero({ onExploreTours }) {
+  // Column 1: Manali, Rohtang, Atal Tunnel, Sissu, Baralacha La
   const col1Images = [
-    { name: "Manali", state: "Himachal", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" },
-    { name: "Shimla", state: "Pine Hills", img: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=600&q=80" },
-    { name: "Spiti Valley", state: "High Cold Desert", img: "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80" },
-    { name: "Manali", state: "Himachal", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" },
+    { name: "Manali", state: "Solang & Snow Valley", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" },
+    { name: "Rohtang Pass", state: "3,978m Snow Ridge", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" },
+    { name: "Atal Tunnel", state: "Gateway to Lahaul", img: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=600&q=80" },
+    { name: "Sissu", state: "Lahaul Valley Waterfall", img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" },
+    { name: "Baralacha La", state: "High Mountain Pass", img: "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80" },
   ];
 
+  // Column 2: Kullu, Kasol, Manikaran, Spiti Valley, Mandi
   const col2Images = [
-    { name: "Kashmir", state: "Dal Lake", img: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=600&q=80" },
-    { name: "Jaipur", state: "Pink City", img: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=600&q=80" },
-    { name: "Goa", state: "Tropical Coast", img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80" },
-    { name: "Kashmir", state: "Dal Lake", img: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=600&q=80" },
+    { name: "Kullu", state: "Valley of Gods", img: "https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&fit=crop&w=600&q=80" },
+    { name: "Kasol", state: "Parvati Valley Pines", img: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=600&q=80" },
+    { name: "Manikaran", state: "Hot Springs & Temple", img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" },
+    { name: "Spiti Valley", state: "Kaza & Key Monastery", img: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=600&q=80" },
+    { name: "Mandi", state: "Historic Beas Ghats", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" },
   ];
 
+  // Column 3: Dharamshala, Bir Billing, Palampur, Kangra, Chamba
   const col3Images = [
-    { name: "Maldives", state: "Island Escape", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" },
-    { name: "Dubai", state: "Desert & Skyline", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" },
-    { name: "Ladakh", state: "Pangong Tso", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" },
-    { name: "Maldives", state: "Island Escape", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" },
+    { name: "Dharamshala", state: "McLeod Ganj & Dhauladhar", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" },
+    { name: "Bir Billing", state: "World Paragliding Hub", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" },
+    { name: "Palampur", state: "Tea Gardens & Pines", img: "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=600&q=80" },
+    { name: "Kangra", state: "Ancient Kangra Fort", img: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" },
+    { name: "Chamba", state: "Khajjiar Meadows", img: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&w=600&q=80" },
   ];
 
   return (
