@@ -1,0 +1,215 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.contact-page {
+  background-color: #f7f9fc;
+  min-height: 100vh;
+
+  .contact-content-section {
+    padding: 60px 0 80px;
+
+    @include mobile {
+      padding: 35px 0 50px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: flex-start;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+    }
+
+    .contact-info-col {
+      .contact-intro {
+        color: #64748b;
+        font-size: clamp(0.92rem, 1.6vw, 1.05rem);
+        line-height: 1.6;
+        margin-bottom: 28px;
+      }
+
+      .contact-cards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .contact-info-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 18px 20px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          text-decoration: none;
+          box-shadow: 0 4px 14px rgba(15, 36, 84, 0.04);
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+          &:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px rgba(15, 36, 84, 0.08);
+          }
+
+          .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+
+            &.phone {
+              background: rgba(32, 149, 174, 0.12);
+              color: $clr-primary;
+            }
+
+            &.whatsapp {
+              background: rgba(37, 211, 102, 0.14);
+              color: #25D366;
+            }
+
+            &.email {
+              background: rgba(245, 166, 35, 0.14);
+              color: $clr-gold;
+            }
+
+            &.location {
+              background: rgba(242, 114, 97, 0.14);
+              color: $clr-coral;
+            }
+          }
+
+          .card-details {
+            display: flex;
+            flex-direction: column;
+
+            span {
+              font-size: 0.78rem;
+              color: #64748b;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+            }
+
+            strong {
+              color: #0f2454;
+              font-size: 1.05rem;
+              margin: 2px 0;
+            }
+
+            small {
+              color: #94a3b8;
+              font-size: 0.78rem;
+            }
+          }
+        }
+      }
+    }
+
+    .contact-form-col {
+      .quote-form-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 32px 28px;
+        box-shadow: 0 12px 36px rgba(15, 36, 84, 0.06);
+
+        @include mobile {
+          padding: 24px 18px;
+        }
+
+        .form-head {
+          margin-bottom: 24px;
+
+          h3 {
+            font-family: $font-heading;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #0f2454;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+
+          p {
+            color: #64748b;
+            font-size: 0.88rem;
+            margin: 0;
+          }
+        }
+
+        .custom-quote-form {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+
+          .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+
+            @include mobile {
+              grid-template-columns: 1fr;
+              gap: 14px;
+            }
+          }
+
+          .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            label {
+              font-size: 0.82rem;
+              font-weight: 700;
+              color: #1e293b;
+            }
+
+            input, select, textarea {
+              width: 100%;
+              padding: 10px 14px;
+              border: 1px solid #cbd5e1;
+              border-radius: 10px;
+              font-family: $font-ui;
+              font-size: 0.9rem;
+              color: #0f172a;
+              background: #f8fafc;
+              transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+              &:focus {
+                outline: none;
+                border-color: $clr-primary;
+                box-shadow: 0 0 0 3px rgba(32, 149, 174, 0.15);
+                background: #ffffff;
+              }
+            }
+
+            textarea {
+              resize: vertical;
+            }
+          }
+
+          .submit-quote-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
 import './Footer.scss';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -23,6 +23,13 @@ export default function Footer() {
     { id: 5, name: "Spiti Valley", img: "/places/spiti_valley.jpg" },
     { id: 6, name: "Dharamshala Dhauladhar", img: "/places/dharamshala.jpg" }
   ];
+
+  const handleLink = (page, e) => {
+    if (e) e.preventDefault();
+    if (onNavigate) {
+      onNavigate(page);
+    }
+  };
 
   return (
     <footer className="footer" id="contact">
@@ -88,13 +95,14 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {AGENCY_CONFIG.name}. All Rights Reserved. Dedicated Himachal Pradesh Force Tempo Traveller Specialists.
           </div>
           <div className="footer-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#tours">Tours</a>
-            <a href="#services">Services</a>
-            <a href="#blog">Blogs</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#faq">FAQs</a>
+            <button type="button" onClick={(e) => handleLink('home', e)} className="footer-nav-btn">Home</button>
+            <button type="button" onClick={(e) => handleLink('about', e)} className="footer-nav-btn">About</button>
+            <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-nav-btn">Tours</button>
+            <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-nav-btn">Destinations</button>
+            <button type="button" onClick={(e) => handleLink('blog', e)} className="footer-nav-btn">Blogs</button>
+            <button type="button" onClick={(e) => handleLink('about', e)} className="footer-nav-btn">Reviews</button>
+            <button type="button" onClick={(e) => handleLink('about', e)} className="footer-nav-btn">FAQs</button>
+            <button type="button" onClick={(e) => handleLink('contact', e)} className="footer-nav-btn">Contact</button>
           </div>
         </div>
       </div>

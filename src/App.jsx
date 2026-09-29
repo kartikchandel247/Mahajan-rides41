@@ -1,67 +1,107 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import BookingBar from './components/BookingBar/BookingBar';
-import AboutSnippet from './components/AboutSnippet/AboutSnippet';
-import FeaturedTours from './components/FeaturedTours/FeaturedTours';
-import Services from './components/Services/Services';
-import Ticker from './components/Ticker/Ticker';
-import Testimonials from './components/Testimonials/Testimonials';
-import Faq from './components/Faq/Faq';
-import BlogPreview from './components/BlogPreview/BlogPreview';
 import Footer from './components/Footer/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp/FloatingWhatsApp';
 
+// Subpage Views
+import HomePage from './pages/HomePage';
+import DestinationsPage from './pages/DestinationsPage';
+import AboutPage from './pages/AboutPage';
+import BlogPage from './pages/BlogPage';
+import ContactPage from './pages/ContactPage';
+
 export default function App() {
-  const scrollToBooking = () => {
-    const el = document.getElementById('bookingBar');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  const getPageFromHash = () => {
+    const hash = window.location.hash.toLowerCase();
+    if (hash.includes('destination') || hash.includes('tour')) return 'destinations';
+    if (hash.includes('about')) return 'about';
+    if (hash.includes('blog') || hash.includes('review') || hash.includes('faq')) return 'blog';
+    if (hash.includes('contact')) return 'contact';
+    return 'home';
   };
 
-  const scrollToTours = () => {
-    const el = document.getElementById('tours');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+  const [activePage, setActivePage] = useState(getPageFromHash);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActivePage(getPageFromHash());
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateToPage = (page) => {
+    setActivePage(page);
+    const hash = page === 'home' ? '#/' : `#/${page}`;
+    window.location.hash = hash;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBookClick = () => {
+    if (activePage === 'home') {
+      const el = document.getElementById('bookingBar');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
     }
+    navigateToPage('destinations');
   };
 
   return (
     <div className="app-root">
-      {/* 1. Header & Navigation */}
-      <Navbar onBookClick={scrollToBooking} />
+      {/* 1. Header & Navigation with Subpage buttons */}
+      <Navbar 
+        activePage={activePage} 
+        onNavigate={navigateToPage} 
+        onBookClick={handleBookClick} 
+      />
 
-      {/* 2. Hero Section (TourVex Layout 1) */}
-      <Hero onExploreTours={scrollToTours} />
+      {/* 2. Main Page Render */}
+      <main className="main-content-area">
+        {activePage === 'home' && (
+          <HomePage 
+            onNavigateDestinations={() => navigateToPage('destinations')}
+            onNavigateAbout={() => navigateToPage('about')}
+            onNavigateBlog={() => navigateToPage('blog')}
+            onNavigateContact={() => navigateToPage('contact')}
+          />
+        )}
 
-      {/* 3. Interactive WhatsApp Tour Booking Bar */}
-      <BookingBar />
+        {activePage === 'destinations' && (
+          <DestinationsPage 
+            onNavigateHome={() => navigateToPage('home')}
+            onNavigateContact={() => navigateToPage('contact')}
+          />
+        )}
 
-      {/* 4. About Snippet & Pillars */}
-      <AboutSnippet onLearnMore={scrollToTours} />
+        {activePage === 'about' && (
+          <AboutPage 
+            onNavigateHome={() => navigateToPage('home')}
+            onNavigateDestinations={() => navigateToPage('destinations')}
+            onNavigateContact={() => navigateToPage('contact')}
+          />
+        )}
 
-      {/* 5. Featured Tours with Sticky Sidebar */}
-      <FeaturedTours />
+        {activePage === 'blog' && (
+          <BlogPage 
+            onNavigateHome={() => navigateToPage('home')}
+            onNavigateDestinations={() => navigateToPage('destinations')}
+          />
+        )}
 
-      {/* 6. Services & Rotating Circular SVG Badge */}
-      <Services />
+        {activePage === 'contact' && (
+          <ContactPage 
+            onNavigateHome={() => navigateToPage('home')}
+          />
+        )}
+      </main>
 
-      {/* 7. Infinite Scrolling Marquee Ticker */}
-      <Ticker />
+      {/* 3. Global Footer with Subpage links */}
+      <Footer onNavigate={navigateToPage} />
 
-      {/* 8. Testimonials & Traveler Stories */}
-      <Testimonials />
-
-      {/* 9. FAQs with Motion Accordion */}
-      <Faq />
-
-      {/* 10. Blog & Travel Insights Preview */}
-      <BlogPreview />
-
-      {/* 11. Footer with Instagram Grid & Watermark */}
-      <Footer />
-
-      {/* 12. Floating WhatsApp Quick Action Button */}
+      {/* 4. Floating WhatsApp Action Button */}
       <FloatingWhatsApp />
     </div>
   );
