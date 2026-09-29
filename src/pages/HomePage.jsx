@@ -1,17 +1,13 @@
-import { motion } from 'framer-motion';
 import Hero from '../components/Hero/Hero';
 import BookingBar from '../components/BookingBar/BookingBar';
-import Ticker from '../components/Ticker/Ticker';
-import { FEATURED_TOURS, BLOG_PREVIEW_DATA } from '../data/toursData';
+import { FEATURED_TOURS } from '../data/toursData';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
 import './HomePage.scss';
 
 export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNavigateBlog, onNavigateContact }) {
-  // Take top 3 destinations for the clean, minimalist preview
+  // Top 3 handpicked tours for the compact preview
   const topDestinations = FEATURED_TOURS.slice(0, 3);
-  // Take top 2 blogs for the clean preview
-  const topArticles = BLOG_PREVIEW_DATA.slice(0, 2);
 
   const handleInquire = (tour) => {
     openWhatsAppInquiry({
@@ -22,62 +18,103 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
     });
   };
 
+  const subpageHub = [
+    {
+      id: 'destinations',
+      title: 'Tour Circuits',
+      badge: '6 Packages',
+      icon: 'fa-solid fa-mountain',
+      desc: 'Manali, Rohtang, Kasol & Spiti packages.',
+      actionText: 'View Tours',
+      onClick: onNavigateDestinations
+    },
+    {
+      id: 'about',
+      title: 'Tempo Fleet',
+      badge: '17-Seater',
+      icon: 'fa-solid fa-van-shuttle',
+      desc: 'Luxury pushback AC & local drivers.',
+      actionText: 'Fleet Details',
+      onClick: onNavigateAbout
+    },
+    {
+      id: 'blog',
+      title: 'Travel Guides',
+      badge: 'Route Advice',
+      icon: 'fa-solid fa-book-open',
+      desc: 'Permits, weather windows & tips.',
+      actionText: 'Read Guides',
+      onClick: onNavigateBlog
+    },
+    {
+      id: 'contact',
+      title: 'Direct Contact',
+      badge: '24/7 Support',
+      icon: 'fa-solid fa-phone-volume',
+      desc: 'Instant WhatsApp & custom quotes.',
+      actionText: 'Get Quote',
+      onClick: onNavigateContact
+    }
+  ];
+
   return (
     <div className="home-page-minimal">
       {/* 1. Hero Section */}
       <Hero onExploreTours={onNavigateDestinations} />
 
-      {/* 2. Quick Tour Booking Bar */}
+      {/* 2. Fast WhatsApp Tour Booking Bar */}
       <div id="bookingBar" className="home-booking-strip">
         <div className="container">
           <BookingBar />
         </div>
       </div>
 
-      {/* 3. Minimalist Trust Strip (3 Key Quick Pillars) */}
-      <section className="home-quick-pillars">
+      {/* 3. Sleek Subpage Hub (4 Interactive Quick Cards) */}
+      <section className="home-subpages-hub">
         <div className="container">
-          <div className="pillars-row">
-            <div className="quick-pillar-item">
-              <div className="qp-icon">
-                <i className="fa-solid fa-van-shuttle"></i>
-              </div>
-              <div className="qp-text">
-                <h4>17-Seater Force Luxury</h4>
-                <p>Pushback seats, dual AC &amp; panoramic views for group comfort.</p>
-              </div>
-            </div>
+          <div className="section-head text-center">
+            <span className="section-subtitle">Quick Navigation Hub</span>
+            <h2 className="section-title">Explore <i>Mahajanrides</i></h2>
+            <p className="hub-intro">Choose an area to explore full itineraries, fleet specs, route guides, or contact options:</p>
+          </div>
 
-            <div className="quick-pillar-item">
-              <div className="qp-icon">
-                <i className="fa-solid fa-mountain"></i>
-              </div>
-              <div className="qp-text">
-                <h4>Local Mountain Chauffeurs</h4>
-                <p>Born and raised in Himachal, masters of Rohtang &amp; Spiti passes.</p>
-              </div>
-            </div>
+          <div className="hub-cards-grid">
+            {subpageHub.map((item) => (
+              <div
+                key={item.id}
+                className="hub-card"
+                onClick={item.onClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && item.onClick()}
+              >
+                <div className="hub-card-top">
+                  <div className="hub-icon">
+                    <i className={item.icon}></i>
+                  </div>
+                  <span className="hub-badge">{item.badge}</span>
+                </div>
 
-            <div className="quick-pillar-item">
-              <div className="qp-icon">
-                <i className="fa-solid fa-shield-check"></i>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+
+                <div className="hub-card-action">
+                  <span>{item.actionText}</span>
+                  <i className="fa-solid fa-arrow-right"></i>
+                </div>
               </div>
-              <div className="qp-text">
-                <h4>100% Verified Permits</h4>
-                <p>Legal state transport permit, green tax &amp; Atal Tunnel access.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Top Destinations Preview (Minimalist 3 Cards + View All Button) */}
-      <section className="home-destinations-preview section-padding">
+      {/* 4. Top 3 Featured Circuits (Clean & Compact) */}
+      <section className="home-destinations-preview">
         <div className="container">
           <div className="section-header-compact">
             <div>
-              <span className="section-subtitle">Top Himachal Circuits</span>
-              <h2 className="section-title">Popular <i>Destinations</i></h2>
+              <span className="section-subtitle">Handpicked Circuits</span>
+              <h2 className="section-title">Popular <i>Tours</i></h2>
             </div>
             
             <button 
@@ -85,20 +122,16 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
               className="view-all-subpage-btn"
               onClick={onNavigateDestinations}
             >
-              <span>View All Circuits</span>
+              <span>View All 6 Packages</span>
               <i className="fa-solid fa-arrow-right"></i>
             </button>
           </div>
 
           <div className="preview-cards-grid">
-            {topDestinations.map((tour, idx) => (
-              <motion.div 
+            {topDestinations.map((tour) => (
+              <div 
                 key={tour.id}
                 className="preview-tour-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div className="card-image-box" onClick={onNavigateDestinations}>
                   <img src={tour.image} alt={tour.title} loading="lazy" />
@@ -121,7 +154,7 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
                       className="explore-route-btn"
                       onClick={onNavigateDestinations}
                     >
-                      View Itinerary <i className="fa-solid fa-chevron-right"></i>
+                      Itinerary <i className="fa-solid fa-chevron-right"></i>
                     </button>
                     <button 
                       type="button" 
@@ -133,18 +166,18 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          {/* Mobile View All CTA */}
-          <div className="mobile-view-all-wrap">
+          {/* View All Tours Button */}
+          <div className="preview-view-all-wrap">
             <button 
               type="button" 
-              className="butn-arrow full-width"
+              className="butn-arrow"
               onClick={onNavigateDestinations}
             >
-              <span className="btn-text">Explore All Himachal Tours ({FEATURED_TOURS.length} Packages)</span>
+              <span className="btn-text">Explore All 6 Himachal Packages</span>
               <span className="arrow-wrap">
                 <span className="arrow-inner">
                   <i className="fa-solid fa-arrow-right"></i>
@@ -156,131 +189,31 @@ export default function HomePage({ onNavigateDestinations, onNavigateAbout, onNa
         </div>
       </section>
 
-      {/* 5. Minimalist About Snippet with Button */}
-      <section className="home-about-teaser section-padding">
-        <div className="container">
-          <div className="about-teaser-card">
-            <div className="teaser-media">
-              <img 
-                src="/vehicle/tempo_traveller_exterior.png" 
-                alt="Mahajanrides Force Tempo Traveller" 
-                loading="lazy" 
-              />
-              <div className="teaser-badge">
-                <i className="fa-solid fa-star text-gold"></i>
-                <span>4.9 / 5 Rating (9,500+ Passengers)</span>
-              </div>
-            </div>
-
-            <div className="teaser-content">
-              <span className="section-subtitle">About Mahajanrides</span>
-              <h2 className="section-title">Rooted in Himachal, <i>Driven by Passion</i></h2>
-              <p>
-                We specialize exclusively in dedicated 17-seater Force Tempo Traveller mountain tours across Himachal Pradesh. From door-to-door pickups in Chandigarh and Delhi to crossing high Himalayan passes, our experienced local chauffeurs ensure your family travels safely and together.
-              </p>
-
-              <div className="teaser-highlights-mini">
-                <div className="mini-item">
-                  <i className="fa-solid fa-circle-check"></i>
-                  <span>Doorstep Airport &amp; Station Pickups</span>
-                </div>
-                <div className="mini-item">
-                  <i className="fa-solid fa-circle-check"></i>
-                  <span>No Middlemen — Direct Fleet Owner Rates</span>
-                </div>
-                <div className="mini-item">
-                  <i className="fa-solid fa-circle-check"></i>
-                  <span>Customized Family &amp; Group Itineraries</span>
-                </div>
-              </div>
-
-              <div className="teaser-actions">
-                <button 
-                  type="button" 
-                  className="butn-arrow"
-                  onClick={onNavigateAbout}
-                >
-                  <span className="btn-text">Read Full Story &amp; Fleet Info</span>
-                  <span className="arrow-wrap">
-                    <span className="arrow-inner">
-                      <i className="fa-solid fa-arrow-right"></i>
-                      <i className="fa-solid fa-arrow-right"></i>
-                    </span>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Infinite Ticker */}
-      <Ticker />
-
-      {/* 7. Travel Guides & Passenger Reviews Teaser */}
-      <section className="home-blog-teaser section-padding">
-        <div className="container">
-          <div className="section-header-compact">
-            <div>
-              <span className="section-subtitle">Travel Tips &amp; Stories</span>
-              <h2 className="section-title">Himachal <i>Travel Insights</i></h2>
-            </div>
-            
-            <button 
-              type="button" 
-              className="view-all-subpage-btn"
-              onClick={onNavigateBlog}
-            >
-              <span>All Guides &amp; Reviews</span>
-              <i className="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <div className="blog-teaser-grid">
-            {topArticles.map((article) => (
-              <div key={article.id} className="blog-teaser-card" onClick={onNavigateBlog}>
-                <div className="teaser-card-media">
-                  <img src={article.image} alt={article.title} loading="lazy" />
-                  <span className="cat-badge">{article.category}</span>
-                </div>
-                <div className="teaser-card-body">
-                  <span className="date-tag"><i className="fa-regular fa-clock"></i> {article.date}</span>
-                  <h3>{article.title}</h3>
-                  <p>{article.excerpt}</p>
-                  <span className="read-more-link">
-                    Read Full Guide <i className="fa-solid fa-arrow-right"></i>
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Quick Contact / WhatsApp CTA Strip */}
+      {/* 5. Minimalist WhatsApp Direct Strip */}
       <section className="home-quick-cta">
         <div className="container">
           <div className="quick-cta-box">
             <div className="cta-left">
-              <h3>Planning A Custom Family Road Trip in Himachal?</h3>
-              <p>Speak directly with {AGENCY_CONFIG.ownerName} for immediate rates, weather advice, and custom stops.</p>
+              <h3>Custom Mountain Trip Planning</h3>
+              <p>Speak directly with {AGENCY_CONFIG.ownerName} for customized dates, doorstep pickup, and instant quotes.</p>
             </div>
             <div className="cta-right">
               <a 
-                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`} 
+                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=Hello%20${AGENCY_CONFIG.name}!%20I%20want%20to%20plan%20a%20custom%20tour.`} 
                 target="_blank" 
                 rel="noreferrer" 
                 className="butn-whatsapp"
               >
-                <i className="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                <i className="fa-brands fa-whatsapp"></i>
+                <span>Chat on WhatsApp</span>
               </a>
-              <button 
-                type="button" 
+              <a 
+                href={`tel:${AGENCY_CONFIG.ownerPhone}`} 
                 className="butn-contact-subpage"
-                onClick={onNavigateContact}
               >
-                <i className="fa-solid fa-phone"></i> Contact Details
-              </button>
+                <i className="fa-solid fa-phone"></i>
+                <span>Call {AGENCY_CONFIG.displayPhone}</span>
+              </a>
             </div>
           </div>
         </div>

@@ -121,7 +121,7 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
 
           {/* Desktop Navigation Links */}
           <ul className="navbar-nav desktop-nav">
-            {navLinks.map((item) => (
+            {navLinks.filter(item => item.page !== 'pages').map((item) => (
               <li 
                 key={item.name} 
                 className={`nav-item ${item.subLinks ? 'has-dropdown' : ''}`}
@@ -208,12 +208,12 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
               <ul className="mobile-nav-list">
-                {navLinks.map((item) => (
+                {navLinks.filter(item => item.page !== 'pages').map((item) => (
                   <li key={item.name} className="mobile-nav-item">
                     <button 
                       type="button"
                       className={activePage === item.page ? 'active' : ''}
-                      onClick={(e) => handleLinkClick(item.page === 'pages' ? 'destinations' : item.page, e)}
+                      onClick={(e) => handleLinkClick(item.page, e)}
                       style={{ 
                         background: 'none', 
                         border: 'none', 
@@ -233,15 +233,15 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
                     </button>
                   </li>
                 ))}
-                <li className="mobile-cta-item" style={{ padding: '12px 16px' }}>
+                <li className="mobile-cta-item">
                   <a 
                     href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="butn-whatsapp"
-                    style={{ width: '100%', justifyContent: 'center' }}
+                    className="butn-whatsapp-drawer"
                   >
-                    <i className="fa-brands fa-whatsapp"></i> Chat On WhatsApp
+                    <i className="fa-brands fa-whatsapp"></i>
+                    <span>Chat On WhatsApp</span>
                   </a>
                 </li>
               </ul>

@@ -18,9 +18,10 @@ async function testWebsite() {
 
   fs.mkdirSync('./test_screenshots', { recursive: true });
 
-  console.log('1️⃣ Testing Homepage (Minimalist)...');
+  console.log('1️⃣ Testing Homepage (Desktop)...');
   await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
   await page.screenshot({ path: './test_screenshots/1_home_desktop.png' });
+  await page.screenshot({ path: './test_screenshots/1_desktop_home_full.png', fullPage: true });
   const homeTitle = await page.title();
   console.log('   ✅ Homepage loaded. Title:', homeTitle);
 
@@ -64,6 +65,7 @@ async function testWebsite() {
   await page.goto('http://localhost:5173/#/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(500);
   await page.screenshot({ path: './test_screenshots/6_mobile_home.png' });
+  await page.screenshot({ path: './test_screenshots/6_mobile_home_full.png', fullPage: true });
 
   // Open mobile menu
   console.log('   Testing Mobile Hamburger Drawer...');

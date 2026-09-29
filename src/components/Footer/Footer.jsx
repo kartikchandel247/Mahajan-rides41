@@ -1,29 +1,8 @@
-import { useState } from 'react';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
+import logoImg from '../../assets/logo.png';
 import './Footer.scss';
 
 export default function Footer({ onNavigate }) {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
-    }
-  };
-
-  const instaPhotos = [
-    { id: 1, name: "Manali Hadimba", img: "/places/manali.jpg" },
-    { id: 2, name: "Rohtang Pass", img: "/places/rohtang_pass.jpg" },
-    { id: 3, name: "Kasol Pines", img: "/places/kasol.jpg" },
-    { id: 4, name: "Sissu Waterfall", img: "/places/sissu.jpg" },
-    { id: 5, name: "Spiti Valley", img: "/places/spiti_valley.jpg" },
-    { id: 6, name: "Dharamshala Dhauladhar", img: "/places/dharamshala.jpg" }
-  ];
-
   const handleLink = (page, e) => {
     if (e) e.preventDefault();
     if (onNavigate) {
@@ -32,83 +11,79 @@ export default function Footer({ onNavigate }) {
   };
 
   return (
-    <footer className="footer" id="contact">
+    <footer className="footer-minimal" id="contact">
       <div className="container">
-        {/* Newsletter Section */}
-        <div className="footer-newsletter-wrap">
-          <div className="section-subtitle">Subscribe to Travel Deals</div>
-          <h2 className="section-title text-white">Get seasonal tour offers <i>direct to your inbox!</i></h2>
-          
-          <form className="newsletter-form" onSubmit={handleSubscribe}>
-            <input 
-              type="email" 
-              placeholder="Enter your email address..."
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required 
-            />
-            <button type="submit">Subscribe</button>
-          </form>
-
-          {subscribed && (
-            <p className="newsletter-success">
-              <i className="fa-solid fa-circle-check"></i> Thank you for subscribing to {AGENCY_CONFIG.name}!
+        <div className="footer-main-row">
+          {/* Brand Info */}
+          <div className="footer-brand-col">
+            <div className="footer-brand">
+              <div className="logo-img-wrapper">
+                <img src={logoImg} alt={AGENCY_CONFIG.name} width="40" height="40" />
+              </div>
+              <div className="brand-text-block">
+                <div className="brand-name">MAHAJAN<span>RIDES</span></div>
+                <div className="brand-tagline">Force Tempo Traveller Services</div>
+              </div>
+            </div>
+            <p className="footer-mission">
+              Dedicated luxury 17-seater Force Tempo Traveller tours across Manali, Rohtang Pass, Kasol, Atal Tunnel, Dharamshala &amp; Spiti Valley with trusted local mountain chauffeurs.
             </p>
-          )}
-        </div>
+          </div>
 
-        {/* Instagram Grid Showcase */}
-        <div className="footer-insta-section text-center">
-          <h3 className="insta-heading">Follow Our Himachal Road Adventures On Instagram</h3>
-          
-          <div className="footer-insta-grid">
-            {instaPhotos.map((photo) => (
+          {/* Quick Subpage Links */}
+          <div className="footer-nav-col">
+            <h4 className="footer-col-title">Navigation</h4>
+            <div className="footer-nav-links">
+              <button type="button" onClick={(e) => handleLink('home', e)} className="footer-link-btn">Home</button>
+              <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-link-btn">Tour Circuits</button>
+              <button type="button" onClick={(e) => handleLink('about', e)} className="footer-link-btn">About Fleet</button>
+              <button type="button" onClick={(e) => handleLink('blog', e)} className="footer-link-btn">Travel Guides</button>
+              <button type="button" onClick={(e) => handleLink('contact', e)} className="footer-link-btn">Contact Us</button>
+            </div>
+          </div>
+
+          {/* Quick Contact & Action Buttons */}
+          <div className="footer-contact-col">
+            <h4 className="footer-col-title">Direct Inquiries</h4>
+            <div className="footer-buttons-group">
+              <a href={`tel:${AGENCY_CONFIG.ownerPhone}`} className="footer-cta-pill phone">
+                <i className="fa-solid fa-phone"></i>
+                <span>{AGENCY_CONFIG.displayPhone}</span>
+              </a>
+
               <a 
-                key={photo.id}
+                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=Hello%20${AGENCY_CONFIG.name}!%20I%20want%20to%20inquire%20about%20a%20tour.`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="footer-cta-pill whatsapp"
+              >
+                <i className="fa-brands fa-whatsapp"></i>
+                <span>WhatsApp Quote</span>
+              </a>
+
+              <a 
                 href={AGENCY_CONFIG.instagramUrl} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="insta-photo-card"
-                title={`View ${photo.name} on Instagram`}
+                className="footer-cta-pill insta"
               >
-                <img src={photo.img} alt={photo.name} loading="lazy" />
-                <div className="insta-overlay">
-                  <i className="fa-brands fa-instagram"></i>
-                </div>
+                <i className="fa-brands fa-instagram"></i>
+                <span>@{AGENCY_CONFIG.instagramUser}</span>
               </a>
-            ))}
+            </div>
           </div>
-
-          <a 
-            href={AGENCY_CONFIG.instagramUrl} 
-            target="_blank" 
-            rel="noreferrer" 
-            className="insta-follow-btn"
-          >
-            <i className="fa-brands fa-instagram"></i> Follow @{AGENCY_CONFIG.instagramUser} on Instagram
-          </a>
         </div>
 
         {/* Bottom Bar */}
-        <div className="footer-bottom">
-          <div>
+        <div className="footer-bottom-bar">
+          <div className="copy-text">
             &copy; {new Date().getFullYear()} {AGENCY_CONFIG.name}. All Rights Reserved. Dedicated Himachal Pradesh Force Tempo Traveller Specialists.
           </div>
-          <div className="footer-links">
-            <button type="button" onClick={(e) => handleLink('home', e)} className="footer-nav-btn">Home</button>
-            <button type="button" onClick={(e) => handleLink('about', e)} className="footer-nav-btn">About</button>
-            <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-nav-btn">Tours</button>
-            <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-nav-btn">Destinations</button>
-            <button type="button" onClick={(e) => handleLink('blog', e)} className="footer-nav-btn">Blogs</button>
-            <button type="button" onClick={(e) => handleLink('about', e)} className="footer-nav-btn">Reviews</button>
-            <button type="button" onClick={(e) => handleLink('about', e)} className="footer-nav-btn">FAQs</button>
-            <button type="button" onClick={(e) => handleLink('contact', e)} className="footer-nav-btn">Contact</button>
+          <div className="pickup-notice">
+            <i className="fa-solid fa-location-dot"></i> Doorstep Pickup: Chandigarh • Delhi • Kalka • Manali
           </div>
         </div>
       </div>
-
-      {/* Massive Watermark Typography */}
-      <div className="footer-watermark">{AGENCY_CONFIG.name}</div>
     </footer>
   );
 }

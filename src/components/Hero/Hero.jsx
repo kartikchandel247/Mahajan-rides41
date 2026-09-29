@@ -40,22 +40,43 @@ export default function Hero({ onExploreTours }) {
         {/* Left Editorial Content */}
         <motion.div 
           className="hero-content"
-          initial={{ opacity: 0, x: -35 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
+          <div className="hero-badge">
+            <i className="fa-solid fa-van-shuttle"></i>
+            <span>Force Tempo Traveller • 17 Seater</span>
+          </div>
+
           <h1 className="hero-title">
             <span>Discover Himachal</span>
-            <span><i>with our local guide.</i></span>
+            <span><i>in luxury comfort.</i></span>
           </h1>
 
           <p className="hero-desc">
-            Specializing exclusively in Himachal Pradesh, we provide premier tour services in our luxury 17-seater Force Tempo Traveller across Devbhoomi. From Kullu, Manali, Rohtang Pass, and Atal Tunnel to Kasol, Manikaran, Dharamshala, Bir Billing, and Spiti Valley — our mountain-trained local chauffeurs ensure your journey through the hills is safe, scenic, and unforgettable.
+            Private customized tours across Manali, Rohtang Pass, Kasol, Atal Tunnel, Dharamshala &amp; Spiti Valley with trusted local mountain chauffeurs.
           </p>
 
+          {/* Quick Highlight Badges */}
+          <div className="hero-highlights">
+            <div className="highlight-item">
+              <i className="fa-solid fa-couch"></i>
+              <span>Pushback AC Seats</span>
+            </div>
+            <div className="highlight-item">
+              <i className="fa-solid fa-shield-halved"></i>
+              <span>Himachal Permit</span>
+            </div>
+            <div className="highlight-item">
+              <i className="fa-solid fa-user-check"></i>
+              <span>Local Driver</span>
+            </div>
+          </div>
+
           <div className="hero-cta-group">
-            <button className="butn-arrow2" onClick={onExploreTours}>
-              <span className="btn-text">View Tour Details</span>
+            <button className="butn-arrow2" onClick={onExploreTours} id="hero-explore-btn">
+              <span className="btn-text">Explore 6 Tours</span>
               <span className="arrow-wrap">
                 <span className="arrow-inner">
                   <i className="fa-solid fa-arrow-right"></i>
@@ -67,10 +88,12 @@ export default function Hero({ onExploreTours }) {
             <a 
               href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=Hello%20${AGENCY_CONFIG.name}!%20I%20want%20to%20inquire%20about%20a%20tour%20package.`}
               target="_blank" 
-              rel="noreferrer"
+              rel="noreferrer" 
               className="butn-whatsapp"
+              id="hero-whatsapp-btn"
             >
-              <i className="fa-brands fa-whatsapp"></i> Chat On WhatsApp
+              <i className="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp Booking</span>
             </a>
           </div>
         </motion.div>
@@ -78,9 +101,9 @@ export default function Hero({ onExploreTours }) {
         {/* Right Triple-Column Vertical Marquee Showcase */}
         <motion.div 
           className="hero-marquee-wrapper"
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Column 1 */}
           <div className="marquee-col st1">
