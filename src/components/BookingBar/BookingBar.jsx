@@ -148,13 +148,8 @@ export default function BookingBar() {
 
             {/* Submit to WhatsApp */}
             <button type="submit" className="booking-btn-submit">
-              <span className="btn-icon-wrap">
-                <i className="fa-brands fa-whatsapp"></i>
-              </span>
-              <span className="btn-label">Inquire on WhatsApp</span>
-              <span className="btn-arrow-wrap">
-                <i className="fa-solid fa-arrow-right"></i>
-              </span>
+              <i className="fa-brands fa-whatsapp"></i>
+              <span>Inquire on WhatsApp</span>
             </button>
           </form>
         </motion.div>
