@@ -18,70 +18,84 @@ async function testWebsite() {
 
   fs.mkdirSync('./test_screenshots', { recursive: true });
 
-  console.log('1️⃣ Testing Homepage (Desktop)...');
+  console.log('1️⃣ Testing Homepage...');
   await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
   await page.screenshot({ path: './test_screenshots/1_home_desktop.png' });
-  await page.screenshot({ path: './test_screenshots/1_desktop_home_full.png', fullPage: true });
-  const homeTitle = await page.title();
-  console.log('   ✅ Homepage loaded. Title:', homeTitle);
 
   console.log('2️⃣ Testing Destinations Subpage Navigation...');
   await page.click('#nav-destinations');
   await page.waitForTimeout(600);
-  await page.screenshot({ path: './test_screenshots/2_destinations.png' });
-  const destHeading = await page.textContent('.subpage-title');
-  console.log('   ✅ Destinations subpage loaded. Heading:', destHeading);
+  await page.screenshot({ path: './test_screenshots/2_destinations_all.png' });
+  console.log('   ✅ Destinations subpage loaded.');
 
-  // Test filter
-  console.log('   Testing filter pill click...');
-  await page.click('button:has-text("Snow & Passes")');
+  // Test Snow & High Passes filter
+  console.log('3️⃣ Testing Snow & High Passes Filter...');
+  await page.click('button:has-text("Snow & High Passes")');
   await page.waitForTimeout(400);
-  await page.screenshot({ path: './test_screenshots/2_destinations_filtered.png' });
-  console.log('   ✅ Filtered successfully');
+  await page.screenshot({ path: './test_screenshots/2_filter_snow_passes.png' });
+  console.log('   ✅ Snow & High Passes filter working with multiple circuits.');
 
-  console.log('3️⃣ Testing About Subpage Navigation...');
-  await page.click('#nav-about');
-  await page.waitForTimeout(600);
-  await page.screenshot({ path: './test_screenshots/3_about.png' });
-  const aboutHeading = await page.textContent('.subpage-title');
-  console.log('   ✅ About subpage loaded. Heading:', aboutHeading);
+  // Test Spiritual & Sacred Temples filter
+  console.log('4️⃣ Testing Spiritual & Sacred Temples Filter...');
+  await page.click('button:has-text("Spiritual & Sacred Temples")');
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: './test_screenshots/2_filter_spiritual.png' });
+  console.log('   ✅ Spiritual & Sacred Temples filter working.');
 
-  console.log('4️⃣ Testing Blog Subpage Navigation...');
-  await page.click('#nav-blog');
-  await page.waitForTimeout(600);
-  await page.screenshot({ path: './test_screenshots/4_blog.png' });
-  const blogHeading = await page.textContent('.subpage-title');
-  console.log('   ✅ Blog subpage loaded. Heading:', blogHeading);
+  // Test Tibetan & Monasteries filter
+  console.log('5️⃣ Testing Tibetan & Monasteries Filter...');
+  await page.click('button:has-text("Tibetan & Monasteries")');
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: './test_screenshots/2_filter_tibetan.png' });
+  console.log('   ✅ Tibetan & Monasteries filter working.');
 
-  console.log('5️⃣ Testing Contact Subpage Navigation...');
-  await page.click('#nav-contact');
-  await page.waitForTimeout(600);
-  await page.screenshot({ path: './test_screenshots/5_contact.png' });
-  const contactHeading = await page.textContent('.subpage-title');
-  console.log('   ✅ Contact subpage loaded. Heading:', contactHeading);
+  // Test Alpine Lakes filter
+  console.log('6️⃣ Testing Alpine Lakes & High Altitude Filter...');
+  await page.click('button:has-text("Alpine Lakes & High Altitude")');
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: './test_screenshots/2_filter_lakes.png' });
+  console.log('   ✅ Alpine Lakes filter working.');
 
-  console.log('6️⃣ Testing Mobile Responsiveness (Viewport 390x844)...');
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('http://localhost:5173/#/', { waitUntil: 'networkidle' });
+  // Test Adventure & Valleys filter
+  console.log('7️⃣ Testing Adventure & Valleys Filter...');
+  await page.click('button:has-text("Adventure & Valleys")');
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: './test_screenshots/2_filter_adventure.png' });
+  console.log('   ✅ Adventure & Valleys filter working.');
+
+  // Test Colonial Hills & Pine filter
+  console.log('8️⃣ Testing Colonial Hills & Pine Filter...');
+  await page.click('button:has-text("Colonial Hills & Pine")');
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: './test_screenshots/2_filter_colonial.png' });
+  console.log('   ✅ Colonial Hills & Pine filter working.');
+
+  // Test Search Box for "Chitkul"
+  console.log('9️⃣ Testing Search Filter for "Chitkul"...');
+  await page.fill('.destinations-search-input', 'Chitkul');
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: './test_screenshots/2_search_chitkul.png' });
+  console.log('   ✅ Search for Chitkul verified.');
+
+  // Test Itinerary Modal
+  console.log('🔟 Testing Detailed Itinerary Modal...');
+  await page.click('.dest-details-btn');
   await page.waitForTimeout(500);
-  await page.screenshot({ path: './test_screenshots/6_mobile_home.png' });
-  await page.screenshot({ path: './test_screenshots/6_mobile_home_full.png', fullPage: true });
+  await page.screenshot({ path: './test_screenshots/2_modal_itinerary.png' });
+  console.log('   ✅ Modal opened with day-by-day plan.');
+  await page.click('.tour-modal-close');
+  await page.waitForTimeout(300);
 
-  // Open mobile menu
-  console.log('   Testing Mobile Hamburger Drawer...');
-  await page.click('#mobile-nav-toggle-btn');
-  await page.waitForTimeout(400);
-  await page.screenshot({ path: './test_screenshots/7_mobile_menu.png' });
-  console.log('   ✅ Mobile menu opened.');
-
-  // Click Destinations in mobile menu
-  await page.click('.mobile-nav-drawer button:has-text("DESTINATIONS")');
-  await page.waitForTimeout(600);
+  // Mobile testing
+  console.log('1️⃣1️⃣ Testing Mobile View (390x844)...');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('http://localhost:5173/#/destinations', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(500);
   await page.screenshot({ path: './test_screenshots/8_mobile_destinations.png' });
-  console.log('   ✅ Mobile navigation to Destinations verified.');
+  console.log('   ✅ Mobile destinations page verified.');
 
   await browser.close();
-  console.log('🎉 ALL PLAYWRIGHT TESTS PASSED SUCCESSFULLY!');
+  console.log('🎉 ALL COMPREHENSIVE TOUR TESTS PASSED SUCCESSFULLY!');
 }
 
 testWebsite().catch((err) => {

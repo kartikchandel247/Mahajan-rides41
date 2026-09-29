@@ -8,70 +8,177 @@ import './DestinationsPage.scss';
 
 export default function DestinationsPage({ onNavigateHome, onNavigateContact }) {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedPlace, setSelectedPlace] = useState('All Places');
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedTour, setSelectedTour] = useState(null);
 
   const categories = [
-    'All',
-    'Snow & Passes',
-    'Spiritual & Valley',
-    'Tibetan & Heritage',
-    'High Altitude & Lakes',
-    'Adventure & Tea Gardens',
-    'Colonial Hills & Pine'
+    { id: 'All', label: 'All Tourist Places', icon: 'fa-solid fa-mountain' },
+    { id: 'Snow & High Passes', label: 'Snow & High Passes', icon: 'fa-solid fa-snowflake' },
+    { id: 'Spiritual & Sacred Temples', label: 'Spiritual & Sacred Temples', icon: 'fa-solid fa-om' },
+    { id: 'Tibetan & Monasteries', label: 'Tibetan & Monasteries', icon: 'fa-solid fa-landmark' },
+    { id: 'Alpine Lakes & High Altitude', label: 'Alpine Lakes & High Altitude', icon: 'fa-solid fa-water' },
+    { id: 'Adventure & Valleys', label: 'Adventure & Valleys', icon: 'fa-solid fa-parachute-box' },
+    { id: 'Colonial Hills & Pine', label: 'Colonial Hills & Pine', icon: 'fa-solid fa-tree' },
   ];
 
-  const filteredTours = activeCategory === 'All'
-    ? FEATURED_TOURS
-    : FEATURED_TOURS.filter(t => t.category === activeCategory);
+  const popularPlaces = [
+    'All Places',
+    'Manali',
+    'Rohtang Pass',
+    'Atal Tunnel',
+    'Shimla',
+    'Kufri',
+    'Kasol',
+    'Manikaran',
+    'Dharamshala',
+    'McLeod Ganj',
+    'Spiti Valley',
+    'Chandratal',
+    'Khajjiar',
+    'Dalhousie',
+    'Bir Billing',
+    'Palampur',
+    'Chitkul',
+    'Sangla',
+    'Jibhi',
+    'Tirthan Valley',
+    'Keylong',
+    'Baralacha La',
+    'Prashar Lake',
+    'Mandi',
+    'Kasauli',
+    'Chamba',
+    'Bharmour'
+  ];
 
-  const handleInquire = (tour) => {
-    openWhatsAppInquiry({
-      tourName: tour.title,
-      destination: tour.location,
-      days: tour.daysCount,
-      vehicle: tour.vehicle
-    });
+  // Comprehensive filter logic
+  const filteredTours = FEATURED_TOURS.filter(tour => {
+    // 1. Category check
+    const matchesCategory = activeCategory === 'All' || tour.category === activeCategory;
+
+    // 2. Popular place quick-pill check
+    const matchesPlace = selectedPlace === 'All Places' || 
+      tour.placesCovered?.some(p => p.toLowerCase().includes(selectedPlace.toLowerCase())) ||
+      tour.location.toLowerCase().includes(selectedPlace.toLowerCase()) ||
+      tour.title.toLowerCase().includes(selectedPlace.toLowerCase());
+
+    // 3. Search query check
+    const q = searchTerm.trim().toLowerCase();
+    const matchesSearch = !q ||
+      tour.title.toLowerCase().includes(q) ||
+      tour.location.toLowerCase().includes(q) ||
+      tour.description.toLowerCase().includes(q) ||
+      tour.placesCovered?.some(p => p.toLowerCase().includes(q)) ||
+      tour.highlights?.some(h => h.toLowerCase().includes(q));
+
+    return matchesCategory && matchesPlace && matchesSearch;
+  });
+
+  const handleSearchChange = (e) => {
+    const val = e.target.value;
+    setSearchTerm(val);
+    if (val.trim() && activeCategory !== 'All') {
+      setActiveCategory('All');
+    }
+  };
+
+  const handlePlaceClick = (place) => {
+    setSelectedPlace(place);
+    if (place !== 'All Places' && activeCategory !== 'All') {
+      setActiveCategory('All');
+    }
+  };
+
+  const handleResetFilters = () => {
+    setActiveCategory('All');
+    setSelectedPlace('All Places');
+    setSearchTerm('');
+  };
+
+  // Helper to count tours per category
+  const getCategoryCount = (catId) => {
+    if (catId === 'All') return FEATURED_TOURS.length;
+    return FEATURED_TOURS.filter(t => t.category === catId).length;
   };
 
   return (
     <div className="destinations-page">
       {/* 1. Subpage Header Banner */}
       <PageBanner 
-        title="Explore Himachal Destinations"
-        subtitle="Custom Force Tempo Traveller Tours"
+        title="Explore Himachal Tourist Places"
+        subtitle="17-Seater Luxury Force Tempo Traveller Circuits"
         breadcrumb="Destinations & Circuits"
         bgImage="/places/himachal_mountain_scenery.jpg"
         onNavigateHome={onNavigateHome}
       />
 
-      {/* 2. Interactive Category Filter Bar */}
+      {/* 2. Comprehensive Filter & Search Suite */}
       <section className="destinations-filter-section">
         <div className="container">
+          {/* Instant Search Bar */}
+          <div className="destinations-search-box">
+            <i className="fa-solid fa-magnifying-glass search-icon"></i>
+            <input 
+              type="text"
+              placeholder="Search any Himachal place (e.g. Rohtang, Spiti, Khajjiar, Chitkul, Jibhi, Shimla, Kasol...)"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="destinations-search-input"
+            />
+            {searchTerm && (
+              <button className="clear-search-btn" onClick={() => setSearchTerm('')} aria-label="Clear search">
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            )}
+          </div>
+
+          {/* Category Filter Pills with Live Counts */}
           <div className="categories-pills-wrap">
             {categories.map((cat) => (
               <button
-                key={cat}
+                key={cat.id}
                 type="button"
-                className={`category-pill-btn ${activeCategory === cat ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat)}
+                className={`category-pill-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                onClick={() => setActiveCategory(cat.id)}
               >
-                {cat === 'All' && <i className="fa-solid fa-mountain"></i>}
-                {cat === 'Snow & Passes' && <i className="fa-solid fa-snowflake"></i>}
-                {cat === 'Spiritual & Valley' && <i className="fa-solid fa-om"></i>}
-                {cat === 'Tibetan & Heritage' && <i className="fa-solid fa-landmark"></i>}
-                {cat === 'High Altitude & Lakes' && <i className="fa-solid fa-water"></i>}
-                {cat === 'Adventure & Tea Gardens' && <i className="fa-solid fa-parachute-box"></i>}
-                {cat === 'Colonial Hills & Pine' && <i className="fa-solid fa-tree"></i>}
-                <span>{cat}</span>
+                <i className={cat.icon}></i>
+                <span>{cat.label}</span>
+                <span className="pill-count">({getCategoryCount(cat.id)})</span>
               </button>
             ))}
           </div>
+
+          {/* Popular Tourist Spots Quick-Filter Cloud */}
+          <div className="places-cloud-strip">
+            <span className="places-cloud-title">
+              <i className="fa-solid fa-location-crosshairs"></i> Quick Tourist Spots:
+            </span>
+            <div className="places-cloud-list">
+              {popularPlaces.map((place) => (
+                <button
+                  key={place}
+                  type="button"
+                  className={`place-tag-btn ${selectedPlace === place ? 'active' : ''}`}
+                  onClick={() => handlePlaceClick(place)}
+                >
+                  {place}
+                </button>
+              ))}
+            </div>
+          </div>
           
+          {/* Filter Status & Active Reset */}
           <div className="filter-results-info">
-            <span>Showing <strong>{filteredTours.length}</strong> handcrafted circuits</span>
-            {activeCategory !== 'All' && (
-              <button className="reset-filter-btn" onClick={() => setActiveCategory('All')}>
-                <i className="fa-solid fa-xmark"></i> Clear Filter
+            <span>
+              Showing <strong>{filteredTours.length}</strong> of <strong>{FEATURED_TOURS.length}</strong> Himachal tourist circuits
+              {selectedPlace !== 'All Places' && <em> • Filtered by spot: <strong>{selectedPlace}</strong></em>}
+              {activeCategory !== 'All' && <em> • Category: <strong>{activeCategory}</strong></em>}
+              {searchTerm && <em> • Matching: "<strong>{searchTerm}</strong>"</em>}
+            </span>
+            {(activeCategory !== 'All' || selectedPlace !== 'All Places' || searchTerm) && (
+              <button className="reset-filter-btn" onClick={handleResetFilters}>
+                <i className="fa-solid fa-xmark"></i> Clear All Filters
               </button>
             )}
           </div>
@@ -81,87 +188,129 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
       {/* 3. Tour Grid Layout */}
       <section className="destinations-grid-section">
         <div className="container">
-          <div className="destinations-cards-grid">
-            {filteredTours.map((tour, idx) => (
-              <motion.div 
-                key={tour.id}
-                className="destination-card"
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: idx * 0.08 }}
-              >
-                <div className="destination-media" onClick={() => setSelectedTour(tour)}>
-                  <img src={tour.image} alt={tour.title} loading="lazy" />
-                  <div className="badge-row">
-                    <span className="dest-tag">{tour.tag}</span>
-                    <span className="dest-category">{tour.category}</span>
+          {filteredTours.length === 0 ? (
+            <div className="no-tours-found">
+              <i className="fa-solid fa-mountain-sun"></i>
+              <h3>No Circuits Match Your Filter</h3>
+              <p>We provide custom Force Tempo Traveller tours to every part of Himachal Pradesh!</p>
+              <div className="no-tours-actions">
+                <button className="reset-filter-btn-lg" onClick={handleResetFilters}>
+                  Show All 15 Himachal Circuits
+                </button>
+                <a 
+                  href={`https://wa.me/918580462440?text=Hello%20Mahajanrides!%20I%20want%20to%20plan%20a%20custom%20tour%20to%20${searchTerm || selectedPlace}.`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="wa-custom-btn"
+                >
+                  <i className="fa-brands fa-whatsapp"></i> Inquire Custom Route on WhatsApp
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="destinations-cards-grid">
+              {filteredTours.map((tour) => (
+                <div 
+                  key={tour.id}
+                  className="destination-card"
+                >
+                  <div className="destination-media" onClick={() => setSelectedTour(tour)}>
+                    <img src={tour.image} alt={tour.title} loading="lazy" />
+                    <div className="badge-row">
+                      <span className="dest-tag">{tour.tag}</span>
+                      <span className="dest-category">{tour.category}</span>
+                    </div>
+                    <div className="overlay-hover">
+                      <span><i className="fa-solid fa-eye"></i> View Itinerary</span>
+                    </div>
                   </div>
-                  <div className="overlay-hover">
-                    <span><i className="fa-solid fa-eye"></i> View Itinerary</span>
+
+                  <div className="destination-body">
+                    <div className="dest-location-badge">
+                      <i className="fa-solid fa-location-dot"></i> {tour.location}
+                    </div>
+
+                    <h3 className="dest-title" onClick={() => setSelectedTour(tour)}>
+                      {tour.title}
+                    </h3>
+
+                    <p className="dest-desc">
+                      {tour.description}
+                    </p>
+
+                    {/* Tourist Places Covered Pills */}
+                    {tour.placesCovered && (
+                      <div className="dest-places-row">
+                        <span className="places-title">
+                          <i className="fa-solid fa-map-pin"></i> Key Places:
+                        </span>
+                        <div className="places-pills-list">
+                          {tour.placesCovered.map((place, pIdx) => (
+                            <span 
+                              key={pIdx} 
+                              className="place-mini-pill"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePlaceClick(place);
+                              }}
+                              title={`Filter tours with ${place}`}
+                            >
+                              {place}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="dest-meta-pills">
+                      <div className="meta-pill">
+                        <i className="fa-solid fa-clock"></i>
+                        <span>{tour.duration}</span>
+                      </div>
+                      <div className="meta-pill">
+                        <i className="fa-solid fa-van-shuttle"></i>
+                        <span>{tour.vehicle}</span>
+                      </div>
+                    </div>
+
+                    <div className="dest-highlights-preview">
+                      <strong><i className="fa-solid fa-star"></i> Top Highlights:</strong>
+                      <ul>
+                        {tour.highlights.slice(0, 3).map((h, i) => (
+                          <li key={i}><i className="fa-solid fa-check"></i> {h}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="dest-card-footer">
+                      <div className="dest-rating">
+                        <i className="fa-solid fa-star"></i> {tour.rating}
+                        <span className="reviews-label">({tour.reviewsCount}+ reviews)</span>
+                      </div>
+
+                      <div className="dest-actions">
+                        <button 
+                          type="button" 
+                          className="dest-details-btn"
+                          onClick={() => setSelectedTour(tour)}
+                        >
+                          Itinerary
+                        </button>
+                        <button 
+                          type="button" 
+                          className="dest-whatsapp-btn"
+                          onClick={() => handleInquire(tour)}
+                          title="Inquire on WhatsApp"
+                        >
+                          <i className="fa-brands fa-whatsapp"></i> Inquire
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                <div className="destination-body">
-                  <div className="dest-location-badge">
-                    <i className="fa-solid fa-location-dot"></i> {tour.location}
-                  </div>
-
-                  <h3 className="dest-title" onClick={() => setSelectedTour(tour)}>
-                    {tour.title}
-                  </h3>
-
-                  <p className="dest-desc">
-                    {tour.description}
-                  </p>
-
-                  <div className="dest-meta-pills">
-                    <div className="meta-pill">
-                      <i className="fa-solid fa-clock"></i>
-                      <span>{tour.duration}</span>
-                    </div>
-                    <div className="meta-pill">
-                      <i className="fa-solid fa-van-shuttle"></i>
-                      <span>{tour.vehicle}</span>
-                    </div>
-                  </div>
-
-                  <div className="dest-highlights-preview">
-                    <strong><i className="fa-solid fa-star"></i> Top Highlights:</strong>
-                    <ul>
-                      {tour.highlights.slice(0, 3).map((h, i) => (
-                        <li key={i}><i className="fa-solid fa-check"></i> {h}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="dest-card-footer">
-                    <div className="dest-rating">
-                      <i className="fa-solid fa-star"></i> {tour.rating}
-                      <span className="reviews-label">({tour.reviewsCount}+ reviews)</span>
-                    </div>
-
-                    <div className="dest-actions">
-                      <button 
-                        type="button" 
-                        className="dest-details-btn"
-                        onClick={() => setSelectedTour(tour)}
-                      >
-                        Details
-                      </button>
-                      <button 
-                        type="button" 
-                        className="dest-whatsapp-btn"
-                        onClick={() => handleInquire(tour)}
-                        title="Inquire on WhatsApp"
-                      >
-                        <i className="fa-brands fa-whatsapp"></i> Inquire
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* 4. Fleet & Vehicle Feature Highlight Banner */}
           <div className="destinations-fleet-strip">
@@ -172,7 +321,7 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
               </div>
               <h2>Travel Together In A Luxury 17-Seater Force Tempo Traveller</h2>
               <p>
-                All tours are operated in commercially registered Force Tempo Travellers featuring luxury pushback seats, dual AC, panoramic view windows, heavy luggage carriers, and verified Himachal commercial green permits.
+                All tours across Himachal Pradesh are operated in commercially registered Force Tempo Travellers featuring luxury pushback seats, dual AC, panoramic view windows, heavy luggage carriers, and verified Himachal commercial green permits.
               </p>
               <div className="fleet-features-row">
                 <div className="fleet-item">
@@ -182,10 +331,10 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
                   <i className="fa-solid fa-snowflake"></i> Dual Powerful AC
                 </div>
                 <div className="fleet-item">
-                  <i className="fa-solid fa-suitcase-rolling"></i> Large Luggage Space
+                  <i className="fa-solid fa-suitcase-rolling"></i> Large Luggage Boot
                 </div>
                 <div className="fleet-item">
-                  <i className="fa-solid fa-user-shield"></i> Local Himachali Driver
+                  <i className="fa-solid fa-user-shield"></i> Local Mountain Chauffeur
                 </div>
               </div>
             </div>
@@ -205,17 +354,17 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
         </div>
       </section>
 
-      {/* 6. Itinerary Modal */}
+      {/* 6. Comprehensive Itinerary Modal */}
       <AnimatePresence>
         {selectedTour && (
           <div className="tour-modal-backdrop" onClick={() => setSelectedTour(null)}>
             <motion.div 
               className="tour-modal-card"
               onClick={(e) => e.stopPropagation()}
-              initial={{ opacity: 0, scale: 0.92, y: 25 }}
+              initial={{ opacity: 0, scale: 0.94, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 25 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.94, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
               <button className="tour-modal-close" onClick={() => setSelectedTour(null)} aria-label="Close modal">
                 <i className="fa-solid fa-xmark"></i>
@@ -237,8 +386,40 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
               <div className="tour-modal-body">
                 <p className="tour-modal-desc">{selectedTour.description}</p>
                 
+                {/* Places Covered List in Modal */}
+                {selectedTour.placesCovered && (
+                  <div className="modal-places-covered">
+                    <h4><i className="fa-solid fa-map-location-dot"></i> Tourist Places Visited:</h4>
+                    <div className="modal-places-tags">
+                      {selectedTour.placesCovered.map((place, idx) => (
+                        <span key={idx} className="modal-place-badge">
+                          <i className="fa-solid fa-check"></i> {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Day-by-Day Itinerary Breakdown */}
+                {selectedTour.itinerary && selectedTour.itinerary.length > 0 && (
+                  <div className="modal-itinerary-timeline">
+                    <h4><i className="fa-solid fa-route"></i> Day-by-Day Tour Plan:</h4>
+                    <div className="timeline-items">
+                      {selectedTour.itinerary.map((dayItem) => (
+                        <div key={dayItem.day} className="timeline-item">
+                          <div className="timeline-day-badge">Day {dayItem.day}</div>
+                          <div className="timeline-content">
+                            <h5>{dayItem.title}</h5>
+                            <p>{dayItem.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="tour-itinerary-box">
-                  <h4><i className="fa-solid fa-map-location-dot"></i> Detailed Sightseeing &amp; Route Stops:</h4>
+                  <h4><i className="fa-solid fa-star"></i> Key Tour Highlights:</h4>
                   <ul className="tour-highlights-list">
                     {selectedTour.highlights?.map((item, i) => (
                       <li key={i}>
@@ -271,7 +452,7 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
                 <div className="tour-modal-footer">
                   <div className="quote-note">
                     <i className="fa-solid fa-circle-info"></i>
-                    <span>Custom quote and day-wise timing provided instantly on WhatsApp based on your arrival point.</span>
+                    <span>Direct quote and timing customized on WhatsApp based on your arrival point (Chandigarh, Delhi, Kalka, Manali).</span>
                   </div>
                   <button 
                     className="butn-whatsapp-modal"
@@ -281,7 +462,7 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact }) 
                     }}
                     type="button"
                   >
-                    <i className="fa-brands fa-whatsapp"></i> Inquire Tour on WhatsApp
+                    <i className="fa-brands fa-whatsapp"></i> Inquire This Tour on WhatsApp
                   </button>
                 </div>
               </div>
