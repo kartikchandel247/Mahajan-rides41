@@ -1,13 +1,38 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './ExploreBanner.scss';
 
 export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateAbout }) {
+  const sectionRef = useRef(null);
+
   const handleScrollDown = () => {
     const nextSection = document.getElementById('popular-tours') || document.getElementById('services');
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Continuous scroll progress for trending swipe/scroll parallax
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 24,
+    mass: 0.18,
+    restDelta: 0.001
+  });
+
+  // Trending opposing wave motion for cards as user scrolls or swipes:
+  // Even cards float in phase A:
+  const cardWaveA = useTransform(smoothProgress, [0, 1], [-16, 16]);
+  const cardTiltA = useTransform(smoothProgress, [0, 1], [-2, 2]);
+
+  // Odd cards float in opposite phase B:
+  const cardWaveB = useTransform(smoothProgress, [0, 1], [16, -16]);
+  const cardTiltB = useTransform(smoothProgress, [0, 1], [2, -2]);
 
   const featurePillars = [
     {
@@ -41,21 +66,21 @@ export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateA
   ];
 
   return (
-    <section className="explore-banner-section" id="exploreBanner">
+    <section className="explore-banner-section" id="exploreBanner" ref={sectionRef}>
       <div className="container">
-        {/* Main Curved Panoramic Banner */}
+        {/* Main Curved Panoramic Banner Frame with cards fitted directly inside */}
         <div className="explore-banner-frame">
-          {/* Scenic Background Image */}
+          {/* Real Panoramic Background Image of Spiti Valley, Himachal Pradesh */}
           <div className="banner-bg-media">
             <img 
               src="/places/himachal_explore_banner.jpg" 
-              alt="Panoramic View of Himachal Pradesh Mountains and Highway" 
+              alt="Real Panoramic View of Spiti Valley Kee Monastery, Himachal Pradesh" 
               loading="lazy" 
             />
             <div className="banner-scrim-overlay"></div>
           </div>
 
-          {/* Center Banner Content */}
+          {/* Banner Content Body (Text + Rotating Seal + Cards fitted inside) */}
           <div className="banner-content-body">
             <motion.div 
               className="banner-text-wrap text-center"
@@ -90,7 +115,6 @@ export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateA
               whileTap={{ scale: 0.94 }}
             >
               <div className="stamp-circle-disc">
-                {/* Rotating SVG circular text */}
                 <svg className="rotating-text-svg" viewBox="0 0 160 160">
                   <path
                     id="stampCirclePath"
@@ -104,53 +128,66 @@ export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateA
                   </text>
                 </svg>
 
-                {/* Center Down Arrow */}
                 <div className="stamp-center-arrow">
                   <i className="fa-solid fa-arrow-down"></i>
                 </div>
               </div>
             </motion.div>
+
+            {/* 4 Feature Cards Fitted Directly Inside the Image Banner */}
+            <div className="explore-floating-cards-grid">
+              {featurePillars.map((item, idx) => {
+                const isEven = idx % 2 === 0;
+                const waveY = isEven ? cardWaveA : cardWaveB;
+                const tiltZ = isEven ? cardTiltA : cardTiltB;
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    className="floating-feature-card"
+                    onClick={item.onClick}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && item.onClick && item.onClick()}
+                    style={{
+                      y: waveY,
+                      rotateZ: tiltZ
+                    }}
+                    initial={{ opacity: 0, y: 35, scale: 0.94 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: false, amount: 0.15, margin: "0px 0px -25px 0px" }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: idx * 0.08 + 0.05, 
+                      ease: [0.16, 1, 0.3, 1] 
+                    }}
+                    whileHover={{ 
+                      scale: 1.045, 
+                      boxShadow: "0 20px 45px rgba(0, 0, 0, 0.28)",
+                      transition: { duration: 0.22 } 
+                    }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    {/* Feature Icon */}
+                    <div className="card-icon-wrap">
+                      <i className={item.icon}></i>
+                    </div>
+
+                    {/* Card Text */}
+                    <div className="card-info">
+                      <h4>{item.title}</h4>
+                      <p>{item.subtitle}</p>
+                    </div>
+
+                    {/* Micro Corner / Action Arrow */}
+                    <div className="card-action-arrow">
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-
-        {/* 4 Floating Feature Cards Overlapping Banner Bottom */}
-        <div className="explore-floating-cards-grid">
-          {featurePillars.map((item, idx) => (
-            <motion.div
-              key={item.id}
-              className="floating-feature-card"
-              onClick={item.onClick}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && item.onClick && item.onClick()}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.15, margin: "0px 0px -25px 0px" }}
-              transition={{ 
-                duration: 0.6, 
-                delay: idx * 0.08 + 0.05, 
-                ease: [0.16, 1, 0.3, 1] 
-              }}
-              whileHover={{ y: -8, scale: 1.04, transition: { duration: 0.22 } }}
-              whileTap={{ scale: 0.97 }}
-            >
-              {/* Feature Icon */}
-              <div className="card-icon-wrap">
-                <i className={item.icon}></i>
-              </div>
-
-              {/* Card Text */}
-              <div className="card-info">
-                <h4>{item.title}</h4>
-                <p>{item.subtitle}</p>
-              </div>
-
-              {/* Micro Corner / Action Arrow */}
-              <div className="card-action-arrow">
-                <i className="fa-solid fa-arrow-right"></i>
-              </div>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
