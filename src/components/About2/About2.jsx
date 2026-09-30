@@ -19,7 +19,7 @@ export default function About2({ onNavigateAbout }) {
             className="about2-img-col"
             initial={{ opacity: 0, x: -75 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="about2-img">
@@ -56,7 +56,7 @@ export default function About2({ onNavigateAbout }) {
             className="about2-content-col"
             initial={{ opacity: 0, x: 75 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="section-subtitle">Himachal Fleet Specialists</div>
@@ -74,7 +74,7 @@ export default function About2({ onNavigateAbout }) {
                   key={idx}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.2 }}
                   transition={{ duration: 0.45, delay: 0.15 + idx * 0.08 }}
                 >
                   <i className={item.icon}></i>

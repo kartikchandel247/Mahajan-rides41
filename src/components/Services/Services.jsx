@@ -59,7 +59,7 @@ export default function Services({
           className="services-header text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="section-subtitle">Our Specialized Services</span>
@@ -93,7 +93,7 @@ export default function Services({
                 onKeyDown={(e) => e.key === 'Enter' && service.onClick()}
                 initial={{ opacity: 0, x: initialX }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.12, margin: "0px 0px -25px 0px" }}
+                viewport={{ once: false, amount: 0.15, margin: "0px 0px -25px 0px" }}
                 transition={{ 
                   duration: 0.6, 
                   delay: delay, 

@@ -167,7 +167,13 @@ export default function Testimonials() {
 
       <div className="container">
         {/* Section Header */}
-        <div className="reviews-header-block">
+        <motion.div 
+          className="reviews-header-block"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div>
             <div className="section-subtitle">Traveler Reviews &amp; Feedback</div>
             <h2 className="section-title">
@@ -201,7 +207,7 @@ export default function Testimonials() {
               <span>{showForm ? 'Close Form' : 'Write a Review / Feedback'}</span>
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Success Confirmation Toast */}
         <AnimatePresence>

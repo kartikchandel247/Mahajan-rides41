@@ -15,7 +15,13 @@ export default function Faq() {
       <div className="container">
         <div className="faq-grid">
           {/* Dual Image Column */}
-          <div className="faq-images">
+          <motion.div 
+            className="faq-images"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="faq-img">
               <img 
                 src="/places/atal_tunnel.jpg" 
@@ -38,10 +44,15 @@ export default function Faq() {
                 <span>Dharamshala &amp; Kangra</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Accordion Column */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="section-subtitle">Got Questions?</div>
             <h2 className="section-title">Frequently asked <i>questions</i></h2>
 
@@ -83,7 +94,7 @@ export default function Faq() {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className="bg-text-style4">QUESTIONS</div>

@@ -49,7 +49,7 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, onNa
               className="about-story-media"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
             >
               <div className="story-img-main">
@@ -78,7 +78,7 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, onNa
               className="about-story-content"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
             >
               <span className="section-subtitle">Born &amp; Rooted in Himachal</span>
@@ -148,7 +148,7 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, onNa
                 className="pillar-card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div className="pillar-icon-box">

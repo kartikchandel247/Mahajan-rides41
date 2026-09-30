@@ -61,7 +61,8 @@ export default function ContactPage({ onNavigateHome }) {
             <motion.div 
               className="contact-info-col"
               initial={{ opacity: 0, x: -25 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ duration: 0.5 }}
             >
               <span className="section-subtitle">Get In Touch Directly</span>
@@ -136,7 +137,8 @@ export default function ContactPage({ onNavigateHome }) {
             <motion.div 
               className="contact-form-col"
               initial={{ opacity: 0, x: 25 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="quote-form-card">

@@ -19,7 +19,7 @@ export default function AboutSnippet({ onLearnMore }) {
             className="about-images-wrap"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="about-img-box shift-down">
@@ -37,7 +37,7 @@ export default function AboutSnippet({ onLearnMore }) {
               <img 
                 src="/vehicle/tempo_traveller_interior.png" 
                 alt="Force Tempo Traveller Luxury Interior - Mahajan Rides" 
-                loading="lazy"
+                loading="lazy" 
               />
               <div className="about-img-badge">
                 <i className="fa-solid fa-couch"></i>
@@ -50,7 +50,7 @@ export default function AboutSnippet({ onLearnMore }) {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="section-subtitle">Himachal Tour Specialists</div>

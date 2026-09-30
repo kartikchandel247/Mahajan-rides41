@@ -156,7 +156,8 @@ export default function BlogPage({ onNavigateHome, onNavigateDestinations }) {
                 key={post.id}
                 className="blog-full-card"
                 initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.45, delay: idx * 0.08 }}
               >
                 <div className="card-media" onClick={() => setSelectedArticle(post)}>

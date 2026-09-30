@@ -211,9 +211,13 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact, on
           ) : (
             <div className="destinations-cards-grid">
               {filteredTours.map((tour) => (
-                <div 
+                <motion.div 
                   key={tour.id}
                   className="destination-card"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="destination-media" onClick={() => setSelectedTour(tour)}>
                     <img src={tour.image} alt={tour.title} loading="lazy" />
@@ -316,7 +320,7 @@ export default function DestinationsPage({ onNavigateHome, onNavigateContact, on
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}

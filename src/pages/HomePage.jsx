@@ -101,7 +101,7 @@ export default function HomePage({
             className="section-head text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="section-subtitle">Quick Navigation Hub</span>
@@ -132,7 +132,7 @@ export default function HomePage({
                   onKeyDown={(e) => e.key === 'Enter' && item.onClick()}
                   initial={{ opacity: 0, x: initialX }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.15, margin: "0px 0px -30px 0px" }}
+                  viewport={{ once: false, amount: 0.15, margin: "0px 0px -25px 0px" }}
                   transition={{ 
                     duration: 0.65, 
                     delay: delay, 
@@ -203,7 +203,7 @@ export default function HomePage({
                   className="preview-tour-card"
                   initial={{ opacity: 0, x: tourX, y: tourY }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, amount: 0.15, margin: "0px 0px -30px 0px" }}
+                  viewport={{ once: false, amount: 0.15, margin: "0px 0px -25px 0px" }}
                   transition={{ 
                     duration: 0.65, 
                     delay: idx * 0.12 + 0.05, 
