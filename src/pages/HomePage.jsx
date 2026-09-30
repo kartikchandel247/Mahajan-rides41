@@ -4,6 +4,7 @@ import Hero from '../components/Hero/Hero';
 import BookingBar from '../components/BookingBar/BookingBar';
 import About2 from '../components/About2/About2';
 import Services from '../components/Services/Services';
+import ExploreBanner from '../components/ExploreBanner/ExploreBanner';
 import { FEATURED_TOURS } from '../data/toursData';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
@@ -171,8 +172,15 @@ export default function HomePage({
         onNavigateBooking={onNavigateBooking}
       />
 
-      {/* 6. Top 3 Featured Circuits (Clean & Compact) */}
-      <section className="home-destinations-preview">
+      {/* 6. Scenic Himachal Mountain Explore Panoramic Banner */}
+      <ExploreBanner 
+        onExploreTours={onNavigateDestinations}
+        onBookClick={onNavigateBooking}
+        onNavigateAbout={onNavigateAbout}
+      />
+
+      {/* 7. Top 3 Featured Circuits (Clean & Compact) */}
+      <section className="home-destinations-preview" id="popular-tours">
         <div className="container">
           <div className="section-header-compact">
             <div>
