@@ -199,36 +199,6 @@ export default function HomePage({
           </div>
         </div>
       </section>
-
-      {/* 5. Minimalist WhatsApp Direct Strip */}
-      <section className="home-quick-cta">
-        <div className="container">
-          <div className="quick-cta-box">
-            <div className="cta-left">
-              <h3>Custom Mountain Trip Planning</h3>
-              <p>Speak directly with {AGENCY_CONFIG.ownerName} for customized dates, doorstep pickup, and instant quotes.</p>
-            </div>
-            <div className="cta-right">
-              <a 
-                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=Hello%20${AGENCY_CONFIG.name}!%20I%20want%20to%20plan%20a%20custom%20tour.`} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="butn-whatsapp"
-              >
-                <i className="fa-brands fa-whatsapp"></i>
-                <span>Chat on WhatsApp</span>
-              </a>
-              <a 
-                href={`tel:${AGENCY_CONFIG.ownerPhone}`} 
-                className="butn-contact-subpage"
-              >
-                <i className="fa-solid fa-phone"></i>
-                <span>Call {AGENCY_CONFIG.displayPhone}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { openWhatsAppInquiry } from '../../utils/whatsapp';
 import { FEATURED_TOURS } from '../../data/toursData';
+import { saveClientInquiry } from '../../lib/supabase';
 import './BookingBar.scss';
 
 export default function BookingBar({ initialDestination = "", className = "" }) {
@@ -30,6 +31,16 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Automatically save lead to Supabase database
+    saveClientInquiry({
+      name: 'Website Visitor',
+      destination: formData.destination,
+      travelDate: formData.date,
+      groupSize: `${formData.travelers} Travelers (${formData.days} Days)`,
+      vehicleType: formData.vehicle
+    }).catch(err => console.warn('Supabase auto-save error:', err));
+
     openWhatsAppInquiry(formData);
   };
 

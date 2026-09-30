@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TESTIMONIALS_DATA } from '../../data/toursData';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
+import { fetchCustomerReviews, saveCustomerReview } from '../../lib/supabase';
 import './Testimonials.scss';
 
 const TOUR_OPTIONS = [
@@ -59,6 +60,34 @@ export default function Testimonials() {
     reviews.reduce((acc, r) => acc + (r.rating || 5), 0) / reviews.length
   ).toFixed(1);
 
+  // Fetch permanently saved reviews from Supabase on mount
+  useEffect(() => {
+    async function loadReviews() {
+      try {
+        const res = await fetchCustomerReviews();
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          const cloudReviews = res.data.map((r) => ({
+            id: r.id,
+            tour: r.tour || TOUR_OPTIONS[0],
+            name: r.name,
+            city: r.city || 'Himachal Passenger',
+            rating: Number(r.rating) || 5,
+            quote: r.comment,
+            date: r.created_at ? new Date(r.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : 'Verified Trip',
+            verified: r.verified ?? true,
+            isUserAdded: true,
+            image: '/places/himachal_mountain_scenery.jpg',
+            avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(r.name)}&backgroundColor=2095ae,0f2454`
+          }));
+          setReviews([...cloudReviews, ...TESTIMONIALS_DATA]);
+        }
+      } catch (err) {
+        console.warn('Could not load Supabase reviews:', err);
+      }
+    }
+    loadReviews();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -91,7 +120,12 @@ export default function Testimonials() {
     const updated = [newReview, ...reviews];
     setReviews(updated);
 
-    // Save only user-added reviews to localStorage
+    // 1. Permanently save to Supabase database
+    saveCustomerReview(newReview).catch((err) => {
+      console.warn('Supabase review save error:', err);
+    });
+
+    // 2. Also save to localStorage as instant offline fallback
     try {
       const userAddedOnly = updated.filter((r) => r.isUserAdded);
       localStorage.setItem('mahajan_rides_user_reviews', JSON.stringify(userAddedOnly));

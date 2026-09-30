@@ -19,21 +19,21 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
 
   const navLinks = [
     { name: 'HOME', page: 'home' },
-    { name: 'DESTINATIONS', page: 'destinations' },
+    { name: 'ABOUT', page: 'about' },
+    { name: 'TOURS', page: 'destinations' },
     { name: 'BOOK NOW', page: 'booking' },
-    { name: 'ABOUT US', page: 'about' },
-    { name: 'BLOG & GUIDES', page: 'blog' },
     { 
       name: 'PAGES', 
       page: 'pages',
       subLinks: [
-        { name: 'Instant Quote & Booking', page: 'booking' },
         { name: 'All 18 Tour Circuits', page: 'destinations' },
-        { name: 'About Fleet & Heritage', page: 'about' },
+        { name: 'Instant Quote & Booking', page: 'booking' },
+        { name: 'Tempo Traveller Fleet', page: 'about' },
         { name: 'Travel Guides & Reviews', page: 'blog' },
         { name: 'Direct WhatsApp Contact', page: 'contact' },
       ]
     },
+    { name: 'BLOG', page: 'blog' },
     { name: 'CONTACT', page: 'contact' },
   ];
 
@@ -49,53 +49,7 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
 
   return (
     <>
-      {/* Top Contact Strip */}
-      <div className="header-topbar">
-        <div className="container">
-          <div className="topbar-content">
-            <div className="topbar-info">
-              <a href={`tel:${AGENCY_CONFIG.ownerPhone}`} className="topbar-contact-item">
-                <i className="fa-solid fa-phone"></i> 
-                <span>{AGENCY_CONFIG.displayPhone}</span>
-              </a>
-              <a href={`mailto:${AGENCY_CONFIG.email}`} className="topbar-contact-item topbar-email-item">
-                <i className="fa-solid fa-envelope"></i> 
-                <span>{AGENCY_CONFIG.email}</span>
-              </a>
-              <div className="topbar-live-badge">
-                <span className="live-dot"></span>
-                <span>24/7 Tour Support</span>
-              </div>
-            </div>
-
-            <div className="topbar-actions">
-              <a 
-                href={AGENCY_CONFIG.instagramUrl} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="topbar-action-btn insta" 
-                title="Follow on Instagram"
-              >
-                <i className="fa-brands fa-instagram"></i>
-                <span>@mahajan_rides_41</span>
-              </a>
-
-              <a 
-                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="topbar-action-btn whatsapp" 
-                title="Chat Directly on WhatsApp"
-              >
-                <i className="fa-brands fa-whatsapp"></i>
-                <span>WhatsApp Us</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Sticky Navbar */}
+      {/* Main Sticky Navbar - Clean Light Theme */}
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           {/* Logo */}
@@ -111,19 +65,19 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
                 src={logoImg} 
                 alt="Mahajanrides - Force Tempo Traveller Tours" 
                 className="logo-img" 
-                width="50" 
-                height="50" 
+                width="46" 
+                height="46" 
               />
             </div>
             <div className="logo-text-group">
               <div className="logo-text">MAHAJAN<span>RIDES</span></div>
-              <span className="logo-tagline">Force Tempo Traveller Services</span>
+              <span className="logo-tagline">Himachal Tour Services</span>
             </div>
           </button>
 
           {/* Desktop Navigation Links */}
           <ul className="navbar-nav desktop-nav">
-            {navLinks.filter(item => item.page !== 'pages').map((item) => (
+            {navLinks.map((item) => (
               <li 
                 key={item.name} 
                 className={`nav-item ${item.subLinks ? 'has-dropdown' : ''}`}
@@ -137,8 +91,8 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
                   onClick={(e) => handleLinkClick(item.page, e)}
                   style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                 >
-                  <span className="rolling-text">{item.name}</span>
-                  {item.subLinks && <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.68rem', marginLeft: '4px' }}></i>}
+                  <span>{item.name}</span>
+                  {item.subLinks && <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.62rem', marginLeft: '5px' }}></i>}
                 </button>
 
                 {item.subLinks && (
@@ -235,30 +189,6 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
                     </button>
                   </li>
                 ))}
-                <li className="mobile-cta-item" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <button 
-                    type="button"
-                    className="butn-book-drawer"
-                    onClick={() => {
-                      if (onBookClick) onBookClick();
-                      else handleLinkClick('booking');
-                      setMobileMenuOpen(false);
-                    }}
-                    id="mobile-drawer-book-btn"
-                  >
-                    <i className="fa-solid fa-calendar-check"></i>
-                    <span>Book Now (Instant Quote)</span>
-                  </button>
-                  <a 
-                    href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="butn-whatsapp-drawer"
-                  >
-                    <i className="fa-brands fa-whatsapp"></i>
-                    <span>Chat On WhatsApp</span>
-                  </a>
-                </li>
               </ul>
             </motion.div>
           )}

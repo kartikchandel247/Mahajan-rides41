@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
+import { saveClientInquiry } from '../lib/supabase';
 import './ContactPage.scss';
 
 export default function ContactPage({ onNavigateHome }) {
@@ -18,6 +19,17 @@ export default function ContactPage({ onNavigateHome }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Permanently record inquiry in Supabase database
+    saveClientInquiry({
+      name: formData.name,
+      phone: formData.phone,
+      destination: formData.destination,
+      pickupLocation: formData.pickup,
+      travelDate: formData.date,
+      groupSize: formData.passengers,
+      specialNotes: formData.notes
+    }).catch(err => console.warn('Supabase lead save error:', err));
     const query = `🏔️ *New Tour Inquiry from Mahajanrides Website*%0A%0A` +
       `👤 *Name:* ${encodeURIComponent(formData.name || 'Traveler')}%0A` +
       `📞 *Phone:* ${encodeURIComponent(formData.phone || 'Direct WhatsApp')}%0A` +
@@ -211,7 +223,7 @@ export default function ContactPage({ onNavigateHome }) {
                   </div>
 
                   <button type="submit" className="butn-whatsapp submit-quote-btn">
-                    <i className="fa-brands fa-whatsapp"></i> Generate WhatsApp Quote Request
+                    <i className="fa-brands fa-whatsapp"></i> Get Quote on WhatsApp
                   </button>
                 </form>
               </div>
