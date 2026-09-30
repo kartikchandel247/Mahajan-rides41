@@ -21,7 +21,7 @@ export default function Services({
       id: 'circuits',
       icon: 'fa-solid fa-map-location-dot',
       title: '18 Mountain Circuits',
-      desc: 'Complete all-inclusive tour packages across Manali, Rohtang Pass, Spiti Valley, Kasol, and Dharamshala.',
+      desc: 'All-inclusive packages for Manali, Rohtang, Spiti, Kasol & Dharamshala.',
       actionText: 'Explore Tours',
       onClick: onNavigateDestinations
     },
@@ -29,7 +29,7 @@ export default function Services({
       id: 'fleet',
       icon: 'fa-solid fa-van-shuttle',
       title: '17-Seater Force Luxury',
-      desc: 'Dedicated high-roof Force Tempo Traveller with 2x1 pushback reclining seats, ambient cabin lights & dual AC.',
+      desc: 'Pushback 2x1 reclining seats, ambient cabin lights & dual high-power AC.',
       actionText: 'Fleet Details',
       onClick: onNavigateAbout
     },
@@ -37,7 +37,7 @@ export default function Services({
       id: 'transfers',
       icon: 'fa-solid fa-plane-arrival',
       title: 'Doorstep Transfers',
-      desc: 'Punctual pickup and drop from Delhi Airport, Chandigarh Airport/Station, and Kalka Railway Station.',
+      desc: 'Punctual pickup & drop from Delhi, Chandigarh Airport & Kalka Station.',
       actionText: 'Book Transfer',
       onClick: () => onNavigateBooking ? onNavigateBooking('Doorstep Pickup & Transfer') : null
     },
@@ -45,7 +45,7 @@ export default function Services({
       id: 'permits',
       icon: 'fa-solid fa-mountain-sun',
       title: 'Permits & Chauffeurs',
-      desc: 'Local Himachali drivers with deep mountain terrain mastery, snow chain expertise, and pre-arranged Rohtang permits.',
+      desc: 'Certified local drivers, snow chains & pre-arranged Rohtang green permits.',
       actionText: 'Inquire Now',
       onClick: () => onNavigateBooking ? onNavigateBooking('Custom Mountain Tour') : null
     }
@@ -71,18 +71,16 @@ export default function Services({
           </p>
         </motion.div>
 
-        {/* 4 Services Cards Grid with 2 from left and 2 from right motion */}
+        {/* 4 Services Cards Grid with alternating left/right motion */}
         <div className="services-cards-grid">
           {servicesList.map((service, idx) => {
-            // In 2x2 tablet/mobile grid:
-            // Row 1: idx 0 (left) from left, idx 1 (right) from right
-            // Row 2: idx 2 (left) from left, idx 3 (right) from right
-            // On desktop (4 across):
-            // idx 0, 1 from left, idx 2, 3 from right
+            // Directional entrance:
+            // Mobile (1-col) & Tablet (2-col): alternating left (idx 0, 2) and right (idx 1, 3)
+            // Desktop (4-col): idx 0, 1 from left, idx 2, 3 from right
             const isFromLeft = isMobileOrTablet ? (idx % 2 === 0) : (idx < 2);
-            const initialX = isFromLeft ? -55 : 55;
+            const initialX = isFromLeft ? -45 : 45;
             const delay = isMobileOrTablet 
-              ? (Math.floor(idx / 2) * 0.12 + (idx % 2) * 0.08) 
+              ? (idx * 0.08 + 0.04) 
               : (idx * 0.09 + 0.05);
 
             return (
@@ -95,32 +93,43 @@ export default function Services({
                 onKeyDown={(e) => e.key === 'Enter' && service.onClick()}
                 initial={{ opacity: 0, x: initialX }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.15, margin: "0px 0px -30px 0px" }}
+                viewport={{ once: true, amount: 0.12, margin: "0px 0px -25px 0px" }}
                 transition={{ 
-                  duration: 0.65, 
+                  duration: 0.6, 
                   delay: delay, 
                   ease: [0.16, 1, 0.3, 1] 
                 }}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.98 }}
               >
-                {/* Floating Corner Arrow */}
-                <div className="arrow">
+                {/* Floating Corner Arrow (Signature Tourvex on Desktop) */}
+                <div className="arrow desktop-corner-arrow">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
                 </div>
 
-                {/* Service Icon */}
+                {/* Service Icon Badge */}
                 <div className="icon">
                   <i className={service.icon}></i>
                 </div>
 
-                {/* Content */}
-                <h5>{service.title}</h5>
-                <p>{service.desc}</p>
+                {/* Content Info */}
+                <div className="item-content">
+                  <h5>{service.title}</h5>
+                  <p>{service.desc}</p>
+                  
+                  {/* Desktop Action Link */}
+                  <div className="item-action desktop-action">
+                    <span>{service.actionText}</span>
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </div>
+                </div>
 
-                {/* Action Link */}
-                <div className="item-action">
-                  <span>{service.actionText}</span>
-                  <i className="fa-solid fa-arrow-right"></i>
+                {/* Mobile / Tablet Slim Action Pill & Arrow */}
+                <div className="mobile-slim-action" aria-label={service.actionText}>
+                  <span className="slim-action-label">{service.actionText}</span>
+                  <div className="slim-action-arrow">
+                    <i className="fa-solid fa-chevron-right"></i>
+                  </div>
                 </div>
               </motion.div>
             );
