@@ -32,3 +32,6 @@ test_screenshots/
 scratch/
 .vercel/
 
+
+.vercel
+.env*
