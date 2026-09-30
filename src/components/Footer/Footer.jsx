@@ -1,4 +1,5 @@
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
+import { openEmailInquiry, getGmailComposeUrl } from '../../utils/email';
 import logoImg from '../../assets/logo.png';
 import './Footer.scss';
 
@@ -60,6 +61,21 @@ export default function Footer({ onNavigate }) {
               >
                 <i className="fa-brands fa-whatsapp"></i>
                 <span>WhatsApp Quote</span>
+              </a>
+
+              <a 
+                href={getGmailComposeUrl()} 
+                onClick={(e) => {
+                  e.preventDefault();
+                  openEmailInquiry();
+                }}
+                target="_blank" 
+                rel="noreferrer" 
+                className="footer-cta-pill email"
+                title="Send inquiry email in Gmail"
+              >
+                <i className="fa-solid fa-envelope"></i>
+                <span>Email Us</span>
               </a>
 
               <a 

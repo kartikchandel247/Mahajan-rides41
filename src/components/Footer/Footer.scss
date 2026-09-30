@@ -186,6 +186,27 @@
         }
       }
 
+      &.email {
+        background: rgba(234, 67, 53, 0.12);
+        border: 1px solid rgba(234, 67, 53, 0.35);
+        color: #ffffff;
+
+        i {
+          color: #ea4335;
+        }
+
+        &:hover {
+          background: #ea4335;
+          border-color: #ea4335;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 15px rgba(234, 67, 53, 0.35);
+
+          i {
+            color: #ffffff;
+          }
+        }
+      }
+
       &.insta {
         background: rgba(220, 39, 67, 0.14);
         border: 1px solid rgba(220, 39, 67, 0.35);

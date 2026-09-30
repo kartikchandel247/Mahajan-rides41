@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
+import { openEmailInquiry, getGmailComposeUrl } from '../utils/email';
 import { saveClientInquiry } from '../lib/supabase';
 import './ContactPage.scss';
 
@@ -97,14 +98,24 @@ export default function ContactPage({ onNavigateHome }) {
                   </div>
                 </a>
 
-                <a href={`mailto:${AGENCY_CONFIG.email}`} className="contact-info-card">
+                <a 
+                  href={getGmailComposeUrl()} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openEmailInquiry();
+                  }}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="contact-info-card"
+                  title="Click to compose email in Gmail"
+                >
                   <div className="card-icon email">
                     <i className="fa-solid fa-envelope"></i>
                   </div>
                   <div className="card-details">
-                    <span>Email Us</span>
+                    <span>Email Us (Direct Gmail)</span>
                     <strong>{AGENCY_CONFIG.email}</strong>
-                    <small>Send detailed itinerary requests</small>
+                    <small>Tap to compose inquiry in Gmail</small>
                   </div>
                 </a>
 

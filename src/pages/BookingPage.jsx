@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import BookingBar from '../components/BookingBar/BookingBar';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
+import { openEmailInquiry, getGmailComposeUrl } from '../utils/email';
 import './BookingPage.scss';
 
 export default function BookingPage({ 
@@ -147,6 +148,20 @@ export default function BookingPage({
               >
                 <i className="fa-brands fa-whatsapp"></i>
                 <span>Chat On WhatsApp</span>
+              </a>
+              <a 
+                href={getGmailComposeUrl()} 
+                onClick={(e) => {
+                  e.preventDefault();
+                  openEmailInquiry();
+                }}
+                target="_blank" 
+                rel="noreferrer" 
+                className="btn-email-direct"
+                title="Send inquiry email in Gmail"
+              >
+                <i className="fa-solid fa-envelope"></i>
+                <span>Email Atish Mahajan</span>
               </a>
             </div>
           </div>
