@@ -6,7 +6,7 @@ import Faq from '../components/Faq/Faq';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import './AboutPage.scss';
 
-export default function AboutPage({ onNavigateHome, onNavigateDestinations, onNavigateContact }) {
+export default function AboutPage({ onNavigateHome, onNavigateDestinations, _onNavigateContact }) {
   const trustPillars = [
     {
       icon: "fa-solid fa-mountain",
@@ -63,14 +63,26 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, onNa
                 </div>
               </div>
 
-              <div className="story-img-secondary">
-                <img 
-                  src="/vehicle/tempo_traveller_interior.png" 
-                  alt="Force Tempo Traveller Luxury Interior" 
-                />
-                <span className="interior-badge">
-                  <i className="fa-solid fa-couch"></i> 17-Seater Pushback Seats
-                </span>
+              <div className="story-img-subgrid">
+                <div className="story-img-secondary">
+                  <img 
+                    src="/vehicle/tempo_traveller_seats.png" 
+                    alt="Force Tempo Traveller Luxury 17-Seater Pushback Seats" 
+                  />
+                  <span className="interior-badge">
+                    <i className="fa-solid fa-couch"></i> 17-Seater Pushback Seats
+                  </span>
+                </div>
+
+                <div className="story-img-secondary">
+                  <img 
+                    src="/vehicle/tempo_traveller_cockpit.png" 
+                    alt="Force Tempo Traveller Luxury Cockpit" 
+                  />
+                  <span className="interior-badge badge-cockpit">
+                    <i className="fa-solid fa-gauge-high"></i> Luxury Cockpit
+                  </span>
+                </div>
               </div>
             </motion.div>
 

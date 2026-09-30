@@ -1,54 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import { BLOG_PREVIEW_DATA } from '../data/toursData';
-import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
+import { fetchCustomerReviews } from '../lib/supabase';
+import FeedbackModal from '../components/FeedbackModal/FeedbackModal';
 import './BlogPage.scss';
 
-export default function BlogPage({ onNavigateHome, onNavigateDestinations }) {
+export default function BlogPage({ onNavigateHome, _onNavigateDestinations }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
-  const [feedbacks, setFeedbacks] = useState([
-    {
-      id: 1,
-      name: "Rohit & Ananya Verma",
-      city: "Delhi NCR",
-      route: "Manali, Solang & Rohtang Pass 5D/4N",
-      rating: 5,
-      date: "Recent Tour",
-      comment: "Our driver was extremely professional and courteous. The 17-seater Force Tempo Traveller was spotless and drove smoothly through mountain curves. Highly recommend Mahajanrides!"
-    },
-    {
-      id: 2,
-      name: "Vikram Singhania",
-      city: "Chandigarh",
-      route: "Spiti Valley High Passes Circuit",
-      rating: 5,
-      date: "Recent Tour",
-      comment: "Best travel agency for Himachal mountain road trips! Punctual pickup from Chandigarh airport and tailored the itinerary exactly to our family's pace."
-    },
-    {
-      id: 3,
-      name: "Meenakshi Iyer",
-      city: "Bengaluru",
-      route: "Dharamshala, McLeod Ganj & Dalhousie",
-      rating: 5,
-      date: "Recent Tour",
-      comment: "Traveling with senior citizens and kids was so comfortable thanks to the pushback seats and gentle mountain driving. 10/10 service!"
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  // Load reviews from Supabase backend on mount
+  useEffect(() => {
+    async function loadCloudReviews() {
+      try {
+        const res = await fetchCustomerReviews();
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          const cloudFeedbacks = res.data.map((r) => ({
+            id: r.id,
+            name: r.name,
+            city: r.city || "Valued Passenger",
+            route: r.tour || "Himachal Mountain Route",
+            rating: Number(r.rating) || 5,
+            date: r.created_at ? new Date(r.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : "Verified Review",
+            comment: r.comment,
+            photo: r.photo || null
+          }));
+          setFeedbacks(cloudFeedbacks);
+        }
+      } catch (err) {
+        console.warn('Could not load blog feedbacks from Supabase:', err);
+      }
     }
-  ]);
+    loadCloudReviews();
+  }, []);
 
-  const [feedbackForm, setFeedbackForm] = useState({
-    name: '',
-    city: '',
-    route: 'Manali, Solang Valley & Atal Tunnel',
-    rating: 5,
-    comment: ''
-  });
 
   const categories = [
     'All',
@@ -72,35 +62,7 @@ export default function BlogPage({ onNavigateHome, onNavigateDestinations }) {
     });
   };
 
-  const handleFeedbackSubmit = (e) => {
-    e.preventDefault();
-    if (!feedbackForm.name || !feedbackForm.comment) return;
 
-    const newFeedback = {
-      id: Date.now(),
-      name: feedbackForm.name,
-      city: feedbackForm.city || "Valued Passenger",
-      route: feedbackForm.route,
-      rating: Number(feedbackForm.rating),
-      date: "Just now",
-      comment: feedbackForm.comment
-    };
-
-    setFeedbacks([newFeedback, ...feedbacks]);
-    setFeedbackSuccess(true);
-    setFeedbackForm({
-      name: '',
-      city: '',
-      route: 'Manali, Solang Valley & Atal Tunnel',
-      rating: 5,
-      comment: ''
-    });
-
-    setTimeout(() => {
-      setFeedbackSuccess(false);
-      setFeedbackOpen(false);
-    }, 2500);
-  };
 
   return (
     <div className="blog-page">
@@ -231,34 +193,77 @@ export default function BlogPage({ onNavigateHome, onNavigateDestinations }) {
             </button>
           </div>
 
-          <div className="feedback-cards-grid">
-            {feedbacks.map((f) => (
-              <div key={f.id} className="review-box">
-                <div className="review-box-top">
-                  <div>
-                    <h4>{f.name}</h4>
-                    <span className="review-city"><i className="fa-solid fa-location-dot"></i> {f.city}</span>
-                  </div>
-                  <div className="review-stars">
-                    {[...Array(f.rating)].map((_, i) => (
-                      <i key={i} className="fa-solid fa-star"></i>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="review-route-badge">
-                  <i className="fa-solid fa-route"></i> {f.route}
-                </div>
-
-                <p className="review-text">"{f.comment}"</p>
-
-                <div className="review-box-footer">
-                  <span className="verified-badge"><i className="fa-solid fa-circle-check"></i> Verified Rider</span>
-                  <span className="review-date">{f.date}</span>
-                </div>
+          {feedbacks.length === 0 ? (
+            <div className="no-feedbacks-card">
+              <div className="no-feedbacks-icon">
+                <i className="fa-regular fa-comments"></i>
               </div>
-            ))}
-          </div>
+              <h3>Be the First to Share Your Travel Story</h3>
+              <p>Traveled on our Himachal routes recently? Share your honest road trip review and tips for future travelers!</p>
+              <button 
+                type="button" 
+                className="butn-arrow"
+                onClick={() => setFeedbackOpen(true)}
+              >
+                <span className="btn-text">Share Your Review</span>
+                <span className="arrow-wrap">
+                  <span className="arrow-inner">
+                    <i className="fa-solid fa-pen-to-square"></i>
+                    <i className="fa-solid fa-pen-to-square"></i>
+                  </span>
+                </span>
+              </button>
+            </div>
+          ) : (
+            <div className="feedback-cards-grid">
+              {feedbacks.map((f) => (
+                <div key={f.id} className={`review-box ${f.photo ? 'has-review-photo' : ''}`}>
+                  {f.photo && (
+                    <div className="review-photo-container">
+                      <img src={f.photo} alt={`${f.name}'s Himachal trip memory`} className="review-card-photo" loading="lazy" />
+                      <div className="photo-card-overlay">
+                        <div className="overlay-stars-row">
+                          {[...Array(f.rating || 5)].map((_, i) => (
+                            <i key={i} className="fa-solid fa-star"></i>
+                          ))}
+                        </div>
+                        <span className="overlay-photo-badge">
+                          <i className="fa-solid fa-camera"></i> Trip Memory
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="review-box-inner">
+                    <div className="review-box-top">
+                      <div>
+                        <h4>{f.name}</h4>
+                        <span className="review-city"><i className="fa-solid fa-location-dot"></i> {f.city}</span>
+                      </div>
+                      {!f.photo && (
+                        <div className="review-stars">
+                          {[...Array(f.rating || 5)].map((_, i) => (
+                            <i key={i} className="fa-solid fa-star"></i>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="review-route-badge">
+                      <i className="fa-solid fa-route"></i> {f.route}
+                    </div>
+
+                    <p className="review-text">"{f.comment}"</p>
+
+                    <div className="review-box-footer">
+                      <span className="verified-badge"><i className="fa-solid fa-circle-check"></i> Verified Rider</span>
+                      <span className="review-date">{f.date}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -321,120 +326,13 @@ export default function BlogPage({ onNavigateHome, onNavigateDestinations }) {
       </AnimatePresence>
 
       {/* 6. Leave Feedback Modal */}
-      <AnimatePresence>
-        {feedbackOpen && (
-          <div className="feedback-modal-backdrop" onClick={() => setFeedbackOpen(false)}>
-            <motion.div 
-              className="feedback-modal-box"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="modal-header">
-                <div>
-                  <h3>Share Your Travel Feedback</h3>
-                  <p>Help future travelers choose their dream mountain vacation</p>
-                </div>
-                <button className="modal-close-btn" onClick={() => setFeedbackOpen(false)}>
-                  <i className="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-
-              {feedbackSuccess ? (
-                <div className="feedback-success-state">
-                  <i className="fa-solid fa-circle-check text-success"></i>
-                  <h4>Thank You for Your Feedback!</h4>
-                  <p>Your review has been recorded and added to our community stories.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleFeedbackSubmit} className="feedback-form">
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label>Your Full Name *</label>
-                      <input 
-                        type="text" 
-                        placeholder="e.g. Rahul Sharma" 
-                        value={feedbackForm.name} 
-                        onChange={(e) => setFeedbackForm({...feedbackForm, name: e.target.value})}
-                        required 
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Your City / State</label>
-                      <input 
-                        type="text" 
-                        placeholder="e.g. Delhi NCR / Mumbai" 
-                        value={feedbackForm.city} 
-                        onChange={(e) => setFeedbackForm({...feedbackForm, city: e.target.value})}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label>Tour / Route Taken</label>
-                      <select 
-                        value={feedbackForm.route} 
-                        onChange={(e) => setFeedbackForm({...feedbackForm, route: e.target.value})}
-                      >
-                        <option value="Manali, Solang Valley & Atal Tunnel">Manali, Solang &amp; Atal Tunnel</option>
-                        <option value="Kullu, Kasol & Manikaran Sahib">Kullu, Kasol &amp; Manikaran</option>
-                        <option value="Shimla, Kufri & Narkanda Hills">Shimla, Kufri &amp; Narkanda</option>
-                        <option value="Dharamshala, McLeod Ganj & Dalhousie">Dharamshala &amp; McLeod Ganj</option>
-                        <option value="Spiti Valley & Lahaul Circuit">Spiti Valley &amp; Lahaul Circuit</option>
-                        <option value="Bir Billing & Palampur Tea Gardens">Bir Billing &amp; Palampur</option>
-                        <option value="Chamba & Khajjiar Sightseeing">Chamba &amp; Khajjiar</option>
-                        <option value="Custom Himachal Family Package">Custom Himachal Package</option>
-                      </select>
-                    </div>
-
-                    <div className="form-group">
-                      <label>Rating (1 to 5 Stars)</label>
-                      <div className="star-picker">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <button
-                            type="button"
-                            key={star}
-                            className={`star-btn ${star <= feedbackForm.rating ? 'active' : ''}`}
-                            onClick={() => setFeedbackForm({...feedbackForm, rating: star})}
-                          >
-                            <i className="fa-solid fa-star"></i>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label>Your Trip Experience / Review *</label>
-                    <textarea 
-                      rows="4" 
-                      placeholder="Share details about the driver, vehicle condition, punctuality, and overall trip memories..."
-                      value={feedbackForm.comment}
-                      onChange={(e) => setFeedbackForm({...feedbackForm, comment: e.target.value})}
-                      required
-                    ></textarea>
-                  </div>
-
-                  <div className="modal-actions-row">
-                    <button type="submit" className="butn-arrow">
-                      <span className="btn-text">Submit Review</span>
-                      <span className="arrow-wrap">
-                        <span className="arrow-inner">
-                          <i className="fa-solid fa-check"></i>
-                          <i className="fa-solid fa-check"></i>
-                        </span>
-                      </span>
-                    </button>
-                  </div>
-                </form>
-              )}
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <FeedbackModal 
+        isOpen={feedbackOpen}
+        onClose={() => setFeedbackOpen(false)}
+        onFeedbackAdded={(newFeedback) => {
+          setFeedbacks(prev => [newFeedback, ...prev]);
+        }}
+      />
     </div>
   );
 }

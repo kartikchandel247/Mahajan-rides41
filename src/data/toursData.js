@@ -550,38 +550,7 @@ export const FEATURED_TOURS = [
   }
 ];
 
-export const TESTIMONIALS_DATA = [
-  {
-    id: 1,
-    tour: "Manali & Atal Tunnel Tour",
-    name: "Aman & Sneha Sharma",
-    city: "Delhi NCR",
-    rating: 5,
-    quote: "Our 5-day Manali and Sissu trip with Mahajanrides was spectacular! The driver was a true mountain expert on the snowy curves of Rohtang and Atal Tunnel. The 17-seater Force Tempo Traveller was spotless and very comfortable for our family.",
-    image: "/places/manali.jpg",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
-  },
-  {
-    id: 2,
-    tour: "Kasol & Manikaran Pilgrimage",
-    name: "Gurpreet & Harinder Singh",
-    city: "Chandigarh",
-    rating: 5,
-    quote: "Prompt pickup from Chandigarh airport directly to Manikaran Sahib. Having a local Himachali driver who knows every bypass and restaurant made our family journey effortless.",
-    image: "/places/manikaran.jpg",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
-  },
-  {
-    id: 3,
-    tour: "Dharamshala & Khajjiar Trip",
-    name: "Dr. Vikram & Neha Sethi",
-    city: "Mumbai",
-    rating: 5,
-    quote: "Khajjiar and HPCA stadium were dream destinations. Mahajanrides provided competitive pricing on WhatsApp and customized our tea garden stops in Palampur smoothly.",
-    image: "/places/chamba.jpg",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
-  }
-];
+export const TESTIMONIALS_DATA = [];
 
 export const FAQ_DATA = [
   {

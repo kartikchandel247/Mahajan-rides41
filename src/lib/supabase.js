@@ -55,6 +55,29 @@ export async function saveClientInquiry(inquiryData) {
 }
 
 /**
+ * Parse review item from Supabase database to extract optional photo
+ */
+export function parseReviewPayload(item) {
+  if (!item) return item;
+  let photo = item.photo_url || item.photo || null;
+  let cleanComment = item.comment || '';
+
+  if (!photo && cleanComment.startsWith('__PHOTO__:')) {
+    const endIdx = cleanComment.indexOf('__\n');
+    if (endIdx !== -1) {
+      photo = cleanComment.substring(10, endIdx);
+      cleanComment = cleanComment.substring(endIdx + 3);
+    }
+  }
+
+  return {
+    ...item,
+    photo,
+    comment: cleanComment
+  };
+}
+
+/**
  * Fetch permanently saved passenger reviews from Supabase
  */
 export async function fetchCustomerReviews() {
@@ -69,7 +92,8 @@ export async function fetchCustomerReviews() {
       .order('created_at', { ascending: false });
 
     if (error) throw error;
-    return { success: true, data: data || [] };
+    const parsedData = (data || []).map(parseReviewPayload);
+    return { success: true, data: parsedData };
   } catch (err) {
     console.warn('[Supabase Client] Could not fetch reviews:', err.message);
     return { success: false, data: [] };
@@ -86,23 +110,29 @@ export async function saveCustomerReview(reviewData) {
   }
 
   try {
+    const rawComment = reviewData.quote?.trim() || reviewData.comment?.trim() || '';
+    const finalComment = reviewData.photo 
+      ? `__PHOTO__:${reviewData.photo}__\n${rawComment}` 
+      : rawComment;
+
+    const insertPayload = {
+      name: reviewData.name.trim(),
+      city: reviewData.city?.trim() || 'Himachal Passenger',
+      tour: reviewData.tour || 'Custom Himachal Round Trip',
+      rating: Number(reviewData.rating) || 5,
+      comment: finalComment,
+      verified: true,
+      created_at: new Date().toISOString()
+    };
+
     const { data, error } = await supabase
       .from('reviews')
-      .insert([
-        {
-          name: reviewData.name.trim(),
-          city: reviewData.city?.trim() || 'Himachal Passenger',
-          tour: reviewData.tour || 'Custom Himachal Round Trip',
-          rating: Number(reviewData.rating) || 5,
-          comment: reviewData.quote?.trim() || reviewData.comment?.trim(),
-          verified: true,
-          created_at: new Date().toISOString()
-        }
-      ])
+      .insert([insertPayload])
       .select();
 
     if (error) throw error;
-    return { success: true, data };
+    const parsedReturn = (data || []).map(parseReviewPayload);
+    return { success: true, data: parsedReturn };
   } catch (err) {
     console.error('[Supabase Client] Failed to save review:', err);
     return { success: false, error: err.message };

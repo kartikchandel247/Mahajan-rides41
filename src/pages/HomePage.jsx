@@ -6,7 +6,6 @@ import About2 from '../components/About2/About2';
 import Services from '../components/Services/Services';
 import ExploreBanner from '../components/ExploreBanner/ExploreBanner';
 import { FEATURED_TOURS } from '../data/toursData';
-import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
 import './HomePage.scss';
 

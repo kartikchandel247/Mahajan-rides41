@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
-import { openWhatsAppInquiry } from '../utils/whatsapp';
 import { openEmailInquiry, getGmailComposeUrl } from '../utils/email';
 import { saveClientInquiry } from '../lib/supabase';
 import './ContactPage.scss';

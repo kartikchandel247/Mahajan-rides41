@@ -11,7 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/server": "^1.4.1",
     "@supabase/supabase-js": "^2.109.0",
     "framer-motion": "^13.4.5",
     "react": "^19.2.8",

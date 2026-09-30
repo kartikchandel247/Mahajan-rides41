@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AGENCY_CONFIG } from '../../config/agencyConfig';
 import logoImg from '../../assets/logo.png';
 import './Navbar.scss';
 
-export default function Navbar({ activePage = 'home', onNavigate, onBookClick }) {
+export default function Navbar({ activePage = 'home', onNavigate, _onBookClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [pagesDropdownOpen, setPagesDropdownOpen] = useState(false);
@@ -126,22 +125,8 @@ export default function Navbar({ activePage = 'home', onNavigate, onBookClick })
             ))}
           </ul>
 
-          {/* CTA & Mobile Toggle */}
+          {/* Mobile Toggle */}
           <div className="nav-actions">
-            <button 
-              className="butn-arrow" 
-              onClick={() => onBookClick ? onBookClick() : handleLinkClick('booking')}
-              id="header-book-btn"
-            >
-              <span className="btn-text">Book Now</span>
-              <span className="arrow-wrap">
-                <span className="arrow-inner">
-                  <i className="fa-solid fa-arrow-right"></i>
-                  <i className="fa-solid fa-arrow-right"></i>
-                </span>
-              </span>
-            </button>
-
             <button 
               className="mobile-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

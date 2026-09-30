@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import BookingBar from '../components/BookingBar/BookingBar';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
@@ -9,19 +7,9 @@ import './BookingPage.scss';
 export default function BookingPage({ 
   selectedTour = '', 
   onNavigateHome, 
-  onNavigateDestinations, 
-  onNavigateContact 
+  _onNavigateDestinations, 
+  _onNavigateContact 
 }) {
-  useEffect(() => {
-    // Smooth scroll to quotation bar when landing on booking page
-    const timer = setTimeout(() => {
-      const el = document.getElementById('bookingBar');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 150);
-    return () => clearTimeout(timer);
-  }, [selectedTour]);
 
   return (
     <div className="booking-page">

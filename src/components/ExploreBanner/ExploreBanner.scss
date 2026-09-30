@@ -154,6 +154,21 @@
 }
 
 /* Rotating Seal Stamp with Down Arrow */
+.stamp-seal-parallax-outer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto -14px;
+  pointer-events: auto;
+
+  @include mobile {
+    margin: 0 auto -8px;
+  }
+}
+
 .stamp-seal-wrap {
   cursor: pointer;
   position: relative;

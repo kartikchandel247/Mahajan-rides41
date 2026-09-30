@@ -25,6 +25,9 @@ export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateA
     restDelta: 0.001
   });
 
+  // Dynamic motion for circle stamp: rises from down to up in the middle of the cards
+  const circleWaveY = useTransform(smoothProgress, [0, 1], [65, -50]);
+
   // Trending opposing wave motion for cards as user scrolls or swipes:
   // Even cards float in phase A:
   const cardWaveA = useTransform(smoothProgress, [0, 1], [-16, 16]);
@@ -98,40 +101,53 @@ export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateA
               </h2>
             </motion.div>
 
-            {/* Rotating Circular Stamp with Down Arrow */}
+            {/* Rotating Circular Stamp with Down Arrow - Rising Motion from Down to Up in Middle of Cards */}
             <motion.div 
-              className="stamp-seal-wrap"
-              onClick={handleScrollDown}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && handleScrollDown()}
-              title="Scroll down to popular circuits"
-              aria-label="Scroll down to popular circuits"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.94 }}
+              className="stamp-seal-parallax-outer"
+              style={{ y: circleWaveY }}
             >
-              <div className="stamp-circle-disc">
-                <svg className="rotating-text-svg" viewBox="0 0 160 160">
-                  <path
-                    id="stampCirclePath"
-                    d="M 80, 80 m -56, 0 a 56,56 0 1,1 112,0 a 56,56 0 1,1 -112,0"
-                    fill="none"
-                  />
-                  <text>
-                    <textPath href="#stampCirclePath" startOffset="0%">
-                      NATURE ESCAPE • CULTURAL PATHS • MOUNTAIN TRAILS •
-                    </textPath>
-                  </text>
-                </svg>
+              <motion.div 
+                className="stamp-seal-wrap"
+                onClick={handleScrollDown}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleScrollDown()}
+                title="Scroll down to popular circuits"
+                aria-label="Scroll down to popular circuits"
+                initial={{ opacity: 0, y: 55, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.94 }}
+              >
+                <motion.div 
+                  className="stamp-circle-disc"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <svg className="rotating-text-svg" viewBox="0 0 160 160">
+                    <path
+                      id="stampCirclePath"
+                      d="M 80, 80 m -56, 0 a 56,56 0 1,1 112,0 a 56,56 0 1,1 -112,0"
+                      fill="none"
+                    />
+                    <text>
+                      <textPath href="#stampCirclePath" startOffset="0%">
+                        NATURE ESCAPE • CULTURAL PATHS • MOUNTAIN TRAILS •
+                      </textPath>
+                    </text>
+                  </svg>
 
-                <div className="stamp-center-arrow">
-                  <i className="fa-solid fa-arrow-down"></i>
-                </div>
-              </div>
+                  <motion.div 
+                    className="stamp-center-arrow"
+                    animate={{ y: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <i className="fa-solid fa-arrow-down"></i>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             </motion.div>
 
             {/* 4 Feature Cards Fitted Directly Inside the Image Banner */}

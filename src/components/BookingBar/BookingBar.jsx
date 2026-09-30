@@ -5,12 +5,9 @@ import { FEATURED_TOURS } from '../../data/toursData';
 import { saveClientInquiry } from '../../lib/supabase';
 import './BookingBar.scss';
 
-export default function BookingBar({ initialDestination = "", className = "" }) {
-  // Default date: 3 days ahead
-  const defaultDate = new Date();
-  defaultDate.setDate(defaultDate.getDate() + 3);
-  const todayString = new Date().toISOString().split('T')[0];
+const TODAY_STRING = new Date().toISOString().split('T')[0];
 
+export default function BookingBar({ initialDestination = "", className = "" }) {
   const [formData, setFormData] = useState({
     destination: initialDestination || "",
     date: "",
@@ -21,7 +18,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
 
   useEffect(() => {
     if (initialDestination) {
-      setFormData(prev => ({ ...prev, destination: initialDestination }));
+      setFormData(prev => (prev.destination === initialDestination ? prev : { ...prev, destination: initialDestination }));
     }
   }, [initialDestination]);
 
@@ -94,7 +91,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   type="date" 
                   id="date" 
                   name="date" 
-                  min={todayString}
+                  min={TODAY_STRING}
                   value={formData.date} 
                   onChange={handleChange}
                   required 

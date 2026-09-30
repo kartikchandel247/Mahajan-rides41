@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PageBanner from '../components/PageBanner/PageBanner';
 import BookingBar from '../components/BookingBar/BookingBar';
 import { FEATURED_TOURS } from '../data/toursData';
-import { openWhatsAppInquiry } from '../utils/whatsapp';
 import './DestinationsPage.scss';
 
-export default function DestinationsPage({ onNavigateHome, onNavigateContact, onNavigateBooking }) {
+export default function DestinationsPage({ onNavigateHome, _onNavigateContact, onNavigateBooking }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedPlace, setSelectedPlace] = useState('All Places');
   const [searchTerm, setSearchTerm] = useState('');

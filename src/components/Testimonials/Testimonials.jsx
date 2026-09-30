@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TESTIMONIALS_DATA } from '../../data/toursData';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
 import { fetchCustomerReviews, saveCustomerReview } from '../../lib/supabase';
 import './Testimonials.scss';
@@ -27,20 +26,15 @@ const RATING_LABELS = {
 export default function Testimonials() {
   const [reviews, setReviews] = useState(() => {
     try {
-      const saved = localStorage.getItem('mahajan_rides_user_reviews');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return [...parsed, ...TESTIMONIALS_DATA];
-        }
-      }
+      localStorage.removeItem('mahajan_rides_user_reviews');
+      localStorage.removeItem('mahajan_rides_reviews_v1');
     } catch {
-      // fallback to initial
+      // ignore
     }
-    return TESTIMONIALS_DATA;
+    return [];
   });
 
-  const [activeId, setActiveId] = useState(TESTIMONIALS_DATA[0]?.id || 1);
+  const [activeId, setActiveId] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [activeTab, setActiveTab] = useState('all'); // 'all' | 'stories' | 'recent'
   const [hoverRating, setHoverRating] = useState(0);
@@ -54,11 +48,11 @@ export default function Testimonials() {
     quote: ''
   });
 
-  // Calculate statistics
-  const totalReviewsCount = 120 + reviews.length - TESTIMONIALS_DATA.length;
-  const averageRating = (
-    reviews.reduce((acc, r) => acc + (r.rating || 5), 0) / reviews.length
-  ).toFixed(1);
+  // Calculate authentic statistics
+  const totalReviewsCount = reviews.length;
+  const averageRating = reviews.length > 0 
+    ? (reviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0) / reviews.length).toFixed(1)
+    : "5.0";
 
   // Fetch permanently saved reviews from Supabase on mount
   useEffect(() => {
@@ -76,10 +70,14 @@ export default function Testimonials() {
             date: r.created_at ? new Date(r.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : 'Verified Trip',
             verified: r.verified ?? true,
             isUserAdded: true,
-            image: '/places/himachal_mountain_scenery.jpg',
+            image: r.photo || '/places/himachal_mountain_scenery.jpg',
+            photo: r.photo || null,
             avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(r.name)}&backgroundColor=2095ae,0f2454`
           }));
-          setReviews([...cloudReviews, ...TESTIMONIALS_DATA]);
+          setReviews(cloudReviews);
+          if (cloudReviews[0]?.id) {
+            setActiveId(cloudReviews[0].id);
+          }
         }
       } catch (err) {
         console.warn('Could not load Supabase reviews:', err);
@@ -128,7 +126,7 @@ export default function Testimonials() {
     // 2. Also save to localStorage as instant offline fallback
     try {
       const userAddedOnly = updated.filter((r) => r.isUserAdded);
-      localStorage.setItem('mahajan_rides_user_reviews', JSON.stringify(userAddedOnly));
+      localStorage.setItem('mahajan_rides_reviews_v1', JSON.stringify(userAddedOnly));
     } catch (err) {
       console.error('Could not save to localStorage', err);
     }
@@ -184,14 +182,14 @@ export default function Testimonials() {
           {/* Rating Summary & Add Review CTA */}
           <div className="reviews-summary-actions">
             <div className="rating-score-pill">
-              <div className="score-num">{averageRating}</div>
+              <div className="score-num">{totalReviewsCount > 0 ? averageRating : "5.0"}</div>
               <div className="score-meta">
                 <div className="stars-row">
                   {[...Array(5)].map((_, i) => (
                     <i key={i} className="fa-solid fa-star"></i>
                   ))}
                 </div>
-                <span>{totalReviewsCount}+ Verified Reviews</span>
+                <span>{totalReviewsCount > 0 ? `${totalReviewsCount} Verified Reviews` : "Be The First To Review"}</span>
               </div>
             </div>
 
@@ -376,150 +374,187 @@ export default function Testimonials() {
           )}
         </AnimatePresence>
 
-        {/* Tab Filters */}
-        <div className="reviews-tab-nav">
-          <button 
-            type="button" 
-            className={`tab-btn ${activeTab === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveTab('all')}
-          >
-            <span>All Reviews</span>
-            <span className="count-pill">{reviews.length}</span>
-          </button>
+        {reviews.length === 0 ? (
+          <div className="no-reviews-card">
+            <div className="no-reviews-icon">
+              <i className="fa-regular fa-comments"></i>
+            </div>
+            <h3>Be the First to Review Your Journey</h3>
+            <p>
+              Recently traveled in our 17-seater luxury Force Tempo Traveller? Share your mountain road trip memories, driver rating, and feedback to help fellow travelers!
+            </p>
+            <div className="no-reviews-btn-row">
+              <button 
+                type="button" 
+                className="btn-add-review"
+                onClick={() => {
+                  setShowForm(true);
+                  setSubmittedSuccess(false);
+                }}
+              >
+                <i className="fa-solid fa-pen-to-square"></i>
+                <span>Write a Passenger Review</span>
+              </button>
 
-          <button 
-            type="button" 
-            className={`tab-btn ${activeTab === 'stories' ? 'active' : ''}`}
-            onClick={() => setActiveTab('stories')}
-          >
-            <span>Featured Spotlight</span>
-          </button>
+              <a 
+                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${encodeURIComponent("Hi Atish ji, I would like to share a review for our Himachal trip with Mahajan Rides.")}`}
+                target="_blank" 
+                rel="noreferrer" 
+                className="btn-whatsapp-action"
+              >
+                <i className="fa-brands fa-whatsapp"></i>
+                <span>Share via WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Tab Filters */}
+            <div className="reviews-tab-nav">
+              <button 
+                type="button" 
+                className={`tab-btn ${activeTab === 'all' ? 'active' : ''}`}
+                onClick={() => setActiveTab('all')}
+              >
+                <span>All Reviews</span>
+                <span className="count-pill">{reviews.length}</span>
+              </button>
 
-          {userAddedReviews.length > 0 && (
-            <button 
-              type="button" 
-              className={`tab-btn ${activeTab === 'recent' ? 'active' : ''}`}
-              onClick={() => setActiveTab('recent')}
-            >
-              <span>Guest Submissions</span>
-              <span className="count-pill highlight">{userAddedReviews.length}</span>
-            </button>
-          )}
-        </div>
+              <button 
+                type="button" 
+                className={`tab-btn ${activeTab === 'stories' ? 'active' : ''}`}
+                onClick={() => setActiveTab('stories')}
+              >
+                <span>Featured Spotlight</span>
+              </button>
 
-        {/* Tab Content: Spotlight Expandable Accordions */}
-        {(activeTab === 'stories' || activeTab === 'all') && (
-          <div className="featured-stories-block">
-            {activeTab === 'all' && (
-              <div className="block-subtitle">Featured Passenger Journeys</div>
-            )}
-            <div className="testimonials-expand-container">
-              {featuredStories.map((t) => {
-                const isActive = activeId === t.id;
+              {userAddedReviews.length > 0 && (
+                <button 
+                  type="button" 
+                  className={`tab-btn ${activeTab === 'recent' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('recent')}
+                >
+                  <span>Guest Submissions</span>
+                  <span className="count-pill highlight">{userAddedReviews.length}</span>
+                </button>
+              )}
+            </div>
 
-                return (
-                  <div 
-                    key={t.id} 
-                    className={`testi-expand-item ${isActive ? 'active' : ''}`}
-                    onMouseEnter={() => setActiveId(t.id)}
-                    onClick={() => setActiveId(t.id)}
-                  >
-                    <div className="testi-img-wrap">
-                      <img src={t.image} alt={t.tour} loading="lazy" />
-                    </div>
+            {/* Tab Content: Spotlight Expandable Accordions */}
+            {(activeTab === 'stories' || activeTab === 'all') && featuredStories.length > 0 && (
+              <div className="featured-stories-block">
+                {activeTab === 'all' && (
+                  <div className="block-subtitle">Featured Passenger Journeys</div>
+                )}
+                <div className="testimonials-expand-container">
+                  {featuredStories.map((t) => {
+                    const isActive = activeId === t.id;
 
-                    <div className="testi-cont">
-                      <div className="testi-cont-inner">
-                        <span className="testi-tour-tag">Verified Trip</span>
-                        <h3 className="testi-tour-name">{t.tour}</h3>
-                        
-                        <div className="testi-rating">
-                          {[...Array(t.rating || 5)].map((_, i) => (
-                            <i key={i} className="fa-solid fa-star"></i>
-                          ))}
+                    return (
+                      <div 
+                        key={t.id} 
+                        className={`testi-expand-item ${isActive ? 'active' : ''}`}
+                        onMouseEnter={() => setActiveId(t.id)}
+                        onClick={() => setActiveId(t.id)}
+                      >
+                        <div className="testi-img-wrap">
+                          <img src={t.image || '/places/himachal_mountain_scenery.jpg'} alt={t.tour} loading="lazy" />
                         </div>
 
-                        <p className="testi-quote">"{t.quote}"</p>
+                        <div className="testi-cont">
+                          <div className="testi-cont-inner">
+                            <span className="testi-tour-tag">Verified Trip</span>
+                            <h3 className="testi-tour-name">{t.tour}</h3>
+                            
+                            <div className="testi-rating">
+                              {[...Array(t.rating || 5)].map((_, i) => (
+                                <i key={i} className="fa-solid fa-star"></i>
+                              ))}
+                            </div>
 
-                        <div className="testi-travellers-row">
-                          <div className="traveller-avatars">
-                            <img src={t.avatar} alt={t.name} />
-                            <span className="avatars-badge">
-                              <i className="fa-solid fa-check"></i>
-                            </span>
-                          </div>
-                          <div className="traveller-info">
-                            <strong>{t.name}</strong>
-                            <small>{t.city}</small>
+                            <p className="testi-quote">"{t.quote}"</p>
+
+                            <div className="testi-travellers-row">
+                              <div className="traveller-avatars">
+                                <img src={t.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(t.name)}&backgroundColor=2095ae,0f2454`} alt={t.name} />
+                                <span className="avatars-badge">
+                                  <i className="fa-solid fa-check"></i>
+                                </span>
+                              </div>
+                              <div className="traveller-info">
+                                <strong>{t.name}</strong>
+                                <small>{t.city}</small>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Grid of Community Reviews (Recent & All) */}
-        {(activeTab === 'all' || activeTab === 'recent') && (
-          <div className="community-reviews-grid-wrap">
-            <div className="block-subtitle">
-              {activeTab === 'recent' ? 'Recent Passenger Feedbacks' : 'Community Traveler Feedbacks'}
-            </div>
-
-            <div className="reviews-cards-grid">
-              {(activeTab === 'recent' ? userAddedReviews : reviews).map((rev) => (
-                <div 
-                  key={rev.id} 
-                  className={`review-card-item ${rev.isUserAdded ? 'user-submitted' : ''}`}
-                >
-                  <div className="review-card-top">
-                    <div className="review-stars">
-                      {[...Array(rev.rating || 5)].map((_, i) => (
-                        <i key={i} className="fa-solid fa-star"></i>
-                      ))}
-                    </div>
-                    {rev.isUserAdded ? (
-                      <span className="card-badge new-badge">
-                        <i className="fa-solid fa-sparkles"></i> Guest Review
-                      </span>
-                    ) : (
-                      <span className="card-badge verified-badge">
-                        <i className="fa-solid fa-certificate"></i> Verified Trip
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="review-tour-route">
-                    <i className="fa-solid fa-location-dot"></i>
-                    <span>{rev.tour}</span>
-                  </div>
-
-                  <p className="review-quote-text">
-                    "{rev.quote}"
-                  </p>
-
-                  <div className="review-card-footer">
-                    <div className="reviewer-avatar">
-                      {rev.avatar ? (
-                        <img src={rev.avatar} alt={rev.name} />
-                      ) : (
-                        <div className="avatar-initials">
-                          {rev.name.charAt(0).toUpperCase()}
-                        </div>
-                      )}
-                    </div>
-                    <div className="reviewer-meta">
-                      <h5>{rev.name}</h5>
-                      <span>{rev.city} &bull; {rev.date || 'Verified Traveler'}</span>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            )}
+
+            {/* Grid of Community Reviews (Recent & All) */}
+            {(activeTab === 'all' || activeTab === 'recent') && (
+              <div className="community-reviews-grid-wrap">
+                <div className="block-subtitle">
+                  {activeTab === 'recent' ? 'Recent Passenger Feedbacks' : 'Community Traveler Feedbacks'}
+                </div>
+
+                <div className="reviews-cards-grid">
+                  {(activeTab === 'recent' ? userAddedReviews : reviews).map((rev) => (
+                    <div 
+                      key={rev.id} 
+                      className={`review-card-item ${rev.isUserAdded ? 'user-submitted' : ''}`}
+                    >
+                      <div className="review-card-top">
+                        <div className="review-stars">
+                          {[...Array(rev.rating || 5)].map((_, i) => (
+                            <i key={i} className="fa-solid fa-star"></i>
+                          ))}
+                        </div>
+                        {rev.isUserAdded ? (
+                          <span className="card-badge new-badge">
+                            <i className="fa-solid fa-sparkles"></i> Guest Review
+                          </span>
+                        ) : (
+                          <span className="card-badge verified-badge">
+                            <i className="fa-solid fa-certificate"></i> Verified Trip
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="review-tour-route">
+                        <i className="fa-solid fa-location-dot"></i>
+                        <span>{rev.tour}</span>
+                      </div>
+
+                      <p className="review-quote-text">
+                        "{rev.quote}"
+                      </p>
+
+                      <div className="review-card-footer">
+                        <div className="reviewer-avatar">
+                          {rev.avatar ? (
+                            <img src={rev.avatar} alt={rev.name} />
+                          ) : (
+                            <div className="avatar-initials">
+                              {rev.name.charAt(0).toUpperCase()}
+                            </div>
+                          )}
+                        </div>
+                        <div className="reviewer-meta">
+                          <h5>{rev.name}</h5>
+                          <span>{rev.city} &bull; {rev.date || 'Verified Traveler'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         )}
 
       </div>

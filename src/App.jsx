@@ -25,6 +25,14 @@ export default function App() {
   const [activePage, setActivePage] = useState(getPageFromHash);
   const [selectedBookingTour, setSelectedBookingTour] = useState('');
 
+  // 1. Prevent browser from restoring scroll position to the middle on tab change
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // 2. Hash change listener
   useEffect(() => {
     const handleHashChange = () => {
       setActivePage(getPageFromHash());
@@ -34,11 +42,28 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // 3. Immediately scroll to the absolute top of the page on every tab / page navigation
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    const rafId = requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+
+    return () => cancelAnimationFrame(rafId);
+  }, [activePage]);
+
   const navigateToPage = (page) => {
     setActivePage(page);
     const hash = page === 'home' ? '#/' : `#/${page}`;
     window.location.hash = hash;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   };
 
   const handleBookClick = (tourTitle = null) => {
