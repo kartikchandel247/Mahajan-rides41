@@ -17,6 +17,7 @@
   /* Subpages Quick Navigation Hub */
   .home-subpages-hub {
     padding: 45px 0 35px;
+    overflow: hidden;
 
     @include mobile {
       padding: 30px 0 20px;

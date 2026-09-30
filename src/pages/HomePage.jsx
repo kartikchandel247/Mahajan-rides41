@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Hero from '../components/Hero/Hero';
 import BookingBar from '../components/BookingBar/BookingBar';
 import { FEATURED_TOURS } from '../data/toursData';
@@ -83,38 +84,61 @@ export default function HomePage({
       {/* 3. Sleek Subpage Hub (4 Interactive Quick Cards) */}
       <section className="home-subpages-hub">
         <div className="container">
-          <div className="section-head text-center">
+          <motion.div 
+            className="section-head text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
             <span className="section-subtitle">Quick Navigation Hub</span>
             <h2 className="section-title">Explore <i>Mahajanrides</i></h2>
             <p className="hub-intro">Choose an area to explore full itineraries, fleet specs, route guides, or contact options:</p>
-          </div>
+          </motion.div>
 
           <div className="hub-cards-grid">
-            {subpageHub.map((item) => (
-              <div
-                key={item.id}
-                className="hub-card"
-                onClick={item.onClick}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && item.onClick()}
-              >
-                <div className="hub-card-top">
-                  <div className="hub-icon">
-                    <i className={item.icon}></i>
+            {subpageHub.map((item, idx) => {
+              // First 2 cards (idx 0, 1) enter from left to right (-70px -> 0)
+              // Next 2 cards (idx 2, 3) enter from right to left (70px -> 0)
+              const isFromLeft = idx < 2;
+              const initialX = isFromLeft ? -70 : 70;
+              const delay = (idx % 2) * 0.12 + 0.08;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  className="hub-card"
+                  onClick={item.onClick}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && item.onClick()}
+                  initial={{ opacity: 0, x: initialX }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ 
+                    duration: 0.65, 
+                    delay: delay, 
+                    ease: [0.16, 1, 0.3, 1] 
+                  }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                >
+                  <div className="hub-card-top">
+                    <div className="hub-icon">
+                      <i className={item.icon}></i>
+                    </div>
+                    <span className="hub-badge">{item.badge}</span>
                   </div>
-                  <span className="hub-badge">{item.badge}</span>
-                </div>
 
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
 
-                <div className="hub-card-action">
-                  <span>{item.actionText}</span>
-                  <i className="fa-solid fa-arrow-right"></i>
-                </div>
-              </div>
-            ))}
+                  <div className="hub-card-action">
+                    <span>{item.actionText}</span>
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
