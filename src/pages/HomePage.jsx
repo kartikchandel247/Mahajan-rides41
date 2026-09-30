@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero/Hero';
 import BookingBar from '../components/BookingBar/BookingBar';
+import About2 from '../components/About2/About2';
 import { FEATURED_TOURS } from '../data/toursData';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
@@ -143,7 +144,10 @@ export default function HomePage({
         </div>
       </section>
 
-      {/* 4. Top 3 Featured Circuits (Clean & Compact) */}
+      {/* 4. Tourvex About 2 Section (Staggered Dual Image Showcase & Brand Story) */}
+      <About2 onNavigateAbout={onNavigateAbout} />
+
+      {/* 5. Top 3 Featured Circuits (Clean & Compact) */}
       <section className="home-destinations-preview">
         <div className="container">
           <div className="section-header-compact">
