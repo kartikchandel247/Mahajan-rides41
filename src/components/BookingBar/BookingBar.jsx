@@ -75,7 +75,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   onChange={handleChange}
                   required
                 >
-                  <option value="" disabled>Choose Destination / Circuit...</option>
+                  <option value="" disabled>Choose Destination...</option>
                   {FEATURED_TOURS && FEATURED_TOURS.map(tour => (
                     <option key={tour.id} value={tour.title}>
                       {tour.title} ({tour.duration})
@@ -102,9 +102,9 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
               </div>
             </div>
 
-            {/* Duration / Number of Days */}
+            {/* Duration */}
             <div className="booking-field">
-              <label htmlFor="days"><i className="fa-solid fa-clock"></i> How Many Days</label>
+              <label htmlFor="days"><i className="fa-solid fa-clock"></i> Duration</label>
               <div className="booking-input-wrap">
                 <select 
                   id="days" 
@@ -113,7 +113,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   onChange={handleChange}
                   required
                 >
-                  <option value="" disabled>Select Duration...</option>
+                  <option value="" disabled>Select Days...</option>
                   <option value="3">3 Days - 2 Nights (Weekend)</option>
                   <option value="4">4 Days - 3 Nights (Short Trip)</option>
                   <option value="5">5 Days - 4 Nights (Standard)</option>
@@ -135,7 +135,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   onChange={handleChange}
                   required
                 >
-                  <option value="" disabled>Select Group Size...</option>
+                  <option value="" disabled>Group Size...</option>
                   <option value="Small Group (4-8 Members)">Small Group (4-8 Members)</option>
                   <option value="Family Group (9-12 Members)">Family Group (9-12 Members)</option>
                   <option value="Full Capacity (13-17 Members)">Full Capacity (13-17 Members)</option>
@@ -146,7 +146,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
 
             {/* Force Tempo Traveller - 17 Seater Only */}
             <div className="booking-field">
-              <label htmlFor="vehicle"><i className="fa-solid fa-van-shuttle"></i> Force Tempo Traveller</label>
+              <label htmlFor="vehicle"><i className="fa-solid fa-van-shuttle"></i> Force Tempo</label>
               <div className="booking-input-wrap">
                 <select 
                   id="vehicle" 
@@ -155,7 +155,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   onChange={handleChange}
                   required
                 >
-                  <option value="17-Seater Force Tempo Traveller (Luxury AC Pushback)">17 Seater Luxury (Pushback AC)</option>
+                  <option value="17-Seater Force Tempo Traveller (Luxury AC Pushback)">17-Seater Luxury AC</option>
                 </select>
               </div>
             </div>
