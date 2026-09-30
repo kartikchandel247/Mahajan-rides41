@@ -131,8 +131,8 @@ export default function ExploreBanner({ onExploreTours, onBookClick, onNavigateA
                 delay: idx * 0.08 + 0.05, 
                 ease: [0.16, 1, 0.3, 1] 
               }}
-              whileHover={{ y: -6, transition: { duration: 0.22 } }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ y: -8, scale: 1.04, transition: { duration: 0.22 } }}
+              whileTap={{ scale: 0.97 }}
             >
               {/* Feature Icon */}
               <div className="card-icon-wrap">

@@ -99,8 +99,8 @@ export default function Services({
                   delay: delay, 
                   ease: [0.16, 1, 0.3, 1] 
                 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ y: -8, scale: 1.035, transition: { duration: 0.25 } }}
+                whileTap={{ scale: 0.97 }}
               >
                 {/* Floating Corner Arrow (Signature Tourvex on Desktop) */}
                 <div className="arrow desktop-corner-arrow">

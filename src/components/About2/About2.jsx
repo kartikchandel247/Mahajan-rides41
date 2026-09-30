@@ -1,7 +1,116 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
 import './About2.scss';
+
+// Interactive 3D Tilt Card with cursor zoom in/out and touch support
+function About2TiltCard({
+  imageSrc,
+  altText,
+  badgeIcon,
+  badgeText,
+  className = '',
+  scrollOffsetY,
+  scrollRotateZ,
+  isMobileOrTablet
+}) {
+  const cardRef = useRef(null);
+
+  // Mouse / Touch offset from center [-0.5, 0.5]
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const scale = useMotionValue(1);
+  const glareOpacity = useMotionValue(0);
+
+  // Springs for smooth physics response
+  const springX = useSpring(mouseX, { stiffness: 220, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 220, damping: 20 });
+  const springScale = useSpring(scale, { stiffness: 220, damping: 22 });
+  const springGlare = useSpring(glareOpacity, { stiffness: 200, damping: 24 });
+
+  // 3D Tilt calculation:
+  // Cursor moving up (mouseY < 0) -> Card tilts up (rotateX > 0)
+  // Cursor moving down (mouseY > 0) -> Card tilts down (rotateX < 0)
+  // Cursor moving left (mouseX < 0) -> Card tilts left (rotateY < 0)
+  // Cursor moving right (mouseX > 0) -> Card tilts right (rotateY > 0)
+  const maxTilt = isMobileOrTablet ? 8 : 13;
+  const rotateX = useTransform(springY, [-0.5, 0.5], [maxTilt, -maxTilt]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-maxTilt, maxTilt]);
+
+  // Dynamic glare coordinates for glossy reflection
+  const glareX = useTransform(springX, [-0.5, 0.5], ['0%', '100%']);
+  const glareY = useTransform(springY, [-0.5, 0.5], ['0%', '100%']);
+
+  const handlePointerMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const clientX = e.clientX ?? (e.touches && e.touches[0] ? e.touches[0].clientX : null);
+    const clientY = e.clientY ?? (e.touches && e.touches[0] ? e.touches[0].clientY : null);
+    if (clientX === null || clientY === null) return;
+
+    const xPct = Math.max(-0.5, Math.min(0.5, (clientX - rect.left) / rect.width - 0.5));
+    const yPct = Math.max(-0.5, Math.min(0.5, (clientY - rect.top) / rect.height - 0.5));
+
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+    scale.set(isMobileOrTablet ? 1.035 : 1.05); // Zoom in on cursor / touch
+    glareOpacity.set(0.35);
+  };
+
+  const handlePointerLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    scale.set(1); // Zoom back out
+    glareOpacity.set(0);
+  };
+
+  return (
+    <motion.div 
+      className="about2-card-scroll-wrap"
+      style={{
+        y: scrollOffsetY,
+        rotateZ: scrollRotateZ
+      }}
+    >
+      <motion.div
+        ref={cardRef}
+        className={`main-img img-cover ${className}`}
+        style={{
+          rotateX,
+          rotateY,
+          scale: springScale,
+          transformPerspective: 1000,
+          transformStyle: 'preserve-3d'
+        }}
+        onMouseMove={handlePointerMove}
+        onMouseLeave={handlePointerLeave}
+        onTouchStart={handlePointerMove}
+        onTouchMove={handlePointerMove}
+        onTouchEnd={handlePointerLeave}
+        onTouchCancel={handlePointerLeave}
+      >
+        <img src={imageSrc} alt={altText} loading="lazy" />
+        
+        <div className="img-floating-badge">
+          <i className={badgeIcon}></i>
+          <span>{badgeText}</span>
+        </div>
+
+        {/* 3D Dynamic Glare Sheen Reflection */}
+        <motion.div 
+          className="tilt-glare-overlay"
+          style={{
+            opacity: springGlare,
+            background: useTransform(
+              [glareX, glareY],
+              ([gx, gy]) => `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 65%)`
+            )
+          }}
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function About2({ onNavigateAbout }) {
   const containerRef = useRef(null);
@@ -36,20 +145,27 @@ export default function About2({ onNavigateAbout }) {
 
   // Smooth physical spring to eliminate jitter during rapid thumb/mouse scrolling
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 26,
-    mass: 0.2,
+    stiffness: 110,
+    damping: 24,
+    mass: 0.18,
     restDelta: 0.001
   });
 
-  // Dynamic travel distance: Mobile: ±18px, Tablet: ±26px, Desktop: ±42px
-  const travelDistance = deviceType === 'mobile' ? 18 : (deviceType === 'tablet' ? 26 : 42);
+  // Prominent travel distance for clearly visible motion:
+  // Mobile: ±32px, Tablet: ±45px, Desktop: ±65px
+  const travelDistance = deviceType === 'mobile' ? 32 : (deviceType === 'tablet' ? 45 : 65);
+
+  // Dynamic tilt angle with scroll:
+  // Mobile: ±2deg, Tablet: ±3deg, Desktop: ±4deg
+  const scrollTiltAngle = deviceType === 'mobile' ? 2 : (deviceType === 'tablet' ? 3 : 4);
 
   // Card 1 goes DOWN when scrolling down, and UP when scrolling up
   const yDown = useTransform(smoothProgress, [0, 1], [-travelDistance, travelDistance]);
+  const tiltDown = useTransform(smoothProgress, [0, 1], [-scrollTiltAngle, scrollTiltAngle]);
 
   // Card 2 goes UP when scrolling down, and DOWN when scrolling up
   const yUp = useTransform(smoothProgress, [0, 1], [travelDistance, -travelDistance]);
+  const tiltUp = useTransform(smoothProgress, [0, 1], [scrollTiltAngle, -scrollTiltAngle]);
 
   const highlights = [
     { icon: 'fa-solid fa-map-location-dot', text: '18 Himachal Tour Circuits' },
@@ -67,41 +183,33 @@ export default function About2({ onNavigateAbout }) {
             className="about2-img-col"
             initial={{ opacity: 0, x: -75 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="about2-img">
-              {/* Image 1: Force Tempo Exterior — Moves DOWN when scrolling down, UP when scrolling up */}
-              <motion.div 
-                className="main-img img-cover duru-slide-down"
-                style={{ y: yDown }}
-              >
-                <img 
-                  src="/vehicle/tempo_traveller_exterior.png" 
-                  alt="Mahajanrides 17 Seater Force Tempo Traveller Exterior" 
-                  loading="lazy" 
-                />
-                <div className="img-floating-badge">
-                  <i className="fa-solid fa-van-shuttle"></i>
-                  <span>Force Tempo 17-Seater</span>
-                </div>
-              </motion.div>
+              {/* Image 1: Force Tempo Exterior — 3D Tilt + Moves DOWN when scrolling down, UP when scrolling up */}
+              <About2TiltCard
+                imageSrc="/vehicle/tempo_traveller_exterior.png"
+                altText="Mahajanrides 17 Seater Force Tempo Traveller Exterior"
+                badgeIcon="fa-solid fa-van-shuttle"
+                badgeText="Force Tempo 17-Seater"
+                className="duru-slide-down"
+                scrollOffsetY={yDown}
+                scrollRotateZ={tiltDown}
+                isMobileOrTablet={deviceType !== 'desktop'}
+              />
 
-              {/* Image 2: Force Tempo Interior — Moves UP when scrolling down, DOWN when scrolling up */}
-              <motion.div 
-                className="main-img img-cover duru-slide-up"
-                style={{ y: yUp }}
-              >
-                <img 
-                  src="/vehicle/tempo_traveller_interior.png" 
-                  alt="Mahajanrides Luxury Recliner Pushback Seats" 
-                  loading="lazy" 
-                />
-                <div className="img-floating-badge">
-                  <i className="fa-solid fa-couch"></i>
-                  <span>Luxury AC Pushback</span>
-                </div>
-              </motion.div>
+              {/* Image 2: Force Tempo Interior — 3D Tilt + Moves UP when scrolling down, DOWN when scrolling up */}
+              <About2TiltCard
+                imageSrc="/vehicle/tempo_traveller_interior.png"
+                altText="Mahajanrides Luxury Recliner Pushback Seats"
+                badgeIcon="fa-solid fa-couch"
+                badgeText="Luxury AC Pushback"
+                className="duru-slide-up"
+                scrollOffsetY={yUp}
+                scrollRotateZ={tiltUp}
+                isMobileOrTablet={deviceType !== 'desktop'}
+              />
             </div>
           </motion.div>
 
