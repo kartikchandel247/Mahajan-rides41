@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './Services.scss';
 
@@ -6,6 +7,15 @@ export default function Services({
   onNavigateAbout, 
   onNavigateBooking 
 }) {
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(() => 
+    typeof window !== 'undefined' ? window.innerWidth < 992 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobileOrTablet(window.innerWidth < 992);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const servicesList = [
     {
       id: 'circuits',
@@ -64,11 +74,16 @@ export default function Services({
         {/* 4 Services Cards Grid with 2 from left and 2 from right motion */}
         <div className="services-cards-grid">
           {servicesList.map((service, idx) => {
-            // First 2 cards (idx 0, 1) enter from left to right (-75px -> 0)
-            // Next 2 cards (idx 2, 3) enter from right to left (75px -> 0)
-            const isFromLeft = idx < 2;
-            const initialX = isFromLeft ? -75 : 75;
-            const delay = (idx % 2) * 0.12 + 0.08;
+            // In 2x2 tablet/mobile grid:
+            // Row 1: idx 0 (left) from left, idx 1 (right) from right
+            // Row 2: idx 2 (left) from left, idx 3 (right) from right
+            // On desktop (4 across):
+            // idx 0, 1 from left, idx 2, 3 from right
+            const isFromLeft = isMobileOrTablet ? (idx % 2 === 0) : (idx < 2);
+            const initialX = isFromLeft ? -55 : 55;
+            const delay = isMobileOrTablet 
+              ? (Math.floor(idx / 2) * 0.12 + (idx % 2) * 0.08) 
+              : (idx * 0.09 + 0.05);
 
             return (
               <motion.div
@@ -80,9 +95,9 @@ export default function Services({
                 onKeyDown={(e) => e.key === 'Enter' && service.onClick()}
                 initial={{ opacity: 0, x: initialX }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.15, margin: "0px 0px -30px 0px" }}
                 transition={{ 
-                  duration: 0.7, 
+                  duration: 0.65, 
                   delay: delay, 
                   ease: [0.16, 1, 0.3, 1] 
                 }}
