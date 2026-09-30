@@ -1,8 +1,56 @@
-import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { AGENCY_CONFIG } from '../../config/agencyConfig';
 import './About2.scss';
 
 export default function About2({ onNavigateAbout }) {
+  const containerRef = useRef(null);
+
+  const [deviceType, setDeviceType] = useState(() => {
+    if (typeof window === 'undefined') return 'desktop';
+    if (window.innerWidth < 640) return 'mobile';
+    if (window.innerWidth < 1024) return 'tablet';
+    return 'desktop';
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setDeviceType('mobile');
+      } else if (width < 1024) {
+        setDeviceType('tablet');
+      } else {
+        setDeviceType('desktop');
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Track continuous scroll progress across the section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Smooth physical spring to eliminate jitter during rapid thumb/mouse scrolling
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 26,
+    mass: 0.2,
+    restDelta: 0.001
+  });
+
+  // Dynamic travel distance: Mobile: ±18px, Tablet: ±26px, Desktop: ±42px
+  const travelDistance = deviceType === 'mobile' ? 18 : (deviceType === 'tablet' ? 26 : 42);
+
+  // Card 1 goes DOWN when scrolling down, and UP when scrolling up
+  const yDown = useTransform(smoothProgress, [0, 1], [-travelDistance, travelDistance]);
+
+  // Card 2 goes UP when scrolling down, and DOWN when scrolling up
+  const yUp = useTransform(smoothProgress, [0, 1], [travelDistance, -travelDistance]);
+
   const highlights = [
     { icon: 'fa-solid fa-map-location-dot', text: '18 Himachal Tour Circuits' },
     { icon: 'fa-solid fa-user-shield', text: 'Local Mountain Chauffeurs' },
@@ -11,7 +59,7 @@ export default function About2({ onNavigateAbout }) {
   ];
 
   return (
-    <div className="about2 section-padding bg-white" id="about">
+    <div className="about2 section-padding bg-white" id="about" ref={containerRef}>
       <div className="container">
         <div className="about2-grid">
           {/* Left: Staggered Double Image Showcase with motion from left to right */}
@@ -23,8 +71,11 @@ export default function About2({ onNavigateAbout }) {
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="about2-img">
-              {/* Image 1: Force Tempo Exterior */}
-              <div className="main-img img-cover duru-slide-down">
+              {/* Image 1: Force Tempo Exterior — Moves DOWN when scrolling down, UP when scrolling up */}
+              <motion.div 
+                className="main-img img-cover duru-slide-down"
+                style={{ y: yDown }}
+              >
                 <img 
                   src="/vehicle/tempo_traveller_exterior.png" 
                   alt="Mahajanrides 17 Seater Force Tempo Traveller Exterior" 
@@ -34,10 +85,13 @@ export default function About2({ onNavigateAbout }) {
                   <i className="fa-solid fa-van-shuttle"></i>
                   <span>Force Tempo 17-Seater</span>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Image 2: Force Tempo Interior */}
-              <div className="main-img img-cover duru-slide-up">
+              {/* Image 2: Force Tempo Interior — Moves UP when scrolling down, DOWN when scrolling up */}
+              <motion.div 
+                className="main-img img-cover duru-slide-up"
+                style={{ y: yUp }}
+              >
                 <img 
                   src="/vehicle/tempo_traveller_interior.png" 
                   alt="Mahajanrides Luxury Recliner Pushback Seats" 
@@ -47,7 +101,7 @@ export default function About2({ onNavigateAbout }) {
                   <i className="fa-solid fa-couch"></i>
                   <span>Luxury AC Pushback</span>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 

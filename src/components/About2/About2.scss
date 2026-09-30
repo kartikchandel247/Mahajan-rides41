@@ -66,6 +66,7 @@
     box-shadow: 0 16px 40px rgba(15, 36, 84, 0.12);
     border: 1px solid rgba(15, 36, 84, 0.08);
     background-color: #0b1a3a;
+    will-change: transform;
 
     @include tablet {
       height: 340px;
