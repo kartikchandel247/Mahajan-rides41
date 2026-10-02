@@ -190,7 +190,7 @@ export default function About2({ onNavigateAbout }) {
               {/* Image 1: Force Tempo Exterior — 3D Tilt + Moves DOWN when scrolling down, UP when scrolling up */}
               <About2TiltCard
                 imageSrc="/vehicle/tempo_traveller_exterior.png"
-                altText="Mahajanrides 17 Seater Force Tempo Traveller Exterior"
+                altText="Mahajanride 17 Seater Force Tempo Traveller Exterior"
                 badgeIcon="fa-solid fa-van-shuttle"
                 badgeText="Force Tempo 17-Seater"
                 className="duru-slide-down"
@@ -202,7 +202,7 @@ export default function About2({ onNavigateAbout }) {
               {/* Image 2: Force Tempo Interior — 3D Tilt + Moves UP when scrolling down, DOWN when scrolling up */}
               <About2TiltCard
                 imageSrc="/vehicle/tempo_traveller_interior.png"
-                altText="Mahajanrides Luxury Recliner Pushback Seats"
+                altText="Mahajanride Luxury Recliner Pushback Seats"
                 badgeIcon="fa-solid fa-couch"
                 badgeText="Luxury AC Pushback"
                 className="duru-slide-up"

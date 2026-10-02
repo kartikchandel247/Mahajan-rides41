@@ -22,7 +22,7 @@ export default function Footer({ onNavigate }) {
                 <img src={logoImg} alt={AGENCY_CONFIG.name} width="40" height="40" />
               </div>
               <div className="brand-text-block">
-                <div className="brand-name">MAHAJAN<span>RIDES</span></div>
+                <div className="brand-name">MAHAJAN<span>RIDE</span></div>
                 <div className="brand-tagline">Force Tempo Traveller Services</div>
               </div>
             </div>

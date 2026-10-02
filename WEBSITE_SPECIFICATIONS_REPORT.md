@@ -1,8 +1,8 @@
 # WEBSITE SPECIFICATIONS REPORT & SCOPE OF WORK (SOW)
 ## Technical Architecture & Client Agreement Annexure
 
-**Project Name:** Mahajanrides Web Application & Lead Generation Engine  
-**Client Entity:** Mahajanrides (*Proprietor: Mr. Atish Mahajan*)  
+**Project Name:** Mahajanride Web Application & Lead Generation Engine  
+**Client Entity:** Mahajanride (*Proprietor: Mr. Atish Mahajan*)  
 **Domain & Vertical:** Luxury 17-Seater Force Tempo Traveller Himachal Tourism & Commercial Transport  
 **Document Classification:** Technical Specification & Formal Client Agreement Annexure  
 **Version:** 1.0 (Production Release)  
@@ -12,7 +12,7 @@
 
 ## 1. Executive Summary & Purpose
 
-The **Mahajanrides Web Portal** is a high-performance, mobile-first commercial web platform custom-built for **Mahajanrides**, an exclusive travel and transport provider based in Manali and Shimla, Himachal Pradesh.
+The **Mahajanride Web Portal** is a high-performance, mobile-first commercial web platform custom-built for **Mahajanride**, an exclusive travel and transport provider based in Manali and Shimla, Himachal Pradesh.
 
 ### 1.1 Primary Business Objectives
 1. **Direct Fleet Owner Bookings:** Eliminate third-party agent commissions and aggregator markups by providing travelers with immediate, 1-click WhatsApp and email quote requests directly to the fleet owner.
@@ -93,7 +93,7 @@ Stores verified passenger feedback and ratings.
 
 ### 4.1 Master Layout & Navigation Header
 - **Top Announcement Bar (Ticker):** Displays operational status ("24/7 Booking Active"), direct fleet owner phone (+91 85804 62440), and Instagram profile deep link.
-- **Sticky Glassmorphic Navigation Bar:** Contains the custom Mahajanrides branding badge, intuitive multi-page route switches (`Home`, `Tour Circuits`, `About Fleet`, `Book Now`, `Travel Guides`, `Contact`), and an instant "Book Now" CTA button.
+- **Sticky Glassmorphic Navigation Bar:** Contains the custom Mahajanride branding badge, intuitive multi-page route switches (`Home`, `Tour Circuits`, `About Fleet`, `Book Now`, `Travel Guides`, `Contact`), and an instant "Book Now" CTA button.
 - **Floating Contact Hub:** Persistent WhatsApp pulse button in the lower-right quadrant featuring an active online indicator and pre-formatted greeting message.
 
 ---
@@ -202,7 +202,7 @@ pie title Website Performance & Engineering Standards
 
 ## 6. Formal Client Agreement & Scope of Work (Annexure)
 
-*This section defines the contractual scope, boundaries, deliverables, and service level agreements between the Web Developer and Mahajanrides.*
+*This section defines the contractual scope, boundaries, deliverables, and service level agreements between the Web Developer and Mahajanride.*
 
 ### 6.1 Deliverables Handover
 1. **Production Codebase:** Complete clean source code including all components, styles, data files, and configuration files.
@@ -224,14 +224,14 @@ pie title Website Performance & Engineering Standards
 
 ## 7. Sign-off & Execution
 
-This document constitutes the authoritative technical and functional specification for the **Mahajanrides Web Portal**.
+This document constitutes the authoritative technical and functional specification for the **Mahajanride Web Portal**.
 
 **For & on behalf of Developer:**  
 *Lead Frontend & Systems Architect*  
 *Date: ________________________*  
 *Signature: ___________________*  
 
-**For & on behalf of Client (Mahajanrides):**  
+**For & on behalf of Client (Mahajanride):**  
 *Mr. Atish Mahajan (Owner / Operations Lead)*  
 *Date: ________________________*  
 *Signature: ___________________*  

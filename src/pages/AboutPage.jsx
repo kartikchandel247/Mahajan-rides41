@@ -22,7 +22,7 @@ export default function AboutPage({
     {
       icon: "fa-solid fa-shield-halved",
       title: "100% Authorized State Permits",
-      desc: "All Mahajanrides commercial Force Tempo Travellers have legal Himachal Pradesh transport permits, green tax certifications, and verified access for Rohtang & Lahaul crossings."
+      desc: "All Mahajanride commercial Force Tempo Travellers have legal Himachal Pradesh transport permits, green tax certifications, and verified access for Rohtang & Lahaul crossings."
     },
     {
       icon: "fa-solid fa-couch",
@@ -40,7 +40,7 @@ export default function AboutPage({
     <div className="about-page">
       {/* 1. Header Banner */}
       <PageBanner 
-        title="About Mahajanrides"
+        title="About Mahajanride"
         subtitle="Himachal Mountain Tour Specialists"
         breadcrumb="About Us & Fleet"
         bgImage="/places/himachal_sangla_scenery.jpg"
@@ -61,7 +61,7 @@ export default function AboutPage({
               <div className="story-img-main">
                 <img 
                   src="/vehicle/tempo_traveller_exterior.png" 
-                  alt="Force Tempo Traveller Exterior - Mahajanrides" 
+                  alt="Force Tempo Traveller Exterior - Mahajanride" 
                 />
                 <div className="story-floating-badge">
                   <span className="number">10+</span>
@@ -113,7 +113,7 @@ export default function AboutPage({
               <div className="founder-quote-box">
                 <i className="fa-solid fa-quote-left quote-icon"></i>
                 <p>
-                  "In the mountains, safety and local knowledge matter more than anything else. When you travel with Mahajanrides, you are treated like family."
+                  "In the mountains, safety and local knowledge matter more than anything else. When you travel with Mahajanride, you are treated like family."
                 </p>
                 <div className="quote-author">
                   <strong>— {AGENCY_CONFIG.ownerName}</strong>
@@ -156,7 +156,7 @@ export default function AboutPage({
           <div className="section-head text-center">
             <span className="section-subtitle">Why Choose Us</span>
             <h2 className="section-title">The Four Pillars Of <i>Our Promise</i></h2>
-            <p>Every journey with Mahajanrides is built upon four uncompromised standards:</p>
+            <p>Every journey with Mahajanride is built upon four uncompromised standards:</p>
           </div>
 
           <div className="pillars-grid">

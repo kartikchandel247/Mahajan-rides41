@@ -198,7 +198,7 @@ export default function DestinationsPage({ onNavigateHome, _onNavigateContact, o
                   Show All 18 Himachal Circuits
                 </button>
                 <a 
-                  href={`https://wa.me/918580462440?text=Hello%20Mahajanrides!%20I%20want%20to%20plan%20a%20custom%20tour%20to%20${searchTerm || selectedPlace}.`}
+                  href={`https://wa.me/918580462440?text=Hello%20Mahajanride!%20I%20want%20to%20plan%20a%20custom%20tour%20to%20${searchTerm || selectedPlace}.`}
                   target="_blank"
                   rel="noreferrer"
                   className="wa-custom-btn"

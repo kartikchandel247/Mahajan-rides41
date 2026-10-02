@@ -46,7 +46,7 @@ export default function Hero({ onExploreTours }) {
         >
           <div className="hero-eyebrow">
             <i className="fa-solid fa-compass"></i>
-            <span>MAHAJANRIDES HIMACHAL</span>
+            <span>MAHAJANRIDE HIMACHAL</span>
           </div>
 
           <h1 className="hero-title">

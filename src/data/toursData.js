@@ -555,7 +555,7 @@ export const TESTIMONIALS_DATA = [];
 export const FAQ_DATA = [
   {
     question: "Do your Force Tempo Travellers have verified permits for Rohtang Pass, Atal Tunnel & Sissu?",
-    answer: "Yes, 100%. All Mahajanrides commercial Force Tempo Travellers hold valid Himachal Pradesh state permits, Green Tax clearance, and authorized access for Rohtang Pass and Atal Tunnel crossings."
+    answer: "Yes, 100%. All Mahajanride commercial Force Tempo Travellers hold valid Himachal Pradesh state permits, Green Tax clearance, and authorized access for Rohtang Pass and Atal Tunnel crossings."
   },
   {
     question: "Where do you provide pickup & drop services for Himachal tours?",

@@ -56,20 +56,20 @@ export default function Navbar({ activePage = 'home', onNavigate, _onBookClick }
             type="button" 
             onClick={(e) => handleLinkClick('home', e)} 
             className="brand-logo" 
-            aria-label="Mahajanrides Home"
+            aria-label="Mahajanride Home"
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           >
             <div className="logo-img-wrapper">
               <img 
                 src={logoImg} 
-                alt="Mahajanrides - Force Tempo Traveller Tours" 
+                alt="Mahajanride - Force Tempo Traveller Tours" 
                 className="logo-img" 
                 width="46" 
                 height="46" 
               />
             </div>
             <div className="logo-text-group">
-              <div className="logo-text">MAHAJAN<span>RIDES</span></div>
+              <div className="logo-text">MAHAJAN<span>RIDE</span></div>
               <span className="logo-tagline">Himachal Tour Services</span>
             </div>
           </button>

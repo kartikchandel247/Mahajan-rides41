@@ -215,13 +215,13 @@ export default function FeedbackModal({ isOpen, onClose, onFeedbackAdded, defaul
     if (!submittedReview) return;
     const ratingStars = '⭐'.repeat(submittedReview.rating);
     const photoNote = submittedReview.photo ? '\n📸 [Trip Photo Uploaded on Website]' : '';
-    const msg = `*New Traveler Review for Mahajan Rides*\n\n` +
+    const msg = `*New Traveler Review for Mahajan Ride*\n\n` +
       `*Name:* ${submittedReview.name}\n` +
       `*Origin:* ${submittedReview.city}\n` +
       `*Route:* ${submittedReview.route}\n` +
       `*Rating:* ${ratingStars} (${submittedReview.rating}/5)${photoNote}\n\n` +
       `*Feedback:*\n"${submittedReview.comment}"\n\n` +
-      `_Sent from Mahajan Rides official website_`;
+      `_Sent from Mahajan Ride official website_`;
 
     window.open(`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${encodeURIComponent(msg)}`, '_blank');
   };
@@ -334,7 +334,7 @@ export default function FeedbackModal({ isOpen, onClose, onFeedbackAdded, defaul
                 <div className="feedback-header">
                   <div className="feedback-tag-pill">
                     <i className="fa-solid fa-mountain-sun"></i>
-                    <span>Mahajan Rides • Traveler Voice</span>
+                    <span>Mahajan Ride • Traveler Voice</span>
                   </div>
                   <h2 id="feedback-modal-title" className="feedback-title">
                     Share Your Mountain <span>Experience</span>
@@ -535,7 +535,7 @@ export default function FeedbackModal({ isOpen, onClose, onFeedbackAdded, defaul
                   <div className="feedback-modal-footer">
                     <div className="trust-security-note">
                       <i className="fa-solid fa-shield-halved"></i>
-                      <span>100% Genuine Review • Directly saved to Mahajan Rides</span>
+                      <span>100% Genuine Review • Directly saved to Mahajan Ride</span>
                     </div>
 
                     <button

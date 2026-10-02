@@ -3,7 +3,7 @@ import { AGENCY_CONFIG } from '../config/agencyConfig';
 export const DEFAULT_EMAIL_SUBJECT = "Inquiry for Himachal Tour — 17-Seater Force Tempo Traveller";
 
 export const DEFAULT_EMAIL_BODY = 
-`Hello Atish Mahajan (Mahajanrides),
+`Hello Atish Mahajan (Mahajanride),
 
 I would like to inquire about booking your 17-Seater Force Tempo Traveller for a Himachal Pradesh tour.
 

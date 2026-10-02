@@ -1,5 +1,5 @@
 export const AGENCY_CONFIG = {
-  name: "Mahajanrides",
+  name: "Mahajanride",
   ownerName: "Atish Mahajan",
   tagline: "Exclusive Himachal Pradesh Force Tempo Traveller Services",
   ownerPhone: "918580462440", // Real WhatsApp Number from Instagram profile

@@ -30,7 +30,7 @@ export default function ContactPage({ onNavigateHome }) {
       groupSize: formData.passengers,
       specialNotes: formData.notes
     }).catch(err => console.warn('Supabase lead save error:', err));
-    const query = `🏔️ *New Tour Inquiry from Mahajanrides Website*%0A%0A` +
+    const query = `🏔️ *New Tour Inquiry from Mahajanride Website*%0A%0A` +
       `👤 *Name:* ${encodeURIComponent(formData.name || 'Traveler')}%0A` +
       `📞 *Phone:* ${encodeURIComponent(formData.phone || 'Direct WhatsApp')}%0A` +
       `📍 *Destination:* ${encodeURIComponent(formData.destination)}%0A` +

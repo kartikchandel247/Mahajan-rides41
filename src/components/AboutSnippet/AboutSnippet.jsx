@@ -62,7 +62,7 @@ export default function AboutSnippet({ onLearnMore }) {
             <motion.div className="about-img-box shift-down" style={{ y: yDown }}>
               <img 
                 src="/vehicle/tempo_traveller_exterior.png" 
-                alt="Force Tempo Traveller Exterior - Mahajan Rides"
+                alt="Force Tempo Traveller Exterior - Mahajan Ride"
                 loading="lazy"
               />
               <div className="about-img-badge">
@@ -73,7 +73,7 @@ export default function AboutSnippet({ onLearnMore }) {
             <motion.div className="about-img-box shift-up" style={{ y: yUp }}>
               <img 
                 src="/vehicle/tempo_traveller_interior.png" 
-                alt="Force Tempo Traveller Luxury Interior - Mahajan Rides" 
+                alt="Force Tempo Traveller Luxury Interior - Mahajan Ride" 
                 loading="lazy" 
               />
               <div className="about-img-badge">

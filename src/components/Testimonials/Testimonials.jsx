@@ -151,7 +151,7 @@ export default function Testimonials() {
       alert('Please fill in your name and review message first.');
       return;
     }
-    const text = `*New Trip Review for Mahajanrides*\n\n*Name:* ${formData.name}\n*City:* ${formData.city || 'Himachal'}\n*Tour:* ${formData.tour}\n*Rating:* ${'⭐'.repeat(formData.rating)} (${formData.rating}/5)\n\n*Feedback:* ${formData.quote}`;
+    const text = `*New Trip Review for Mahajanride*\n\n*Name:* ${formData.name}\n*City:* ${formData.city || 'Himachal'}\n*Tour:* ${formData.tour}\n*Rating:* ${'⭐'.repeat(formData.rating)} (${formData.rating}/5)\n\n*Feedback:* ${formData.quote}`;
     window.open(`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -221,7 +221,7 @@ export default function Testimonials() {
               </div>
               <div className="success-text">
                 <h4>Thank You for Your Feedback!</h4>
-                <p>Your review has been successfully published on Mahajan Rides. We look forward to serving you again!</p>
+                <p>Your review has been successfully published on Mahajan Ride. We look forward to serving you again!</p>
               </div>
               <button className="close-toast" onClick={() => setSubmittedSuccess(false)}>
                 <i className="fa-solid fa-xmark"></i>
@@ -301,7 +301,7 @@ export default function Testimonials() {
                   {/* Interactive Star Rating */}
                   <div className="review-field full-width rating-picker-box">
                     <label>
-                      <i className="fa-solid fa-star"></i> Rate Your Experience with Mahajan Rides *
+                      <i className="fa-solid fa-star"></i> Rate Your Experience with Mahajan Ride *
                     </label>
                     <div className="interactive-stars-wrap">
                       <div className="star-icons">
@@ -397,7 +397,7 @@ export default function Testimonials() {
               </button>
 
               <a 
-                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${encodeURIComponent("Hi Atish ji, I would like to share a review for our Himachal trip with Mahajan Rides.")}`}
+                href={`https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${encodeURIComponent("Hi Atish ji, I would like to share a review for our Himachal trip with Mahajan Ride.")}`}
                 target="_blank" 
                 rel="noreferrer" 
                 className="btn-whatsapp-action"

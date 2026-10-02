@@ -1,15 +1,15 @@
 /**
- * MAHAJAN RIDES & TOURS — MAIN JAVASCRIPT ENGINE
+ * MAHAJAN RIDE & TOURS — MAIN JAVASCRIPT ENGINE
  * Handles WhatsApp Inquiry Generation, Passenger Reviews, Navigation & Animations
  */
 
 // 1. Central Configuration
 const AGENCY_CONFIG = {
-  name: "Mahajan Rides",
+  name: "Mahajan Ride",
   tagline: "Discover The World With Our Guide",
   ownerPhone: "919876543210", // Primary WhatsApp Number (international format without +)
   displayPhone: "+91 98765 43210",
-  email: "info@mahajanrides.com",
+  email: "info@mahajanride.com",
   instagramUser: "mahajan_rides",
   instagramUrl: "https://www.instagram.com/mahajan_rides/",
   address: "Mall Road, Shimla & Connaught Place, New Delhi, India"
@@ -54,7 +54,7 @@ const INITIAL_REVIEWS = [
     destination: "Himachal Circuit (Shimla & Manali)",
     rating: 5,
     date: "18 Sep 2026",
-    comment: "Our 6-day family trip to Manali and Rohtang Pass with Mahajan Rides was flawless! The Innova Crysta was spotless, and our driver-cum-guide knew all the best mountain scenic spots."
+    comment: "Our 6-day family trip to Manali and Rohtang Pass with Mahajan Ride was flawless! The Innova Crysta was spotless, and our driver-cum-guide knew all the best mountain scenic spots."
   },
   {
     id: 2,
@@ -72,7 +72,7 @@ const INITIAL_REVIEWS = [
     destination: "Ladakh Adventure Expedition",
     rating: 5,
     date: "22 Aug 2026",
-    comment: "High altitude travel demands absolute trust. Mahajan Rides provided seasoned drivers who navigated Khardung La safely. Highly recommend for custom mountain road trips!"
+    comment: "High altitude travel demands absolute trust. Mahajan Ride provided seasoned drivers who navigated Khardung La safely. Highly recommend for custom mountain road trips!"
   }
 ];
 

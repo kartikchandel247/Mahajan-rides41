@@ -106,7 +106,7 @@ export default function HomePage({
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="section-subtitle">Quick Navigation Hub</span>
-            <h2 className="section-title">Explore <i>Mahajanrides</i></h2>
+            <h2 className="section-title">Explore <i>Mahajanride</i></h2>
             <p className="hub-intro">Choose an area to explore full itineraries, fleet specs, route guides, or contact options:</p>
           </motion.div>
 
