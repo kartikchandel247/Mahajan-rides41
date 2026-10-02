@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp/FloatingWhatsApp';
@@ -24,6 +24,7 @@ export default function App() {
 
   const [activePage, setActivePage] = useState(getPageFromHash);
   const [selectedBookingTour, setSelectedBookingTour] = useState('');
+  const pendingScrollRef = useRef(null);
 
   // 1. Prevent browser from restoring scroll position to the middle on tab change
   useEffect(() => {
@@ -42,8 +43,20 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // 3. Immediately scroll to the absolute top of the page on every tab / page navigation
+  // 3. Scroll to target section or absolute top on page navigation
   useEffect(() => {
+    if (pendingScrollRef.current) {
+      const targetId = pendingScrollRef.current;
+      pendingScrollRef.current = null;
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -57,20 +70,33 @@ export default function App() {
     return () => cancelAnimationFrame(rafId);
   }, [activePage]);
 
-  const navigateToPage = (page) => {
+  const navigateToPage = (page, sectionId = null) => {
+    if (sectionId) {
+      pendingScrollRef.current = sectionId;
+    }
+
+    if (activePage === page) {
+      if (sectionId) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
     setActivePage(page);
     const hash = page === 'home' ? '#/' : `#/${page}`;
     window.location.hash = hash;
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
   };
 
-  const handleBookClick = (tourTitle = null) => {
+  const handleBookClick = (tourTitle = null, sectionId = null) => {
     if (typeof tourTitle === 'string') {
       setSelectedBookingTour(tourTitle);
     }
-    navigateToPage('booking');
+    navigateToPage('booking', sectionId);
   };
 
   return (
@@ -91,6 +117,7 @@ export default function App() {
             onNavigateBlog={() => navigateToPage('blog')}
             onNavigateContact={() => navigateToPage('contact')}
             onNavigateBooking={handleBookClick}
+            onNavigateSection={navigateToPage}
           />
         )}
 
@@ -116,6 +143,8 @@ export default function App() {
             onNavigateHome={() => navigateToPage('home')}
             onNavigateDestinations={() => navigateToPage('destinations')}
             onNavigateContact={() => navigateToPage('contact')}
+            onNavigateBooking={handleBookClick}
+            onNavigateSection={navigateToPage}
           />
         )}
 

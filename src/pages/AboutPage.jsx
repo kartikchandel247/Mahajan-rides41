@@ -6,7 +6,13 @@ import Faq from '../components/Faq/Faq';
 import { AGENCY_CONFIG } from '../config/agencyConfig';
 import './AboutPage.scss';
 
-export default function AboutPage({ onNavigateHome, onNavigateDestinations, _onNavigateContact }) {
+export default function AboutPage({ 
+  onNavigateHome, 
+  onNavigateDestinations, 
+  onNavigateBooking,
+  onNavigateSection,
+  _onNavigateContact 
+}) {
   const trustPillars = [
     {
       icon: "fa-solid fa-mountain",
@@ -42,7 +48,7 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, _onN
       />
 
       {/* 2. Core Story & Heritage */}
-      <section className="about-story-section section-padding">
+      <section className="about-story-section section-padding" id="fleetDetails">
         <div className="container">
           <div className="about-story-grid">
             <motion.div 
@@ -145,7 +151,7 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, _onN
       </section>
 
       {/* 3. The 4 Trust Pillars */}
-      <section className="about-pillars-section">
+      <section className="about-pillars-section" id="permitsChauffeurs">
         <div className="container">
           <div className="section-head text-center">
             <span className="section-subtitle">Why Choose Us</span>
@@ -175,7 +181,14 @@ export default function AboutPage({ onNavigateHome, onNavigateDestinations, _onN
       </section>
 
       {/* 4. Dedicated Services Component */}
-      <Services />
+      <Services 
+        onNavigateDestinations={onNavigateDestinations}
+        onNavigateAbout={() => {
+          document.getElementById('fleetDetails')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
+        onNavigateBooking={onNavigateBooking}
+        onNavigateSection={onNavigateSection}
+      />
 
       {/* 5. Customer Testimonials */}
       <Testimonials />

@@ -14,7 +14,8 @@ export default function HomePage({
   onNavigateAbout, 
   onNavigateBlog, 
   onNavigateContact,
-  onNavigateBooking 
+  onNavigateBooking,
+  onNavigateSection 
 }) {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(() => 
     typeof window !== 'undefined' ? window.innerWidth < 992 : false
@@ -169,6 +170,7 @@ export default function HomePage({
         onNavigateDestinations={onNavigateDestinations}
         onNavigateAbout={onNavigateAbout}
         onNavigateBooking={onNavigateBooking}
+        onNavigateSection={onNavigateSection}
       />
 
       {/* 6. Scenic Himachal Mountain Explore Panoramic Banner */}

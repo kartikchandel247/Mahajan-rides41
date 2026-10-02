@@ -5,7 +5,8 @@ import './Services.scss';
 export default function Services({ 
   onNavigateDestinations, 
   onNavigateAbout, 
-  onNavigateBooking 
+  onNavigateBooking,
+  onNavigateSection 
 }) {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(() => 
     typeof window !== 'undefined' ? window.innerWidth < 992 : false
@@ -16,6 +17,63 @@ export default function Services({
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const handleCardClick = (serviceId) => {
+    switch (serviceId) {
+      case 'circuits':
+        if (onNavigateDestinations) {
+          onNavigateDestinations();
+        } else if (onNavigateSection) {
+          onNavigateSection('destinations');
+        } else if (typeof window !== 'undefined') {
+          window.location.hash = '#/destinations';
+        }
+        break;
+
+      case 'fleet':
+        if (onNavigateSection) {
+          onNavigateSection('about', 'fleetDetails');
+        } else if (onNavigateAbout) {
+          onNavigateAbout('fleetDetails');
+        } else if (typeof window !== 'undefined') {
+          window.location.hash = '#/about';
+          setTimeout(() => {
+            document.getElementById('fleetDetails')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+        }
+        break;
+
+      case 'transfers':
+        if (onNavigateBooking) {
+          onNavigateBooking('Doorstep Pickup & Transfer (Delhi / Chandigarh / Kalka)', 'doorstepTransfers');
+        } else if (onNavigateSection) {
+          onNavigateSection('booking', 'doorstepTransfers', 'Doorstep Pickup & Transfer (Delhi / Chandigarh / Kalka)');
+        } else if (typeof window !== 'undefined') {
+          window.location.hash = '#/booking';
+          setTimeout(() => {
+            document.getElementById('doorstepTransfers')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+        }
+        break;
+
+      case 'permits':
+        if (onNavigateSection) {
+          onNavigateSection('about', 'permitsChauffeurs');
+        } else if (onNavigateAbout) {
+          onNavigateAbout('permitsChauffeurs');
+        } else if (typeof window !== 'undefined') {
+          window.location.hash = '#/about';
+          setTimeout(() => {
+            document.getElementById('permitsChauffeurs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const servicesList = [
     {
       id: 'circuits',
@@ -23,7 +81,7 @@ export default function Services({
       title: '18 Mountain Circuits',
       desc: 'All-inclusive packages for Manali, Rohtang, Spiti, Kasol & Dharamshala.',
       actionText: 'Explore Tours',
-      onClick: onNavigateDestinations
+      onClick: () => handleCardClick('circuits')
     },
     {
       id: 'fleet',
@@ -31,7 +89,7 @@ export default function Services({
       title: '17-Seater Force Luxury',
       desc: 'Pushback 2x1 reclining seats, ambient cabin lights & dual high-power AC.',
       actionText: 'Fleet Details',
-      onClick: onNavigateAbout
+      onClick: () => handleCardClick('fleet')
     },
     {
       id: 'transfers',
@@ -39,7 +97,7 @@ export default function Services({
       title: 'Doorstep Transfers',
       desc: 'Punctual pickup & drop from Delhi, Chandigarh Airport & Kalka Station.',
       actionText: 'Book Transfer',
-      onClick: () => onNavigateBooking ? onNavigateBooking('Doorstep Pickup & Transfer') : null
+      onClick: () => handleCardClick('transfers')
     },
     {
       id: 'permits',
@@ -47,7 +105,7 @@ export default function Services({
       title: 'Permits & Chauffeurs',
       desc: 'Certified local drivers, snow chains & pre-arranged Rohtang green permits.',
       actionText: 'Inquire Now',
-      onClick: () => onNavigateBooking ? onNavigateBooking('Custom Mountain Tour') : null
+      onClick: () => handleCardClick('permits')
     }
   ];
 

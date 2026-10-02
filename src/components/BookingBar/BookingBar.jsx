@@ -75,9 +75,11 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   <option value="" disabled>Choose Destination...</option>
                   {FEATURED_TOURS && FEATURED_TOURS.map(tour => (
                     <option key={tour.id} value={tour.title}>
-                      {tour.title} ({tour.duration})
+                      {tour.title}
                     </option>
                   ))}
+                  <option value="Doorstep Pickup & Transfer (Delhi / Chandigarh / Kalka)">Doorstep Pickup & Transfer (Delhi / Chandigarh / Kalka)</option>
+                  <option value="Rohtang Green Permits & Chauffeur Services">Rohtang Green Permits & Chauffeur Services</option>
                   <option value="Custom Himachal Tour Itinerary">Custom Himachal Itinerary (Tailored for you)</option>
                 </select>
               </div>

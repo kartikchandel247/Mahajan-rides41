@@ -41,7 +41,7 @@ export default function BookingPage({
       </section>
 
       {/* 3. Fleet & Service Guarantees */}
-      <section className="booking-guarantees-section">
+      <section className="booking-guarantees-section" id="permitsChauffeurs">
         <div className="container">
           <div className="guarantees-grid">
             <div className="guarantee-card">
@@ -115,7 +115,7 @@ export default function BookingPage({
           </div>
 
           {/* Quick Help Strip */}
-          <div className="booking-direct-strip">
+          <div className="booking-direct-strip" id="doorstepTransfers">
             <div className="direct-strip-info">
               <h3>Need Custom Pick-up from Delhi, Chandigarh, or Kalka?</h3>
               <p>We provide doorstep pickup across North India for all 18 Himachal Pradesh circuits.</p>
