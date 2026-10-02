@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp/FloatingWhatsApp';
@@ -169,8 +170,9 @@ export default function App() {
       {/* 4. Floating WhatsApp Action Button */}
       <FloatingWhatsApp />
 
-      {/* 5. Vercel Web Analytics */}
+      {/* 5. Vercel Web Analytics & Real-Time Speed Insights */}
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
