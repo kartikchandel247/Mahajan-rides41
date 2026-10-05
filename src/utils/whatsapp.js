@@ -16,12 +16,13 @@ export function buildWhatsAppInquiryUrl({
   const formattedDate = date 
     ? new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) 
     : "Flexible / To Discuss";
-  const durationText = days ? `${days} Days` : "Custom Duration";
+  const durationText = days === "1" ? "1 Day Trip" : (days ? `${days} Days` : "Custom Duration");
   const travelerText = travelers || "2 Adults";
+  const isOneDay = targetDestination.toLowerCase().includes('one-day') || targetDestination.toLowerCase().includes('one day') || days === "1";
 
   let message = `👋 *Hello ${AGENCY_CONFIG.name}!*%0A%0A`;
   message += `I would like to inquire about a tour package with the following details:%0A%0A`;
-  message += `📍 *Destination:* ${encodeURIComponent(targetDestination)}%0A`;
+  message += `📍 *Destination / Tour:* ${encodeURIComponent(targetDestination)}%0A`;
   message += `📅 *Date of Tour:* ${encodeURIComponent(formattedDate)}%0A`;
   message += `⏳ *Duration:* ${encodeURIComponent(durationText)}%0A`;
   message += `👥 *Travelers:* ${encodeURIComponent(travelerText)}%0A`;
@@ -33,7 +34,11 @@ export function buildWhatsAppInquiryUrl({
     message += `📝 *Notes / Special Requests:* ${encodeURIComponent(notes)}%0A`;
   }
 
-  message += `%0A💬 *Please share the best price quotation and detailed itinerary.* Thank you!`;
+  if (isOneDay) {
+    message += `%0A💬 *Please share the One-Day Trip rate quotation and timing schedule.* Thank you!`;
+  } else {
+    message += `%0A💬 *Please share the best price quotation and detailed itinerary.* Thank you!`;
+  }
 
   return `https://wa.me/${AGENCY_CONFIG.ownerPhone}?text=${message}`;
 }

@@ -176,6 +176,7 @@ export default function ContactPage({ onNavigateHome }) {
                         value={formData.destination}
                         onChange={(e) => setFormData({...formData, destination: e.target.value})}
                       >
+                        <option value="One-Day Trip">One-Day Trip</option>
                         <option value="Manali, Solang & Atal Tunnel 5D/4N">Manali, Solang &amp; Atal Tunnel (5D/4N)</option>
                         <option value="Kasol, Manikaran & Tosh 4D/3N">Kasol, Manikaran &amp; Tosh (4D/3N)</option>
                         <option value="Dharamshala, McLeod Ganj & Dalhousie 6D/5N">Dharamshala, McLeod Ganj &amp; Dalhousie (6D/5N)</option>

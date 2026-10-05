@@ -23,7 +23,14 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
   }, [initialDestination]);
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData(prev => {
+      const next = { ...prev, [name]: value };
+      if (name === 'destination' && (value === 'One-Day Trip' || value.toLowerCase().includes('one-day'))) {
+        next.days = '1';
+      }
+      return next;
+    });
   };
 
   const handleSubmit = (e) => {
@@ -34,7 +41,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
       name: 'Website Visitor',
       destination: formData.destination,
       travelDate: formData.date,
-      groupSize: `${formData.travelers} Travelers (${formData.days} Days)`,
+      groupSize: `${formData.travelers} Travelers (${formData.days === '1' ? 'One-Day Trip' : `${formData.days} Days`})`,
       vehicleType: formData.vehicle
     }).catch(err => console.warn('Supabase auto-save error:', err));
 
@@ -73,6 +80,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   required
                 >
                   <option value="" disabled>Choose Destination...</option>
+                  <option value="One-Day Trip">One-Day Trip</option>
                   {FEATURED_TOURS && FEATURED_TOURS.map(tour => (
                     <option key={tour.id} value={tour.title}>
                       {tour.title}
@@ -113,6 +121,7 @@ export default function BookingBar({ initialDestination = "", className = "" }) 
                   required
                 >
                   <option value="" disabled>Select Days...</option>
+                  <option value="1">1 Day Trip</option>
                   <option value="3">3 Days - 2 Nights (Weekend)</option>
                   <option value="4">4 Days - 3 Nights (Short Trip)</option>
                   <option value="5">5 Days - 4 Nights (Standard)</option>
