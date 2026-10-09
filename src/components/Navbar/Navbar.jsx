@@ -21,14 +21,17 @@ export default function Navbar({ activePage = 'home', onNavigate, _onBookClick }
     { name: 'ABOUT', page: 'about' },
     { name: 'TOURS', page: 'destinations' },
     { name: 'BOOK NOW', page: 'booking' },
+    { name: 'GALLERY', page: 'gallery' },
     { 
       name: 'PAGES', 
       page: 'pages',
       subLinks: [
         { name: 'All 18 Tour Circuits', page: 'destinations' },
         { name: 'Instant Quote & Booking', page: 'booking' },
+        { name: 'Photo & Video Gallery', page: 'gallery' },
         { name: 'Tempo Traveller Fleet', page: 'about' },
         { name: 'Travel Guides & Reviews', page: 'blog' },
+        { name: 'Admin Portal Login', page: 'admin' },
         { name: 'Direct WhatsApp Contact', page: 'contact' },
       ]
     },

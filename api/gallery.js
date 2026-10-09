@@ -17,26 +17,64 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
     persistSession: false,
     autoRefreshToken: false,
   },
+  realtime: {
+    createWebSocket: false
+  }
 });
 
 export default async function handler(req, res) {
-  // CORS Headers for worldwide access
+  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // GET: Fetch verified reviews
+  // GET: Fetch all active gallery items
   if (req.method === 'GET') {
     try {
       const { data, error } = await supabase
-        .from('reviews')
+        .from('gallery_items')
         .select('*')
         .order('created_at', { ascending: false });
+
+      if (error) {
+        return res.status(400).json({ success: false, error: error.message });
+      }
+
+      // Exclude legacy website place photos; allow only admin uploads and official vehicle images
+      const validItems = (data || []).filter(item => item.media_url && !item.media_url.startsWith('/places/'));
+      return res.status(200).json({ success: true, data: validItems });
+    } catch (err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
+  }
+
+  // POST: Add new gallery item (image or video)
+  if (req.method === 'POST') {
+    try {
+      const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+      const { title, media_url, media_type, circuit_category } = body;
+
+      if (!media_url) {
+        return res.status(400).json({ success: false, error: 'media_url is required' });
+      }
+
+      const payload = {
+        title: title ? title.trim() : 'Himachal Mountain Memory',
+        media_url: media_url.trim(),
+        media_type: media_type === 'video' ? 'video' : 'image',
+        circuit_category: circuit_category || 'Himachal Circuits',
+        created_at: new Date().toISOString()
+      };
+
+      const { data, error } = await supabase
+        .from('gallery_items')
+        .insert([payload])
+        .select();
 
       if (error) {
         return res.status(400).json({ success: false, error: error.message });
@@ -48,35 +86,26 @@ export default async function handler(req, res) {
     }
   }
 
-  // POST: Add new customer review
-  if (req.method === 'POST') {
+  // DELETE: Remove gallery item by id
+  if (req.method === 'DELETE') {
     try {
       const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
-      const rawComment = body.quote?.trim() || body.comment?.trim() || '';
-      const finalComment = body.photo 
-        ? `__PHOTO__:${body.photo}__\n${rawComment}` 
-        : rawComment;
+      const id = req.query.id || body.id;
 
-      const payload = {
-        name: body.name ? body.name.trim() : 'Anonymous Passenger',
-        city: body.city?.trim() || 'Himachal Passenger',
-        tour: body.tour || 'Custom Himachal Round Trip',
-        rating: Number(body.rating) || 5,
-        comment: finalComment,
-        verified: true,
-        created_at: new Date().toISOString()
-      };
+      if (!id) {
+        return res.status(400).json({ success: false, error: 'Item ID is required for deletion' });
+      }
 
-      const { data, error } = await supabase
-        .from('reviews')
-        .insert([payload])
-        .select();
+      const { error } = await supabase
+        .from('gallery_items')
+        .delete()
+        .eq('id', id);
 
       if (error) {
         return res.status(400).json({ success: false, error: error.message });
       }
 
-      return res.status(200).json({ success: true, data });
+      return res.status(200).json({ success: true, deletedId: id });
     } catch (err) {
       return res.status(500).json({ success: false, error: err.message });
     }

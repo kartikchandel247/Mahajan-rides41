@@ -1,3 +1,12 @@
+// Polyfill WebSocket for Node runtime environments without native WebSocket
+if (typeof globalThis !== 'undefined' && !globalThis.WebSocket) {
+  globalThis.WebSocket = class DummyWebSocket {
+    constructor() {}
+    addEventListener() {}
+    removeEventListener() {}
+  };
+}
+
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://kcvnmquwqpuiftaeccgb.supabase.co';

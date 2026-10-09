@@ -3,6 +3,8 @@ import { openEmailInquiry, getGmailComposeUrl } from '../../utils/email';
 import logoImg from '../../assets/logo.png';
 import './Footer.scss';
 
+const currentYear = new Date().getFullYear();
+
 export default function Footer({ onNavigate }) {
   const handleLink = (page, e) => {
     if (e) e.preventDefault();
@@ -38,9 +40,11 @@ export default function Footer({ onNavigate }) {
               <button type="button" onClick={(e) => handleLink('home', e)} className="footer-link-btn">Home</button>
               <button type="button" onClick={(e) => handleLink('destinations', e)} className="footer-link-btn">Tour Circuits</button>
               <button type="button" onClick={(e) => handleLink('booking', e)} className="footer-link-btn">Book Now (Instant Quote)</button>
+              <button type="button" onClick={(e) => handleLink('gallery', e)} className="footer-link-btn">Photo &amp; Video Gallery</button>
               <button type="button" onClick={(e) => handleLink('about', e)} className="footer-link-btn">About Fleet</button>
               <button type="button" onClick={(e) => handleLink('blog', e)} className="footer-link-btn">Travel Guides</button>
               <button type="button" onClick={(e) => handleLink('contact', e)} className="footer-link-btn">Contact Us</button>
+              <button type="button" onClick={(e) => handleLink('admin', e)} className="footer-link-btn admin-link"><i className="fa-solid fa-lock" style={{ fontSize: '0.75rem', marginRight: '4px' }}></i> Admin Portal</button>
             </div>
           </div>
 
@@ -94,7 +98,7 @@ export default function Footer({ onNavigate }) {
         {/* Bottom Bar */}
         <div className="footer-bottom-bar">
           <div className="copy-text">
-            &copy; {new Date().getFullYear()} {AGENCY_CONFIG.name}. All Rights Reserved. Dedicated Himachal Pradesh Force Tempo Traveller Specialists.
+            &copy; {currentYear} {AGENCY_CONFIG.name}. All Rights Reserved. Dedicated Himachal Pradesh Force Tempo Traveller Specialists.
           </div>
           <div className="pickup-notice">
             <i className="fa-solid fa-location-dot"></i> Doorstep Pickup: Chandigarh • Delhi • Kalka • Manali

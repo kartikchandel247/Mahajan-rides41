@@ -7,13 +7,16 @@ import Services from '../components/Services/Services';
 import ExploreBanner from '../components/ExploreBanner/ExploreBanner';
 import { FEATURED_TOURS } from '../data/toursData';
 import { openWhatsAppInquiry } from '../utils/whatsapp';
+import BlogPreview from '../components/BlogPreview/BlogPreview';
+import GallerySection from '../components/Gallery/GallerySection';
 import './HomePage.scss';
 
 export default function HomePage({ 
   onNavigateDestinations, 
   onNavigateAbout, 
   onNavigateBlog, 
-  onNavigateContact,
+  onNavigateContact, 
+  onNavigateGallery,
   onNavigateBooking,
   onNavigateSection 
 }) {
@@ -276,6 +279,12 @@ export default function HomePage({
           </div>
         </div>
       </section>
+
+      {/* 8. Travel Stories, Blogs & Verified Passenger Voice */}
+      <BlogPreview />
+
+      {/* 9. Public Gallery Section immediately after the Blog section */}
+      <GallerySection onNavigateFullGallery={onNavigateGallery} />
     </div>
   );
 }
